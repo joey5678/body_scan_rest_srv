@@ -36,7 +36,7 @@ def measure_get(id):
     return jsonify(m), 200
 
 
-@app.route('/api/measure', methods = ['POST'])
+@app.route('/api/measure', methods = ['POST'], strict_slashes=False)
 #@login_required(role='editor')
 def measure_me():
     """Creates a measure and returns measure result."""
