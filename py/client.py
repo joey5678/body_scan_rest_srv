@@ -6,7 +6,7 @@ import urllib
 import requests
 
 base_url = "https://api.3dmu.prototechsolutions.com/v3/models"
-mock_url = "http://localhost:8888"
+mock_url = "http://10.240.118.91:8888"
 base_url = mock_url
 HEADERS = {'x-api-key':'EZtaDPvJDjkrEcohrkiMHYGWTimmszKJ'}
 

@@ -1,5 +1,5 @@
 #!/bin/sh
 # run in dev mode
 
-docker run -it --rm --name restpie-dev -p 8100:80 -v `pwd`/:/app/ restpie-dev-image
+docker run -it --rm --name ft_rest_srv -p 8100:80 --link redis-outer:redis-outer -v `pwd`/:/app/ ft_rest_server_image
 

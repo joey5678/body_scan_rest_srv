@@ -36,12 +36,13 @@ def measure_get(id):
     return jsonify(m), 200
 
 
-@app.route('/api/measure/', methods = ['POST'])
+@app.route('/api/measure', methods = ['POST'])
 #@login_required(role='editor')
 def measure_me():
     """Creates a measure and returns measure result."""
     input_check = True
     rsp_code = 200
+    result = {}
 
     input = request.json
     input.pop("id", 0) # ignore id if given, is set by db
@@ -98,7 +99,9 @@ def measure_me():
                 rsp_code = 200
                 result = handle_3d_measure_json(m_result)
 
-    m.result = json.dumps(m_result)
+            m.result = json.dumps(m_result)
+    if not m.result:
+        m.result = json.dumps(result)
     m.modified = m.created = util.utcnow()
     #m.creator = get_myself()
     m.save()
