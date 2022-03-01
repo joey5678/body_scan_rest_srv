@@ -109,7 +109,48 @@ def measure_me():
     return jsonify(result), rsp_code
 
 def handle_3d_measure_json(m_result):
-    return m_result
+    g_required_map = {
+        "Xiong": [144, 105, 106],
+        "Yao": [108, 163, 1108, 1145, 1150, 107],
+        "Tun": [109, 1109],
+        "Tui": [141, 142, 136, 137],
+        "Bi": [125, 126, 124, 122]
+    }
+    lp_required_map = {
+        "Tou_CeWai": [212, 213],
+        "Tou_QianYin": [212, 210, 213, 211],
+        "Jian_GaoDi": [210, 211],
+        "Body_QingXie": [204, 236],
+        "Tui_XO": [226, 227, 234, 235]
+    }
+    try:
+        girths = m_result['result']['metrics']['girths']
+    except:
+        girths = []
+    try:
+        ldmk_points = m_result['result']['metrics']['landmarkPoints']
+    except:
+        ldmk_points = []
+    result = {"TiWei":{}, "TiTai":{}}
+
+    g_result = result['TiWei']
+    for _k, _ids in g_required_map.items():
+        if g_result.get(_k, None) is None:
+            g_result[_k] = []
+        for girth in girths:
+            if girth.get('id', 0) in _ids:
+                g_result[_k].append(girth)
+   
+    lp_result = result['TiTai']
+    for _k1, _ids1 in lp_required_map.items():
+        if lp_result.get(_k1, None) is None:
+            lp_result[_k1] = [] 
+        for lp in ldmk_points:
+            if lp.get('id', 0) in _ids1:
+                lp_result[_k1].append(lp)
+                
+    return result
+    #return m_result
 
 
 @app.route('/api/movies/<id>', methods = ['PUT'])
