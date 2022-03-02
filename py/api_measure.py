@@ -80,6 +80,8 @@ def measure_me():
             while sc != 200:
 
                 request_id = rsp['requestId']
+                if not m.request_id:
+                    m.request_id = request_id
                 #2. GET. Send requestId to get final result.
                 args = {"requestId" : request_id}
                 s1, rsp1 = rest_get("metrics", args)
