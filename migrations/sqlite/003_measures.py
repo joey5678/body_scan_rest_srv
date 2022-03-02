@@ -9,8 +9,10 @@ def migrate(migrator, database, fake=False, **kwargs):
         gender text,
         age int,
         height real,
+        weight real,
 
         file_path text,
+        request_id text,
         result text
     )""")
 

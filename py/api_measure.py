@@ -47,7 +47,7 @@ def measure_me():
     input = request.json
     input.pop("id", 0) # ignore id if given, is set by db
 
-    m = dict_to_model(db.Measure, input)
+    m = dict_to_model(db.Measure, input, ignore_unknown=True)
     log.info(f"input of post: {m}")
     #get measure result.
     m_url = m.file_path

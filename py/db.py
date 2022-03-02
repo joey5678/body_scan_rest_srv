@@ -171,8 +171,11 @@ class Measure(BaseModel):
     age = IntegerField()
     gender = TextField()
     height = FloatField()
+    weight = FloatField()
+    birth = TextField()
 
     file_path = TextField()
+    request_id = TextField()
     result = TextField()
 
     created = DateTimeField()
