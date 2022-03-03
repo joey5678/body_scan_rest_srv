@@ -114,10 +114,10 @@ def measure_me():
 def handle_3d_measure_json(m_result):
     g_required_map = {
         "Xiong": [144, 105, 106],
-        "Yao": [108, 163, 1108, 1145, 1150, 107],
-        "Tun": [109, 1109],
-        "Tui": [141, 142, 136, 137],
-        "Bi": [125, 126, 124, 122]
+        "Yao": [108, 107],
+        "Tun": [109],
+        "Tui": [141, 142],
+        "Bi": [125, 126]
     }
     # list order is important
     lp_required_map = {
@@ -139,6 +139,7 @@ def handle_3d_measure_json(m_result):
         ldmk_points = []
 
     coef = fit_scale(ldmk_points)
+    log.info(f"fit the coef : {coef}.")
     if isinstance(coef, list):
         coef = coef[0]
 
@@ -150,50 +151,42 @@ def handle_3d_measure_json(m_result):
             g_result[_k] = []
         for girth in girths:
             if girth.get('id', 0) in _ids:
-                g_result[_k].append(girth)
+                g_result[_k].append({"id": girth['id'], "label": girth['label'], "girth": girth['girth'][0], "unit": "meter"})
    
-    lp_result = result['TiTai']
+    lp_original_result = {}
+
     for _k1, _ids1 in lp_required_map.items():
-        if lp_result.get(_k1, None) is None:
-            lp_result[_k1] = [] 
+        if lp_original_result.get(_k1, None) is None:
+            lp_original_result[_k1] = [] 
         for lp in ldmk_points:
             if lp.get('id', 0) in _ids1:
-                lp_result[_k1].append(lp)
+                lp_original_result[_k1].append(lp)
     #print(lp_result)
-    eval_titai(lp_result)                
+    lp_result = result['TiTai']
+    eval_titai(lp_original_result, lp_result)                
     return result
     #return m_result
 
-def eval_titai(titai_data):
+def eval_titai(titai_data, titai_result):
     cw_rst, qy_rst, gd_rst, qx_rst, xo_rst = None, None, None, None, None
     for tt_k, tt_items in titai_data.items():
         tt_item_dict = {item['id']: item for item in tt_items}
         if tt_k == "Tou_CeWai":
             cw_rst = cal_head_cewai(tt_item_dict.get(212, None), tt_item_dict.get(213, None))
+            titai_result[f'{tt_k}_Result'] = cw_rst
         elif tt_k == "Tou_QianYin":
-            qy_rst = cal_head_qianyin(tt_item_dict.get(212, None), tt_item_dict.get(210, None), tt_item_dict.get(213, None), tt_item_dict.get(211, None))
+            qy_rst = cal_head_qianyin(tt_item_dict.get(210, None), tt_item_dict.get(211, None), tt_item_dict.get(212, None), tt_item_dict.get(213, None))
+            titai_result[f'{tt_k}_Result'] = qy_rst
         elif tt_k == "Jian_GaoDi":
             gd_rst = cal_shoulder_gaodi(tt_item_dict.get(210, None), tt_item_dict.get(211, None))
+            titai_result[f'{tt_k}_Result'] = gd_rst
         elif tt_k == "Body_QingXie":
             qx_rst = cal_body_qingxie(tt_item_dict.get(204, None), tt_item_dict.get(236, None))
+            titai_result[f'{tt_k}_Result'] = qx_rst
         elif tt_k == "Tui_XO":
             xo_rst = cal_leg_xo(tt_item_dict.get(226, None), tt_item_dict.get(227, None), tt_item_dict.get(234, None), tt_item_dict.get(235, None))
+            titai_result[f'{tt_k}_Result'] = xo_rst
 
-    if cw_rst:
-        print(f"cw: {cw_rst}")
-        titai_data['Tou_CeWai_Result'] = cw_rst
-    if qy_rst:
-        print(f"qy: {qy_rst}")
-        titai_data['Tou_QianYin_Result'] = qy_rst
-    if gd_rst:
-        print(f"gd: {gd_rst}")
-        titai_data['Jian_GaoDi_Result'] = gd_rst
-    if qx_rst:
-        print(f"qx: {qx_rst}")
-        titai_data['Body_QingXie_Result'] = qx_rst
-    if xo_rst:
-        print(f"xo: {xo_rst}")
-        titai_data['Tui_XO_Result'] = xo_rst
 
     
 

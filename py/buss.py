@@ -15,20 +15,38 @@ def cal_head_qianyin(ls_points, rs_points, lt_points, rt_points, coef=1.):
     _, _, rtz = get_xyz(rt_points)
     _, _, rsz = get_xyz(rs_points)
     #print(lsz, rsz, ltz, rtz)
-    return (ltz - lsz + rtz - rsz) * coef * 100 /2
+    dis = round((ltz - lsz + rtz - rsz) * coef * 100 /2, 3)
+    rst_str = "正常" if dis < 6. else "前引"
+    return {"value": dis, "unit": "cm", "result": rst_str, "description": f"{dis} cm horizontal distance between tragion and shoulder."}
 
 def cal_head_cewai(lt_points, rt_points):
     x0, y0, z0 = get_xyz(lt_points)
     x1, y1, z1 = get_xyz(rt_points)
     d_x = abs(x0 - x1)
     d_y = y1 - y0
-    return math.atan2((d_y), d_x)/math.pi * 180
+    degree =  round(math.atan2((d_y), d_x)/math.pi * 180, 3)
+    rst_str = "正常" if abs(degree) < 5. else "侧歪" 
+    if degree > 0:
+        description = f"head {abs(degree)} degree to the left."
+    elif degree < 0:
+        description = f"head {abs(degree)} degree to the right."
+    else:
+        description = "head no left no right."
+    return {"value": degree, "unit": "degree", "result": rst_str, "description": description }
 
 
 def cal_shoulder_gaodi(ls_points, rs_points):
     h_ls = ls_points['level']
     h_rs = rs_points['level']
-    return (h_ls - h_rs) * 100
+    d_h = round((h_ls - h_rs) * 100, 3)
+    rst_str = "正常" if abs(d_h) < 2. else ("左肩膀高" if d_h > 2. else "右肩膀高")
+    if d_h > 0:
+        description = f"left shoulder {abs(d_h)} cm higher than right. "
+    elif d_h < 0:
+        description = f"right shoulder {abs(d_h)} cm higher than left. "
+    else:
+        description = "shoulders are same height. "
+    return {"value": d_h, "unit":"cm", "result": rst_str,  "description": f"left shoulder {abs(d_h)} cm higher than right. "}
 
 
 def cal_body_qingxie(cc_points, crotch_points):
@@ -36,7 +54,15 @@ def cal_body_qingxie(cc_points, crotch_points):
     x1, y1, z1 = get_xyz(crotch_points)
     d_x = x0 - x1
     d_y = abs(y0 - y1)
-    return math.atan2((d_x), d_y)/math.pi * 180
+    degree =  round(math.atan2((d_x), d_y)/math.pi * 180, 3)
+    rst_str =  "正常" if abs(degree) < 3. else ("左倾斜" if degree > 3 else "右倾斜")
+    if degree > 0:
+        description = f"body {abs(degree)} degrees to left."
+    elif degree < 0:
+        description = f"body {abs(degree)} degrees to right."
+    else:
+        description = f"body no tilt."
+    return {"value": degree, "unit":"degree", "result": rst_str, "description": f"body {abs(degree)} degrees to left."}
 
 
 def cal_leg_xo(lff_points, rff_points, lkc_points, rkc_points):
