@@ -2,14 +2,20 @@ import os
 import sys
 import math
 
+from sklearn import datasets, linear_model
 
 def get_xyz(points):
     xyz = points['position']
     return xyz['x'], xyz['y'], xyz['z']
 
 #calculate the distance_Z of (ltp-lsp) and (rtp-rsp)
-def cal_head_qianyin(ls_points, rs_points, lt_points, rt_points):
-    pass
+def cal_head_qianyin(ls_points, rs_points, lt_points, rt_points, coef=1.):
+    _, _, ltz = get_xyz(lt_points)
+    _, _, lsz = get_xyz(ls_points)
+    _, _, rtz = get_xyz(rt_points)
+    _, _, rsz = get_xyz(rs_points)
+    #print(lsz, rsz, ltz, rtz)
+    return (ltz - lsz + rtz - rsz) * coef * 100 /2
 
 def cal_head_cewai(lt_points, rt_points):
     x0, y0, z0 = get_xyz(lt_points)
@@ -36,6 +42,18 @@ def cal_body_qingxie(cc_points, crotch_points):
 def cal_leg_xo(lff_points, rff_points, lkc_points, rkc_points):
     pass
 
+
+def fit_scale(points):
+    y_list = []
+    meter_list = []
+    for pdata in points:
+        y_list.append([float(pdata['position']['y'])])
+        meter_list.append([float(pdata['level'])])
+    
+    regr = linear_model.LinearRegression()
+    regr.fit(y_list, meter_list)    
+    
+    return regr.coef_[0]
 
 if __name__ == "__main__":
     data = {
@@ -192,4 +210,6 @@ if __name__ == "__main__":
 
     tt3 = data['TiTai']['Body_QingXie']
     print(cal_body_qingxie(tt3[0], tt3[1]))
-
+    
+    tt4 = data['TiTai']['Tou_QianYin']
+    print(cal_head_qianyin(tt4[0], tt4[1], tt4[2], tt4[3]))

@@ -15,6 +15,7 @@ import util
 from client import rest_get, rest_post
 from webutil import app, login_required, get_myself
 
+from buss import *
 import logging
 log = logging.getLogger("api.measure")
 
@@ -118,6 +119,7 @@ def handle_3d_measure_json(m_result):
         "Tui": [141, 142, 136, 137],
         "Bi": [125, 126, 124, 122]
     }
+    # list order is important
     lp_required_map = {
         "Tou_CeWai": [212, 213],
         "Tou_QianYin": [212, 210, 213, 211],
@@ -129,10 +131,17 @@ def handle_3d_measure_json(m_result):
         girths = m_result['result']['metrics']['girths']
     except:
         girths = []
+    
+    coef = 1.
     try:
         ldmk_points = m_result['result']['metrics']['landmarkPoints']
     except:
         ldmk_points = []
+
+    coef = fit_scale(ldmk_points)
+    if isinstance(coef, list):
+        coef = coef[0]
+
     result = {"TiWei":{}, "TiTai":{}}
 
     g_result = result['TiWei']
@@ -150,36 +159,42 @@ def handle_3d_measure_json(m_result):
         for lp in ldmk_points:
             if lp.get('id', 0) in _ids1:
                 lp_result[_k1].append(lp)
-                
+    #print(lp_result)
+    eval_titai(lp_result)                
     return result
     #return m_result
 
+def eval_titai(titai_data):
+    cw_rst, qy_rst, gd_rst, qx_rst, xo_rst = None, None, None, None, None
+    for tt_k, tt_items in titai_data.items():
+        tt_item_dict = {item['id']: item for item in tt_items}
+        if tt_k == "Tou_CeWai":
+            cw_rst = cal_head_cewai(tt_item_dict.get(212, None), tt_item_dict.get(213, None))
+        elif tt_k == "Tou_QianYin":
+            qy_rst = cal_head_qianyin(tt_item_dict.get(212, None), tt_item_dict.get(210, None), tt_item_dict.get(213, None), tt_item_dict.get(211, None))
+        elif tt_k == "Jian_GaoDi":
+            gd_rst = cal_shoulder_gaodi(tt_item_dict.get(210, None), tt_item_dict.get(211, None))
+        elif tt_k == "Body_QingXie":
+            qx_rst = cal_body_qingxie(tt_item_dict.get(204, None), tt_item_dict.get(236, None))
+        elif tt_k == "Tui_XO":
+            xo_rst = cal_leg_xo(tt_item_dict.get(226, None), tt_item_dict.get(227, None), tt_item_dict.get(234, None), tt_item_dict.get(235, None))
 
-@app.route('/api/movies/<id>', methods = ['PUT'])
-@login_required(role='editor')
-def movie_update(id):
-    """Updates a movie and returns it."""
+    if cw_rst:
+        print(f"cw: {cw_rst}")
+        titai_data['Tou_CeWai_Result'] = cw_rst
+    if qy_rst:
+        print(f"qy: {qy_rst}")
+        titai_data['Tou_QianYin_Result'] = qy_rst
+    if gd_rst:
+        print(f"gd: {gd_rst}")
+        titai_data['Jian_GaoDi_Result'] = gd_rst
+    if qx_rst:
+        print(f"qx: {qx_rst}")
+        titai_data['Body_QingXie_Result'] = qx_rst
+    if xo_rst:
+        print(f"xo: {xo_rst}")
+        titai_data['Tui_XO_Result'] = xo_rst
 
-    input = request.json
-    # don't update created/creator-fields
-    input.pop("created", 0)
-    input.pop("creator", 0)
+    
 
-    m = db.get_movie(id)
-    update_model_from_dict(m, input)
-    m.modified = util.utcnow()
-    m.save()
-
-    return jsonify(m), 200
-
-
-@app.route('/api/movies/<id>', methods = ['DELETE'])
-@login_required(role='editor')
-def movie_delete(id):
-    """Deletes a movie."""
-
-    m = db.get_movie(id)
-    m.delete_instance()
-
-    return jsonify(m), 200
 
