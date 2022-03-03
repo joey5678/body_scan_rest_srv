@@ -151,7 +151,7 @@ def handle_3d_measure_json(m_result):
             g_result[_k] = []
         for girth in girths:
             if girth.get('id', 0) in _ids:
-                g_result[_k].append({"id": girth['id'], "label": girth['label'], "girth": girth['girth'][0], "unit": "meter"})
+                g_result[_k].append({"id": girth['id'], "label": girth['label'], "girth": round(girth['girth'][0] * 100, 1), "unit": "cm"})
    
     lp_original_result = {}
 
