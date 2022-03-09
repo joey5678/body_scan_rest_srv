@@ -28,10 +28,11 @@ def rest_get(resource, args={}, headers=HEADERS):
     status = resp.status_code
 
     if status == 200:
+        print('Get method from 3th, return successful status code: ', status)
         print(resp.headers)
     else:
-        print('Get status code: ', status)
-        print(resp.headers)
+        print('Get method from 3th,abnormal status code: ', status)
+        print(resp.text)
 
     return status, resp.json()
 

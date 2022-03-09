@@ -38,6 +38,23 @@ W_Dict = {
 def to_zh(num, en=""):
     return W_Dict.get(num, en)
 
+def rest_post_with_try(body_json, try_times=4):
+    s = 501
+    rsp = None
+    if try_times <= 0:
+        try_times = 3
+    for ttime in range(try_times):
+        try:
+            s, rsp = rest_post("measure", body=body_json)
+        except:
+            log.error(f"\nCall 3th POST method error, tried {ttime +1} times.\n")
+            time.sleep(4)
+        else:
+            break
+    if rsp is None:
+        rsp = {"statusCode": s, "data":""}
+    return s, rsp
+
 @app.route('/api/measures/', methods = ['GET'])
 def measure_query():
     """Not Implementation"""
@@ -62,6 +79,7 @@ def measure_me():
     input_check = True
     rsp_code = 200
     result = {}
+    log.warn("\n------Request Received and Start handling ----- \n")
     log.debug(f"[debug]...headers....{request.headers}")
     log.debug(f"[debug]...data....{request.data}")
     log.debug(f"[debug]...cookies ....{request.cookies  }")
@@ -90,28 +108,42 @@ def measure_me():
             "filetype": "obj",
             "output": "json"
         }
-        log.info("Sending POST to measure method ....")
-        s, rsp = rest_post("measure", body=body_json)
+        log.warn("Sending POST to measure method ....")
+        #for ptime in range(ptry_times):
+        #try:
+        #s, rsp = rest_post("measure", body=body_json)
+        s, rsp = rest_post_with_try(body_json)
         if s != 200 or rsp['statusCode'] != 200 or rsp.get('requestId', None) is None:
             rsp_code = 502
             result = {"reason": f"the 3th API invoke failed, received response: {rsp}"} 
+            log.error("\n[Error] Submit POST to 3th API failed, EXIT Abnormal.\n")
         else:
             sc = 0
             m_result = None
             while sc != 200:
-
+                try_times = 5
                 request_id = rsp['requestId']
                 if not m.request_id:
                     m.request_id = request_id
-                log.info(f"[Debug] get request id: {request_id}")
+                log.warn(f"[Debug] request id: {request_id}")
                 #2. GET. Send requestId to get final result.
-                time.sleep(5)
+                time.sleep(15)
                 args = {"requestId" : request_id}
-                s1, rsp1 = rest_get("metrics", args)
-                sc = s1
+                for ttime in range(try_times):
+                    try:
+                        s1, rsp1 = rest_get("metrics", args)
+                        sc = s1
+                    except:
+                        log.error(f"\nCall 3th Get method error, tried {ttime +1} times.\n")
+                        time.sleep(4)
+                    else:
+                        break
+                    
                 if s1 == 200:
                     m_result = rsp1['body'] 
+                    log.warn("Get the final result of measure data.")
                 elif s1 == 202:
+                    log.warn("Got 202 code when request the measure data, sleep a while...")
                     time.sleep(5)
                 else:
                     log.error(f"[Error] not get the expected resp: {resp1['body']} ")
@@ -122,6 +154,7 @@ def measure_me():
                 log.debug(f"[Error] query measure result failed by request id:{request_id}.")
                 result = {f"reason": f"query measure result failed by request id:{request_id}."}
             else:
+                log.warn("Start to handling the measure data.....")
                 # handl/parse result.
                 rsp_code = 200
                 #save to json file
@@ -131,9 +164,9 @@ def measure_me():
                     sv_json_path = Path("results") / f"{sv_json_name}.json"
                     with open(sv_json_path, 'w') as jf:
                        json.dump(m_result, jf)
-                log.info("[Info] Handling result from 3th.")
+                log.warn("[Info] Handling result from 3th.")
                 result = handle_3d_measure_json(m_result)
-                log.info("[Debug] Handled result from 3th.")
+                log.warn("[Debug] Handled result from 3th.")
 
             m.result = json.dumps(m_result)
     if not m.result:
@@ -142,6 +175,7 @@ def measure_me():
     #m.creator = get_myself()
     log.info(f"[Debug] Final result : {result}")
     m.save()
+    log.warn("\n=================Request Processed.\n")
 
     return jsonify(result), rsp_code
 
@@ -185,7 +219,7 @@ def handle_3d_measure_json(m_result):
         coef = coef[0]
 
     result = {"TiWei":{}, "TiTai":{}}
-    log.info("[Debug] Handling TiWei .....\n")
+    log.warn("[Debug] Handling TiWei .....\n")
     g_result = result['TiWei']
     for _k, _ids in g_required_map.items():
         if g_result.get(_k, None) is None:
@@ -216,11 +250,11 @@ def handle_3d_measure_json(m_result):
             xog_item['girth'] = round((xog_item['girth'] - random.uniform(4, 5)), 1)
         
     
-    log.info("[Debug] Handled TiWei.\n")
+    log.warn("[Debug] Handled TiWei.\n")
    
     lp_original_result = {}
 
-    log.info("[Debug] Handling TiTai .....\n")
+    log.warn("[Debug] Handling TiTai .....\n")
     for _k1, _ids1 in lp_required_map.items():
         if lp_original_result.get(_k1, None) is None:
             lp_original_result[_k1] = [] 
@@ -230,7 +264,7 @@ def handle_3d_measure_json(m_result):
     lp_result = result['TiTai']
     log.info("[Debug] Evaling TiTai .....\n")
     eval_titai(lp_original_result, lp_result)                
-    log.info("[Debug] Handled TiTai .\n")
+    log.warn("[Debug] Handled TiTai .\n")
     return result
     #return m_result
 

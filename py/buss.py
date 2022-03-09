@@ -83,7 +83,7 @@ def cal_body_qingxie(cc_points, crotch_points):
 
 def cal_leg_xo(rof_points, lof_points, lkc_points, rkc_points):
     if not all((rof_points, lof_points, lkc_points, rkc_points)):
-       degree = round(random.uniform(175, 195), 1) 
+       degree = round(random.uniform(170, 195), 1) 
        return {"name":"腿型", "value": degree, "unit":DEG, "result": "正常", "description": "leg"}
     x0, y0, _ = get_xyz(lof_points)
     x1, y1, _ = get_xyz(rof_points)
@@ -99,7 +99,7 @@ def cal_leg_xo(rof_points, lof_points, lkc_points, rkc_points):
     degree_r = math.atan2((d_ry), d_rx)/math.pi * 180
     print(f"d_l, d_r: {degree_l}, {degree_r}")
     degree = round(degree_l + degree_r, 1)
-    rst_str =  "正常" if 170 < degree < 200 else ("O形腿倾向" if degree > 200 else "X形腿倾向") 
+    rst_str =  "正常" if 160 < degree < 200 else ("O形腿倾向" if degree > 200 else "X形腿倾向") 
     return {"name":"腿型", "value": degree, "unit":DEG, "result": rst_str, "description": "leg"}   
 
 
