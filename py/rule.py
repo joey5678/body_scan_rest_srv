@@ -309,12 +309,12 @@ r242_a = m.top_leg_Length >= m.Leg_Length * BS_P['ratio_half_Leg']
 rule_241 = r241_a
 rule_242 = r242_a
 
-r251_a = m.WaistWei_155 / m.TunWei_167 > BS_P['ratio_Yao_Tun_s0']
-r251_b = m.WaistWei_155 / m.TunWei_167 < BS_P['ratio_Yao_Tun_s1']
-r252_a = m.WaistWei_155 / m.TunWei_167 > BS_P['ratio_Yao_Tun_top']
-r253_a = m.WaistWei_155 / m.TunWei_167 <= BS_P['ratio_Yao_Tun_s0']
-r253_b = m.WaistWei_155 / m.TunWei_167 >= BS_P['ratio_Yao_Tun_s1']
-r253_c = m.WaistWei_155 / m.TunWei_167 <= BS_P['ratio_Yao_Tun_top']
+r251_a = m.WaistWei_155 > m.TunWei_167 * BS_P['ratio_Yao_Tun_s0'] 
+r251_b = m.WaistWei_155 < m.TunWei_167 * BS_P['ratio_Yao_Tun_s1']
+r252_a = m.WaistWei_155 > m.TunWei_167 * BS_P['ratio_Yao_Tun_top']
+r253_a = m.WaistWei_155 <= m.TunWei_167 * BS_P['ratio_Yao_Tun_s0']
+r253_b = m.WaistWei_155 >= m.TunWei_167 * BS_P['ratio_Yao_Tun_s1']
+r253_c = m.WaistWei_155 <= m.TunWei_167 * BS_P['ratio_Yao_Tun_top']
 rule_251 = r251_a & r251_b
 rule_252 = r252_a
 rule_253 = r253_a | r253_b & r253_c
@@ -326,7 +326,9 @@ rule_262 = r262_a
 
 BS_D = Body_Standards['detail']
 rule_311 = m.NeckWei_140 <  BS_D['girth_Neck_down']
-rule_312 = m.NeckWei_140 >= BS_D['girth_Neck_down'] & m.NeckWei_140 < BS_D['girth_Neck_top']
+r312_a = m.NeckWei_140 >= BS_D['girth_Neck_down']
+r312_b = m.NeckWei_140 < BS_D['girth_Neck_top']
+rule_312 = r312_a & r312_b
 rule_313 = m.NeckWei_140 > BS_D['girth_Neck_top']
 
 rule_321 = m.WaistWei_155 <= m.height * BS_D['ratio_YaoW_height_down']
@@ -350,7 +352,7 @@ rule_343 = m.TunWei_167 > m.height * BS_D['radio_TunW_height_top']
 rule_344 = m.TunWei_167 < m.height * BS_D['radio_TunW_height_down']
 
 r351_a = m.LeftArm_125 == m.LeftWrist_123 * BS_D['radio_ArmW_Wrist_perfect']
-r351_b = m.RightArm_126 == m.RightWrist_121 , * BS_D['radio_ArmW_Wrist_perfect']
+r351_b = m.RightArm_126 == m.RightWrist_121 * BS_D['radio_ArmW_Wrist_perfect']
 rule_351 = r351_a & r351_b
 r352_a = m.LeftArm_125 >= m.LeftWrist_123 * BS_D['radio_ArmW_Wrist_down']
 r352_b = m.RightArm_126 >= m.RightWrist_121 * BS_D['radio_ArmW_Wrist_down']
@@ -371,10 +373,10 @@ r362_a = m.LeftThigh_111 >= m.height * BS_D['radio_ThighW_height'] + BS_D['plus_
 r362_b = m.RightThigh_112 >= m.height * BS_D['radio_ThighW_height'] + BS_D['plus_ThighW_height_down']
 r362_c = m.LeftThigh_111 <= m.height * BS_D['radio_ThighW_height'] + BS_D['plus_ThighW_height_top']
 r362_d = m.RightThigh_112 <= m.height * BS_D['radio_ThighW_height'] + BS_D['plus_ThighW_height_top']
-rule_361 = r362_a & r362_c | r362_b & r362_d
+rule_362 = r362_a & r362_c | r362_b & r362_d
 r363_a = m.LeftThigh_111 > m.height * BS_D['radio_ThighW_height'] + BS_D['plus_ThighW_height_top']
 r363_b = m.RightThigh_112 > m.height * BS_D['radio_ThighW_height'] + BS_D['plus_ThighW_height_top']
-rule_362 = r363_a | r363_b
+rule_363 = r363_a | r363_b
 r364_a = m.LeftThigh_111 < m.height * BS_D['radio_ThighW_height'] + BS_D['plus_ThighW_height_down']
 r364_b = m.RightThigh_112 < m.height * BS_D['radio_ThighW_height'] + BS_D['plus_ThighW_height_down']
 rule_364 = r364_a | r364_b
@@ -386,10 +388,10 @@ r372_a = m.LeftShank_115 >= m.height * BS_D['radio_ShankW_height_down']
 r372_b = m.RightShank_116 >= m.height * BS_D['radio_ShankW_height_down']
 r372_c = m.LeftShank_115 <= m.height * BS_D['radio_ShankW_height_top']
 r372_d = m.RightShank_116 <= m.height * BS_D['radio_ShankW_height_top']
-rule_371 = r372_a & r372_c | r372_b & r372_d
+rule_372 = r372_a & r372_c | r372_b & r372_d
 r373_a = m.LeftShank_115 > m.height * BS_D['radio_ShankW_height_top'] 
 r373_b = m.RightShank_116 > m.height * BS_D['radio_ShankW_height_top']
-rule_372 = r373_a | r373_b
+rule_373 = r373_a | r373_b
 r374_a = m.LeftShank_115 < m.height * BS_D['radio_ShankW_height_down']
 r374_b = m.RightShank_116 < m.height * BS_D['radio_ShankW_height_down']
 rule_374 = r374_a | r374_b
@@ -401,10 +403,10 @@ r382_a = m.LeftAnkle_117 >= m.height * BS_D['radio_AnkleW_ShankW_down']
 r382_b = m.RightAnkle_118 >= m.height * BS_D['radio_AnkleW_ShankW_down']
 r382_c = m.LeftAnkle_117 <= m.height * BS_D['radio_AnkleW_ShankW_top']
 r382_d = m.RightAnkle_118 <= m.height * BS_D['radio_AnkleW_ShankW_top']
-rule_381 = r382_a & r382_c | r382_b & r382_d
+rule_382 = r382_a & r382_c | r382_b & r382_d
 r383_a = m.LeftAnkle_117 > m.height * BS_D['radio_AnkleW_ShankW_top'] 
 r383_b = m.RightAnkle_118 > m.height * BS_D['radio_AnkleW_ShankW_top']
-rule_382 = r383_a | r383_b
+rule_383 = r383_a | r383_b
 r384_a = m.LeftAnkle_117 < m.height * BS_D['radio_AnkleW_ShankW_down']
 r384_b = m.RightAnkle_118 < m.height * BS_D['radio_AnkleW_ShankW_down']
 rule_384 = r384_a | r384_b
@@ -433,11 +435,12 @@ def execute(facts, rule_str=None):
     # global rule_result
     execute.results = {}
     if rule_str:
-        post(rule_str, facts)
+        assert_fact(rule_str, facts)
     else:
         post('figure-bmi', facts)
         post('figure-body',facts)
     print(f"result is {execute.results}")
+    print(get_facts(rule_str))
     return execute.results
 
 execute.results = {}
@@ -475,7 +478,132 @@ def do_perfect(c_item):
     execute.results['bmi'] = 3
 
 def register_rules():
-    with ruleset('figure-part'):
+
+    with ruleset('figure-detail-31'):
+        @when_all(rule_311)
+        def r_3(c):
+            print('rule 311')
+
+        @when_all(rule_312)
+        def r_3(c):
+            print('rule 312')
+
+        @when_all(rule_313)
+        def r_3(c):
+            print('rule 313')
+
+    with ruleset('figure-detail-32'):
+        @when_all(rule_321)
+        def r_3(c):
+            print('rule 321')
+
+        @when_all(rule_322)
+        def r_3(c):
+            print('rule 322')
+
+        @when_all(rule_323)
+        def r_3(c):
+            print('rule 323')
+
+    with ruleset('figure-detail-33'):
+        @when_all(rule_331)
+        def r_3(c):
+            print('rule 331')
+
+        @when_all(rule_332)
+        def r_3(c):
+            print('rule 332')
+
+        @when_all(rule_333)
+        def r_3(c):
+            print('rule 333')
+
+    with ruleset('figure-detail-34'):
+        @when_all(rule_341)
+        def r_3(c):
+            print('rule 341')
+
+        @when_all(rule_342)
+        def r_3(c):
+            print('rule 342')
+
+        @when_all(rule_343)
+        def r_3(c):
+            print('rule 343')
+
+        @when_all(rule_344)
+        def r_3(c):
+            print('rule 344')
+
+    with ruleset('figure-detail-35'):
+        @when_all(rule_351)
+        def r_3(c):
+            print('rule 351')
+
+        @when_all(rule_352)
+        def r_3(c):
+            print('rule 352')
+
+        @when_all(rule_353)
+        def r_3(c):
+            print('rule 353')
+
+        @when_all(rule_354)
+        def r_3(c):
+            print('rule 354')
+
+    with ruleset('figure-detail-36'):
+        @when_all(rule_361)
+        def r_3(c):
+            print('rule 361')
+
+        @when_all(rule_362)
+        def r_3(c):
+            print('rule 362')
+
+        @when_all(rule_363)
+        def r_3(c):
+            print('rule 363')
+
+        @when_all(rule_364)
+        def r_3(c):
+            print('rule 364')
+
+    with ruleset('figure-detail-37'):
+        @when_all(rule_371)
+        def r_3(c):
+            print('rule 371')
+
+        @when_all(rule_372)
+        def r_3(c):
+            print('rule 372')
+
+        @when_all(rule_373)
+        def r_3(c):
+            print('rule 373')
+
+        @when_all(rule_374)
+        def r_3(c):
+            print('rule 374')
+
+    with ruleset('figure-detail-38'):
+        @when_all(rule_381)
+        def r_3(c):
+            print('rule 381')
+
+        @when_all(rule_382)
+        def r_3(c):
+            print('rule 382')
+
+        @when_all(rule_383)
+        def r_3(c):
+            print('rule 383')
+
+        @when_all(rule_384)
+        def r_3(c):
+            print('rule 384')
+
+    with ruleset('figure-part-21'):
         # part of body
         @when_all(rule_211)
         def r_211(c):
@@ -489,6 +617,7 @@ def register_rules():
         def r_213(c):
             print('rule 213')
 
+    with ruleset('figure-part-22'):
         @when_all(rule_221)
         def r_221(c):
             print('rule 221'),
@@ -501,6 +630,7 @@ def register_rules():
         def r_223(c):
             print('rule 223')
 
+    with ruleset('figure-part-23'):
         @when_all(rule_231)
         def r_231(c):
             print('rule 231')
@@ -516,6 +646,37 @@ def register_rules():
         @when_all(rule_234)
         def r_234(c):
             print('rule 234')
+
+    with ruleset('figure-part-24'):
+        @when_all(rule_241)
+        def r_241(c):
+            print('rule 241')
+
+        @when_all(rule_242)
+        def r_242(c):
+            print('rule 242')
+
+    with ruleset('figure-part-25'):
+        @when_all(rule_251)
+        def r_251(c):
+            print('rule 251')
+
+        @when_all(rule_252)
+        def r_252(c):
+            print('rule 252')
+
+        @when_all(rule_253)
+        def r_253(c):
+            print('rule 253')
+
+    with ruleset('figure-part-26'):
+        @when_all(rule_261)
+        def r_261(c):
+            print('rule 261')
+
+        @when_all(rule_262)
+        def r_262(c):
+            print('rule 262')
 
     with ruleset('figure-body'):
         # whole body
