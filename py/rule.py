@@ -33,8 +33,6 @@ class Figure():
     top_leg_Length: float # 
     # down_leg_Length: float #
     Leg_Length: float
-    BigLeg_Height: float
-    Knee_Height: float
     Nip_Distance: float
 
 
