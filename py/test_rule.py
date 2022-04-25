@@ -3,6 +3,7 @@ import json
 
 Person = collections.namedtuple('figure', 'name age gender')
 from rule import execute as rule_exec
+from rule import reset_rule_results, current_result
 
 
 def _g(g_id_map, _id):
@@ -35,6 +36,14 @@ def _g_sum(g_id_map, id0, id1):
 def _g_delta(g_id_map, id0, id1):
     pass
 
+def _s(sl_id_map, _id):
+    sl = sl_id_map.get(_id, None)
+    return sl['length'] if sl else 0
+
+def _s_avg(sl_id_map, id0, id1):
+    l0 = _s(sl_id_map, id0)
+    l1 = _s(sl_id_map, id1)
+    return (l0 + l1) / 2
 
 def test_0():
 
@@ -71,9 +80,13 @@ def new_figure(NT, f, d):
     lmp_data = d['body']['result']['metrics']['landmarkPoints']
     p_id_map = {p['id']: p for p in lmp_data}
     print(p_id_map.keys())
+    slen_data = d['body']['result']['metrics']['surfaceLengths']
+    print(slen_data[0])
+    s_id_map = {sl['id']: sl for sl in slen_data}
+
     
     f['height'] =  d['others']['height']
-    f['weight'] = 0.0
+    f['weight'] = 0
     f['g_hip_167'] = _g(g_id_map, 167)
     f['g_shoulder_104'] = _g(g_id_map, 104)
     f['g_sum_167_104'] = _g_sum(g_id_map, 167, 104)
@@ -93,7 +106,18 @@ def new_figure(NT, f, d):
     f['w_shoulder_210_211'] = _w(p_id_map, 210, 211)
     f['w_busts_205_206'] = _w(p_id_map, 205, 206)
     f['w_head_212_213'] = _w(p_id_map, 212, 213)
-    f['h_leg_333_334'] = _h_avg(p_id_map, 333,334)
+    f['h_leg_333_334'] = _s_avg(s_id_map, 333,334)
+    f['h_knee'] = _h_avg(p_id_map, 226, 227)
+    f['h_upper_body'] = f['height'] - f['h_leg_333_334']
+    f['h_upper_leg'] = f['h_leg_333_334'] - f['h_knee']
+    f['h_chin'] = _h(p_id_map, 202)
+    f['h_head_202'] = f['height'] - f['h_chin'] 
+
+    for k, v in f.items():
+        f[k] = round(v * 100., 1) # meter to cm
+
+    f['height'] = 175 if f['height'] > 175 else f['height']
+    f['weight'] = 100 if f['weight'] <= 0 else f['weight']
 
     nt = NT(**f)
 
@@ -104,7 +128,8 @@ def test_1():
                         'g_hip_167', 'g_shoulder_104', 'g_sum_167_104', 'g_waist_155', 'g_neck_140', 
                         'g_bust_144', 'g_lbiceps_125', 'g_lwrist_123', 'g_rbiceps_126', 'g_rwrist_121', 'g_lmthigh_111', 
                         'g_rmthigh_112', 'g_lmcalf_115', 'g_rmcalf_116', 'g_lankle_117', 'g_rankle_118', 
-                        'w_shoulder_210_211', 'w_busts_205_206', 'w_head_212_213', 'h_head_202', 'h_upper_body', 'h_leg_333_334', 'h_upper_leg', )
+                        'w_shoulder_210_211', 'w_busts_205_206', 'w_head_212_213', 'h_head_202', 'h_upper_body', 'h_knee',
+                        'h_chin', 'h_leg_333_334', 'h_upper_leg', )
 
     mock_json_file = '../mock/3dm_api/metrics/GET_200.json'
     data = json.load(open(mock_json_file))
@@ -126,5 +151,22 @@ def test_1():
     m = new_figure(M, f, data)
     print(m)
 
+    fx = f #dict(m._asdict())
 
+    rule_exec(fx)
+    # print('\nbody\n')
+    # rule_exec(fx, 'figure-body')
+    # print('\nbmi\n')
+    # rule_exec(fx, 'figure-bmi')
+
+    # for i in range(6):
+    #     print(f"\nfigure-part-2{i+1}\n")
+    #     rule_exec(fx, f'figure-part-2{i+1}')
+
+    # for i in range(8):
+    #     print(f"\nfigure-detail-3{i+1}\n")
+    #     rule_exec(fx, f'figure-detail-3{i+1}')
+
+reset_rule_results()
 test_1()
+print(current_result())
