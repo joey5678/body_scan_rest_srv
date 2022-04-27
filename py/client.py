@@ -13,7 +13,7 @@ urllib3.disable_warnings()
 base_url = "https://api.3dmu.prototechsolutions.com/v3/models"
 mock_url = "http://localhost:8888"
 #mock_url = "http://122.51.149.232/api"
-#base_url = mock_url
+base_url = mock_url
 HEADERS = {'x-api-key':'EZtaDPvJDjkrEcohrkiMHYGWTimmszKJ', 'Content-Type':'application/json; charset=utf8'}
 
 

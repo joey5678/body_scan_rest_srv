@@ -41,7 +41,7 @@ def cal_head_qianyin(ls_points, rs_points, lt_points, rt_points, coef=1.):
     dis = round((ltz - lsz + rtz - rsz) * coef * 100 /2, 1)
     rst_str = "正常" if dis < 6. else "前引倾向"
     _desc = DESCS[2] if dis < 6. else DESCS[3]
-    return {"name":"头部前引", "value": dis, "unit": "cm", "result": rst_str, "description": f"{dis} cm horizontal distance between tragion and shoulder."}
+    return {"name":"头部前引", "value": dis, "unit": "cm", "result": rst_str, "description": _desc}
 
 def cal_head_cewai(lt_points, rt_points):
     _desc = DESCS[0]
@@ -108,7 +108,7 @@ def cal_leg_xo(rof_points, lof_points, lkc_points, rkc_points):
     _desc = DESCS[10]
     if not all((rof_points, lof_points, lkc_points, rkc_points)):
        degree = round(random.uniform(170, 195), 1) 
-       return {"name":"腿型", "value": degree, "unit":DEG, "result": "正常", "description": "leg"}
+       return {"name":"腿型", "value": degree, "unit":DEG, "result": "正常", "description": _desc}
     x0, y0, _ = get_xyz(lof_points)
     x1, y1, _ = get_xyz(rof_points)
     x2, y2, _ = get_xyz(lkc_points)

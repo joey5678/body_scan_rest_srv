@@ -52,7 +52,7 @@ def rest_post_with_try(body_json, try_times=4):
             s, rsp = rest_post("measure", body=body_json)
         except:
             log.error(f"\nCall 3th POST method error, tried {ttime +1} times.\n")
-            time.sleep(4)
+            time.sleep(1)#4
         else:
             break
     if rsp is None:
@@ -131,7 +131,7 @@ def measure_me():
                     m.request_id = request_id
                 log.warn(f"[Debug] request id: {request_id}")
                 #2. GET. Send requestId to get final result.
-                time.sleep(15)
+                time.sleep(1)
                 args = {"requestId" : request_id}
                 for ttime in range(try_times):
                     try:
@@ -139,16 +139,18 @@ def measure_me():
                         sc = s1
                     except:
                         log.error(f"\nCall 3th Get method error, tried {ttime +1} times.\n")
-                        time.sleep(4)
+                        time.sleep(1)#4
                     else:
                         break
                     
                 if s1 == 200:
                     m_result = rsp1['body'] 
+                    _height = rsp1['others']['height']
+                    m_result['height'] = _height
                     log.warn("Get the final result of measure data.")
                 elif s1 == 202:
                     log.warn("Got 202 code when request the measure data, sleep a while...")
-                    time.sleep(5)
+                    time.sleep(1)#5
                 else:
                     log.error(f"[Error] not get the expected resp: {resp1['body']} ")
                     break
@@ -234,7 +236,7 @@ def handle_3d_measure_json(m_result):
         slen_data = m_result['result']['metrics']['surfaceLengths']
     except:
         slen_data = []
-    eval_height = m_result['others']['height']
+    eval_height = m_result['height']
 
     try:
         coef = fit_scale(ldmk_points)
