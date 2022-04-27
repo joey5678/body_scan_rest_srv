@@ -7,6 +7,21 @@ from sklearn import datasets, linear_model
 
 
 DEG = '°'
+DESCS = [
+    '你的头部处在一个非常标准的位置哦～',
+    '你的头部有侧歪的倾向，长期会造成肌肉代偿，且影响美观哦',
+    '你的头部处在非常健康美观的位置哦～',
+    '你的头部有前引倾向，长期会导致颈椎突出，且严重影响你的气质哦',
+    '你是非常健康标准的平肩，请保持哦～' ,
+    '你有高低肩的倾向，左边肩高相较于右肩要高' ,
+    '你有高低肩的倾向，右边肩高相较于左肩要高' ,
+    '你的身体重心非常健康标准，请保持哦～' ,
+    '你的身体重心有向左边倾斜的倾向' ,
+    '你的身体重心有向右边倾斜的倾向' ,
+    '你的腿型非常健康标准，请保持哦～' ,
+    '你的腿型有O型腿倾向',
+    '你的腿型有X型腿倾向'
+]
 
 def get_xyz(points):
     xyz = points['position']
@@ -14,9 +29,10 @@ def get_xyz(points):
 
 #calculate the distance_Z of (ltp-lsp) and (rtp-rsp)
 def cal_head_qianyin(ls_points, rs_points, lt_points, rt_points, coef=1.):
+    _desc = DESCS[2]
     if not all((ls_points, rs_points, lt_points, rt_points)):
         dis = round(random.uniform(2, 5), 1)
-        return {"name":"头部前引", "value": dis, "unit": "cm", "result": "正常", "description": f"{dis} cm horizontal distance between tragion and shoulder."}
+        return {"name":"头部前引", "value": dis, "unit": "cm", "result": "正常", "description": _desc}
     _, _, ltz = get_xyz(lt_points)
     _, _, lsz = get_xyz(ls_points)
     _, _, rtz = get_xyz(rt_points)
@@ -24,64 +40,72 @@ def cal_head_qianyin(ls_points, rs_points, lt_points, rt_points, coef=1.):
     #print(lsz, rsz, ltz, rtz)
     dis = round((ltz - lsz + rtz - rsz) * coef * 100 /2, 1)
     rst_str = "正常" if dis < 6. else "前引倾向"
+    _desc = DESCS[2] if dis < 6. else DESCS[3]
     return {"name":"头部前引", "value": dis, "unit": "cm", "result": rst_str, "description": f"{dis} cm horizontal distance between tragion and shoulder."}
 
 def cal_head_cewai(lt_points, rt_points):
+    _desc = DESCS[0]
     if not all((lt_points, rt_points)):
         degree = round(random.uniform(-4, 4), 1)
-        return {"name":"头部侧歪", "value": degree, "unit": DEG, "result": "正常", "description": "head no left no right" }
+        return {"name":"头部侧歪", "value": degree, "unit": DEG, "result": "正常", "description": _desc }
     x0, y0, z0 = get_xyz(lt_points)
     x1, y1, z1 = get_xyz(rt_points)
     d_x = abs(x0 - x1)
     d_y = y1 - y0
     degree =  round(math.atan2((d_y), d_x)/math.pi * 180, 1)
     rst_str = "正常" if abs(degree) < 5. else "侧歪倾向" 
+    _desc = DESCS[0] if abs(degree) < 5. else DESCS[1]
     if degree > 0:
         description = f"head {abs(degree)} degree to the left."
     elif degree < 0:
         description = f"head {abs(degree)} degree to the right."
     else:
         description = "head no left no right."
-    return {"name":"头部侧歪", "value": degree, "unit": DEG, "result": rst_str, "description": description }
+    return {"name":"头部侧歪", "value": degree, "unit": DEG, "result": rst_str, "description": _desc }
 
 
 def cal_shoulder_gaodi(ls_points, rs_points):
+    _desc = DESCS[4]
     if not all((ls_points, rs_points)):
        d_h = round(random.uniform(-1, 1), 1) 
-       return {"name":"高低肩", "value": d_h, "unit":"cm", "result": "正常",  "description": f"left right equal. "}
+       return {"name":"高低肩", "value": d_h, "unit":"cm", "result": "正常",  "description": _desc}
     h_ls = ls_points['level']
     h_rs = rs_points['level']
     d_h = round((h_ls - h_rs) * 100, 1)
     rst_str = "正常" if abs(d_h) < 2. else ("左肩膀高" if d_h > 2. else "右肩膀高")
+    _desc =  DESCS[4] if abs(d_h) < 2. else (DESCS[5] if d_h > 2. else DESCS[6])
     if d_h > 0:
         description = f"left shoulder {abs(d_h)} cm higher than right. "
     elif d_h < 0:
         description = f"right shoulder {abs(d_h)} cm higher than left. "
     else:
         description = "shoulders are same height. "
-    return {"name":"高低肩", "value": d_h, "unit":"cm", "result": rst_str,  "description": description}
+    return {"name":"高低肩", "value": d_h, "unit":"cm", "result": rst_str,  "description": _desc}
 
 
 def cal_body_qingxie(cc_points, crotch_points):
+    _desc = DESCS[7]
     if not all((cc_points, crotch_points)):
         degree = round(random.uniform(-2, 2), 1)
-        return {"name":"身体倾斜", "value": degree, "unit":DEG, "result": "正常", "description": f"body normal."}
+        return {"name":"身体倾斜", "value": degree, "unit":DEG, "result": "正常", "description": _desc}
     x0, y0, z0 = get_xyz(cc_points) 
     x1, y1, z1 = get_xyz(crotch_points)
     d_x = x0 - x1
     d_y = abs(y0 - y1)
     degree =  round(math.atan2((d_x), d_y)/math.pi * 180, 1)
     rst_str =  "正常" if abs(degree) < 3. else ("左倾斜" if degree > 3 else "右倾斜")
+    _desc = DESCS[7] if abs(degree) < 3. else (DESCS[8] if degree > 3 else DESCS[9])
     if degree > 0:
         description = f"body {abs(degree)} degrees to left."
     elif degree < 0:
         description = f"body {abs(degree)} degrees to right."
     else:
         description = f"body no tilt."
-    return {"name":"身体倾斜", "value": degree, "unit":DEG, "result": rst_str, "description": f"body {abs(degree)} degrees to left."}
+    return {"name":"身体倾斜", "value": degree, "unit":DEG, "result": rst_str, "description": _desc}
 
 
 def cal_leg_xo(rof_points, lof_points, lkc_points, rkc_points):
+    _desc = DESCS[10]
     if not all((rof_points, lof_points, lkc_points, rkc_points)):
        degree = round(random.uniform(170, 195), 1) 
        return {"name":"腿型", "value": degree, "unit":DEG, "result": "正常", "description": "leg"}
@@ -100,7 +124,8 @@ def cal_leg_xo(rof_points, lof_points, lkc_points, rkc_points):
     print(f"d_l, d_r: {degree_l}, {degree_r}")
     degree = round(degree_l + degree_r, 1)
     rst_str =  "正常" if 160 < degree < 200 else ("O形腿倾向" if degree > 200 else "X形腿倾向") 
-    return {"name":"腿型", "value": degree, "unit":DEG, "result": rst_str, "description": "leg"}   
+    _desc = DESCS[10] if 160 < degree < 200 else (DESCS[11] if degree > 200 else DESCS[12]) 
+    return {"name":"腿型", "value": degree, "unit":DEG, "result": rst_str, "description": _desc}   
 
 
 def fit_scale(points):

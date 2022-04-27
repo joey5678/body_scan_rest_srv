@@ -147,9 +147,9 @@ def test_1():
     # print(M._field_defaults)
 
     f = dict.fromkeys(figure_key_item, -1.)
-    M = collections.namedtuple('Metric', f)
-    m = new_figure(M, f, data)
-    print(m)
+    # M = collections.namedtuple('Metric', f)
+    # m = new_figure(M, f, data)
+    # print(m)
 
     fx = f #dict(m._asdict())
 

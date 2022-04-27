@@ -18,6 +18,8 @@ from client import rest_get, rest_post
 from webutil import app, login_required, get_myself
 
 from buss import *
+from rule import execute as rule_exec
+from rule import reset_rule_results, current_result
 import logging
 log = logging.getLogger("api.measure")
 
@@ -195,10 +197,22 @@ def handle_3d_measure_json(m_result):
         "Body_QingXie": [204, 236],
         "Tui_XO": [243, 244, 234, 235]
     }
+
+    # titai 
+    figure_key_item = ('height', 'weight',
+                       'g_hip_167', 'g_shoulder_104', 'g_sum_167_104', 'g_waist_155', 'g_neck_140',
+                       'g_bust_144', 'g_lbiceps_125', 'g_lwrist_123', 'g_rbiceps_126', 'g_rwrist_121', 'g_lmthigh_111',
+                       'g_rmthigh_112', 'g_lmcalf_115', 'g_rmcalf_116', 'g_lankle_117', 'g_rankle_118',
+                       'w_shoulder_210_211', 'w_busts_205_206', 'w_head_212_213', 'h_head_202', 'h_upper_body', 'h_knee',
+                       'h_chin', 'h_leg_333_334', 'h_upper_leg', )
     required_points = [210, 211, 212, 213, 204, 236, 234, 235, 243, 244 ]
     skipped_list = m_result.get("skippedMeasurements", [])
     skipped_ids = [ int(x.split(':')[0].strip()[1:-1]) for x in skipped_list]
 
+    reset_rule_results()
+    f = dict.fromkeys(figure_key_item, -1.)
+    rule_exec(f)
+    tt_result = current_result()
     try:
         girths = m_result['result']['metrics']['girths']
     except:
@@ -263,7 +277,8 @@ def handle_3d_measure_json(m_result):
                 lp_original_result[_k1].append(lp)
     lp_result = result['TiTai']
     log.info("[Debug] Evaling TiTai .....\n")
-    eval_titai(lp_original_result, lp_result)                
+    eval_titai(lp_original_result, lp_result)  
+    result['TiTai']['v2'] = tt_result           
     log.warn("[Debug] Handled TiTai .\n")
     return result
     #return m_result
@@ -293,8 +308,3 @@ def eval_titai(titai_data, titai_result):
             log.info("[Debug] Cal XO ...")
             xo_rst = cal_leg_xo(tt_item_dict.get(243, None), tt_item_dict.get(244, None), tt_item_dict.get(234, None), tt_item_dict.get(235, None))
             titai_result[f'{tt_k}_Result'] = xo_rst
-
-
-    
-
-

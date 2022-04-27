@@ -161,7 +161,180 @@ Part_Scores = {
 }
 
 Detail_Scores = {
-    
+    311: {
+        'score': 2,
+        'desc': '你的脖型非常修长，请保持哦～',
+        'suggest': '你适合穿着简约的高领针织衫，配上修身的西服外套，就是飒酷时尚的模样，整体风格特别显高。'
+    },
+
+    312: {
+        'score': 1,
+        'desc': '你的脖型非常标准，请保持哦～',
+        'suggest': ''
+    },
+
+    313: {
+        'score': 0,
+        'desc': '你的脖型属于相对较粗类型，有很大的提升空间哦',
+        'suggest': '我们可以多多动起来，通过挥动天鹅臂来消除斜方肌哦。'
+    },
+
+    321: {
+        'score': 6,
+        'desc': '你的腰围非常纤细，请保持哦～',
+        'suggest': ''
+    },
+    322: {
+        'score': 4,
+        'desc': '你的腰围很标准，请保持哦～',
+        'suggest': ''
+    },
+
+    323: {
+        'score': 0,
+        'desc': '你的腰围属于偏胖类型，快快行动起来吧～',
+        'suggest': '你适合穿着上半身深色系的衣服，这样才能起到遮肉显瘦的作用哦。'
+    },
+
+    331: {
+        'score': 6,
+        'desc': '你拥有一对傲人的胸，真让人羡慕～',
+        'suggest': ''
+    },
+
+    332: {
+        'score': 4,
+        'desc': '你的胸围很标准，已经超过了74%的女性哦～',
+        'suggest': ''
+    },
+
+    333: {
+        'score': 1,
+        'desc': '你的胸围属于平坦型，可以尝试走气质路线',
+        'suggest': '你适合挑选设计简单的上衣，对于胸部的平面来说可以展现高级感。'
+    },
+
+    341: {
+        'score': 4,
+        'desc': '你的臀围堪称完美，请保持哦～',
+        'suggest': ''
+    },
+
+    342: {
+        'score': 2,
+        'desc': '你的臀围非常标准，超过了59%的女性哦～',
+        'suggest': ''
+    },
+
+    343: {
+        'score': 0,
+        'desc': '你的臀围属于偏大类型，你距离迷人蜜桃臀仅有一步之遥哦～',
+        'suggest': '你适合搭配百褶裙或者是A字裙，这两种裙子的裙型都是在腰部的地方进行收腰，下摆都会向外扩散，这样的话就会很好的掩盖臀围大的缺点。'
+    },
+
+    344: {
+        'score': 0,
+        'desc': '你的臀围偏小，赶快行动修炼蜜桃臀吧～',
+        'suggest': '你适合穿着在臀部或胯部两侧有口袋设计的休闲裤，如果口袋有袋盖或是立体口袋，有铆钉、刺绣装饰，效果会更好。'
+    },
+
+    351: {
+        'score': 2,
+        'desc': '你的臂围堪称完美，请保持哦～',
+        'suggest': ''
+    },
+
+    352: {
+        'score': 1,
+        'desc': '你的臂围非常标准，超过62%的女性哦～',
+        'suggest': ''
+    },
+
+    353: {
+        'score': 0,
+        'desc': '你的手臂有拜拜肉倾向，赶快消除它吧～',
+        'suggest': '你适合穿着带蝴蝶袖的上衣。蝴蝶袖的造型随性飘逸，设计感强，流畅的线条对体型有良好的修饰作用，遮盖粗手臂，毫不累赘'
+    },
+
+    354: {
+        'score': 0,
+        'desc': '你的手臂偏细小，让他丰满起来更具魅力吧～',
+        'suggest': ''
+    },
+
+    361: {
+        'score': 2,
+        'desc': '你的大腿围堪称完美，请保持哦～',
+        'suggest': ''
+    },
+
+    362: {
+        'score': 1,
+        'desc': '你的大腿围非常标准，超过了59%的女性哦～',
+        'suggest': ''
+    },
+
+    363: {
+        'score': 0,
+        'desc': '你的大腿围偏粗，赶快行动起来吧！',
+        'suggest': '选择下装的时候，一定要注意面料的选择，绝对不能选择软塌塌、没型的版型，那样会更加暴露你腿部的缺点。像是针织裤、雪纺这些垂顺感强的面料也要慎重'
+    },
+
+    364: {
+        'score': 0,
+        'desc': '你的大腿偏细，快快让它丰满起来吧～',
+        'suggest': ''
+    },
+
+
+    371: {
+        'score': 4,
+        'desc': '你的小腿堪称完美，请保持哦～',
+        'suggest': ''
+    },
+
+    372: {
+        'score': 2,
+        'desc': '你的小腿围非常标准，超过了62%的女性哦～',
+        'suggest': ''
+    },
+
+    373: {
+        'score': 0,
+        'desc': '你的小腿偏细，让他丰满起来更具魅力吧～',
+        'suggest': ''
+    },
+
+    374: {
+        'score': 0,
+        'desc': '你的小腿偏粗，赶紧行动起来吧～',
+        'suggest': '你适合选择裸色的高跟鞋，鞋面会和脚背的肤色融合在一起，在视觉上能拉长小腿。需要注意的是，鞋跟不必太细太高，鞋跟太高会让小腿的肌肉更突出，而且会和小腿形成明显的锥子型，起到反效果。'
+    },
+
+    381: {
+        'score': 2,
+        'desc': '你的脚踝堪称完美，请保持哦～',
+        'suggest': ''
+    },
+
+    382: {
+        'score': 1,
+        'desc': '你的脚踝非常标准，超过了71%的女性哦～',
+        'suggest': ''
+    },
+
+    383: {
+        'score': 0,
+        'desc': '你的脚踝偏粗，赶紧瘦下来更具魅力吧～',
+        'suggest': '你适合穿高跟鞋，穿上高跟鞋后，脚踝变细了不少,整个小腿也变得纤细匀称。'
+    },
+
+    384: {
+        'score': 0,
+        'desc': '你的脚踝偏细，让他丰满起来更具魅力吧～',
+        'suggest': ''
+    },
+
 }
 
 
@@ -363,6 +536,149 @@ Body_Standards = {
     },
 }
 
+FULL_DICT = {
+    111: {
+        'name': '偏瘦',
+        'scores': BMI_Scores['thin']
+    },
+    112: {
+        'name': '完美',
+        'scores': BMI_Scores['perfect']
+    },
+    113: {
+        'name': '标准',
+        'scores': BMI_Scores['normal']
+    },
+    114: {
+        'name': '偏胖',
+        'scores': BMI_Scores['fat']
+    },
+    121: {
+        'name': '梨型身材',
+        'scores': Body_Scores[121]
+    },
+    122: {
+        'name': '苹果型身材',
+        'scores': Body_Scores[122]
+    },
+    123: {
+        'name': '直筒型身材',
+        'scores': Body_Scores[123]
+    },
+    124: {
+        'name': '漏斗型身材',
+        'scores': Body_Scores[124]
+    },
+
+    211: {'name': '完美',
+          'scores': Part_Scores[211]},
+    212: {'name': '标准',
+          'scores': Part_Scores[212]},
+    213: {'name': '有待改善',
+          'scores': Part_Scores[213]},
+
+    221: {'name': '八头身',
+          'scores': Part_Scores[221]},
+    222: {'name': '标准',
+          'scores': Part_Scores[222]},
+    223: {'name': '有待改善',
+          'scores': Part_Scores[223]},
+
+    231: {'name': '超长腿',
+          'scores': Part_Scores[231]},
+    232: {'name': '长腿',
+          'scores': Part_Scores[232]},
+    233: {'name': '标准腿',
+          'scores': Part_Scores[233]},
+    234: {'name': '短腿型',
+          'scores': Part_Scores[234]},
+
+    241: {'name': '黄金比例',
+          'scores': Part_Scores[241]},
+    242: {'name': '正常标准',
+          'scores': Part_Scores[242]},
+
+
+    251: {'name': '黄金比例',
+          'scores': Part_Scores[251]},
+    252: {'name': '肥胖',
+          'scores': Part_Scores[252]},
+    253: {'name': '标准',
+          'scores': Part_Scores[253]},
+
+    261: {'name': '胸外扩',
+          'scores': Part_Scores[261]},
+    262: {'name': '标准胸型',
+          'scores': Part_Scores[262]},
+    
+    311: {'name': '修长',
+          'scores': Detail_Scores[311]},
+    312: {'name': '标准脖',
+          'scores': Detail_Scores[312]},
+    313: {'name': '粗脖',
+          'scores': Detail_Scores[313]},
+
+    321: {'name': '纤细',
+          'scores': Detail_Scores[321]},
+    322: {'name': '标准',
+          'scores': Detail_Scores[322]},
+    323: {'name': '肥胖',
+          'scores': Detail_Scores[323]},
+
+    331: {'name': '完美',
+          'scores': Detail_Scores[331]},
+    332: {'name': '标准',
+          'scores': Detail_Scores[332]},
+    333: {'name': '偏小',
+          'scores': Detail_Scores[333]},
+
+    341: {'name': '完美',
+          'scores': Detail_Scores[341]},
+    342: {'name': '标准',
+          'scores': Detail_Scores[342]},
+    343: {'name': '偏大',
+          'scores': Detail_Scores[343]},
+    344: {'name': '偏小',
+          'scores': Detail_Scores[344]},
+
+    351: {'name': '完美',
+          'scores': Detail_Scores[351]},
+    352: {'name': '标准',
+          'scores': Detail_Scores[352]},
+    353: {'name': '偏粗',
+          'scores': Detail_Scores[353]},
+    354: {'name': '偏细',
+          'scores': Detail_Scores[354]},
+
+    361: {'name': '完美',
+          'scores': Detail_Scores[361]},
+    362: {'name': '标准',
+          'scores': Detail_Scores[362]},
+    363: {'name': '偏细',
+          'scores': Detail_Scores[363]},
+    364: {'name': '偏粗',
+          'scores': Detail_Scores[364]},
+
+    371: {'name': '完美',
+          'scores': Detail_Scores[371]},
+    372: {'name': '标准',
+          'scores': Detail_Scores[372]},
+    373: {'name': '偏细',
+          'scores': Detail_Scores[373]},
+    374: {'name': '偏粗',
+          'scores': Detail_Scores[374]},
+
+    381: {'name': '完美',
+          'scores': Detail_Scores[381]},
+    382: {'name': '标准',
+          'scores': Detail_Scores[382]},
+    383: {'name': '偏粗',
+          'scores': Detail_Scores[383]},
+    384: {'name': '偏细',
+          'scores': Detail_Scores[384]},
+
+}
+
 bmi_thin_rules = []
 bmi_perfect_rules = []
 bmi_normal_rules = []
@@ -562,6 +878,17 @@ def reset_rule_results():
     execute.results = {}
 
 def current_result():
+    sum_scores = -1
+    sum_descs = []
+    sum_suggs = []
+    for _, _res in execute.results.items():
+        sum_scores += _res['scores']['score']
+        sum_descs.append(_res['scores']['desc'])
+        if _res['scores'].get('suggest', None):
+            sum_suggs.append(_res['scores']['suggest'])
+    execute.results['total_scores'] = sum_scores
+    execute.results['total_desc'] = " ".join(sum_descs)
+    execute.results['total_suggest'] = " ".join(sum_suggs)
     return execute.results
 
 def execute(facts, rule_str=None):
@@ -589,256 +916,256 @@ def register_rules():
     with ruleset('figure-detail-31'):
         @when_all(rule_311)
         def r_3(c):
-            execute.results['颈围31'] = '修长'
+            execute.results['颈围31'] = FULL_DICT[311]
 
         @when_all(rule_312)
         def r_3(c):
-            execute.results['颈围31'] = '标准脖'
+            execute.results['颈围31'] = FULL_DICT[312]
 
         @when_all(rule_313)
         def r_3(c):
-            execute.results['颈围31'] = '粗脖'
+            execute.results['颈围31'] = FULL_DICT[313]
 
     with ruleset('figure-detail-32'):
         @when_all(rule_321)
         def r_3(c):
-            execute.results['腰围32'] = '纤细'
+            execute.results['腰围32'] = FULL_DICT[321]
 
         @when_all(rule_322)
         def r_3(c):
-            execute.results['腰围32'] = '标准'
+            execute.results['腰围32'] = FULL_DICT[322]
 
         @when_all(rule_323)
         def r_3(c):
-            execute.results['腰围32'] = '偏胖'
+            execute.results['腰围32'] = FULL_DICT[323]
 
     with ruleset('figure-detail-33'):
         @when_all(rule_331)
         def r_3(c):
-            execute.results['胸围33'] = '完美'
+            execute.results['胸围33'] = FULL_DICT[331]
 
         @when_all(rule_332)
         def r_3(c):
-            execute.results['胸围33'] = '标准'
+            execute.results['胸围33'] = FULL_DICT[332]
 
         @when_all(rule_333)
         def r_3(c):
-            execute.results['胸围33'] = '偏小'
+            execute.results['胸围33'] = FULL_DICT[333]
 
     with ruleset('figure-detail-34'):
         @when_all(rule_341)
         def r_3(c):
-            execute.results['臀围34'] = '完美'
+            execute.results['臀围34'] = FULL_DICT[341]
 
         @when_all(rule_342)
         def r_3(c):
-            execute.results['臀围34'] = '标准'
+            execute.results['臀围34'] = FULL_DICT[342]
 
         @when_all(rule_343)
         def r_3(c):
-            execute.results['臀围34'] = '偏大'
+            execute.results['臀围34'] = FULL_DICT[343]
 
         @when_all(rule_344)
         def r_3(c):
-            execute.results['臀围34'] = '偏小'
+            execute.results['臀围34'] = FULL_DICT[344]
 
     with ruleset('figure-detail-35'):
         @when_all(rule_351)
         def r_3(c):
-            execute.results['手臂围35'] = '完美'
+            execute.results['手臂围35'] = FULL_DICT[351]
 
         @when_all(rule_352)
         def r_3(c):
-            execute.results['手臂围35'] = '标准'
+            execute.results['手臂围35'] = FULL_DICT[352]
 
         @when_all(rule_353)
         def r_3(c):
-            execute.results['手臂围35'] = '偏粗'
+            execute.results['手臂围35'] = FULL_DICT[353]
 
         @when_all(rule_354)
         def r_3(c):
-            execute.results['手臂围35'] = '偏细'
+            execute.results['手臂围35'] = FULL_DICT[354]
 
     with ruleset('figure-detail-36'):
         @when_all(rule_361)
         def r_3(c):
-            execute.results['大腿围36'] = '完美'
+            execute.results['大腿围36'] = FULL_DICT[361]
 
         @when_all(rule_362)
         def r_3(c):
-            execute.results['大腿围36'] = '标准'
+            execute.results['大腿围36'] = FULL_DICT[362]
 
         @when_all(rule_363)
         def r_3(c):
-            execute.results['大腿围36'] = '偏粗'
+            execute.results['大腿围36'] = FULL_DICT[363]
 
         @when_all(rule_364)
         def r_3(c):
-            execute.results['大腿围36'] = '偏细'
+            execute.results['大腿围36'] = FULL_DICT[364]
 
     with ruleset('figure-detail-37'):
         @when_all(rule_371)
         def r_3(c):
-            execute.results['小腿围37'] = '完美'
+            execute.results['小腿围37'] = FULL_DICT[371]
 
         @when_all(rule_372)
         def r_3(c):
-            execute.results['小腿围37'] = '标准'
+            execute.results['小腿围37'] = FULL_DICT[372]
 
         @when_all(rule_373)
         def r_3(c):
-            execute.results['小腿围37'] = '偏粗'
+            execute.results['小腿围37'] = FULL_DICT[373]
 
         @when_all(rule_374)
         def r_3(c):
-            execute.results['小腿围37'] = '偏细'
+            execute.results['小腿围37'] = FULL_DICT[374]
 
     with ruleset('figure-detail-38'):
         @when_all(rule_381)
         def r_3(c):
-            execute.results['脚踝38'] = '完美'
+            execute.results['脚踝38'] = FULL_DICT[381]
 
         @when_all(rule_382)
         def r_3(c):
-            execute.results['脚踝38'] = '标准'
+            execute.results['脚踝38'] = FULL_DICT[382]
 
         @when_all(rule_383)
         def r_3(c):
-            execute.results['脚踝38'] = '偏粗'
+            execute.results['脚踝38'] = FULL_DICT[383]
 
         @when_all(rule_384)
         def r_3(c):
-            execute.results['脚踝38'] = '偏细'
+            execute.results['脚踝38'] = FULL_DICT[384]
 
     with ruleset('figure-part-21'):
         # part of body
         @when_all(rule_211)
         def r_211(c):
-            execute.results['头肩比21'] = '完美'
+            execute.results['头肩比21'] = FULL_DICT[211]
 
         @when_all(rule_212)
         def r_212(c):
-            execute.results['头肩比21'] = '标准'
+            execute.results['头肩比21'] = FULL_DICT[212]
 
         @when_all(rule_213)
         def r_213(c):
-            execute.results['头肩比21'] = '有待改善'
+            execute.results['头肩比21'] = FULL_DICT[213]
 
     with ruleset('figure-part-22'):
         @when_all(rule_221)
         def r_221(c):
-            execute.results['头身比22'] = '八头身'
+            execute.results['头身比22'] = FULL_DICT[221]
 
         @when_all(rule_222)
         def r_222(c):
-            execute.results['头身比22'] = '标准'
+            execute.results['头身比22'] = FULL_DICT[222]
 
         @when_all(rule_223)
         def r_223(c):
-            execute.results['头身比22'] = '有待改善'
+            execute.results['头身比22'] = FULL_DICT[223]
 
     with ruleset('figure-part-23'):
         @when_all(rule_231)
         def r_231(c):
-            execute.results['腿身比23'] = '超长腿'
+            execute.results['腿身比23'] = FULL_DICT[231]
         
         @when_all(rule_232)
         def r_232(c):
-            execute.results['腿身比23'] = '长腿'
+            execute.results['腿身比23'] = FULL_DICT[232]
 
         @when_all(rule_233)
         def r_233(c):
-            execute.results['腿身比23'] = '标准腿'
+            execute.results['腿身比23'] = FULL_DICT[233]
 
         @when_all(rule_234)
         def r_234(c):
-            execute.results['腿身比23'] = '短腿'
+            execute.results['腿身比23'] = FULL_DICT[234]
 
     with ruleset('figure-part-24'):
         @when_all(rule_241)
         def r_241(c):
-            execute.results['大小腿长比24'] = '黄金比例'
+            execute.results['大小腿长比24'] = FULL_DICT[241]
 
         @when_all(rule_242)
         def r_242(c):
-            execute.results['大小腿长比24'] = '正常标准'
+            execute.results['大小腿长比24'] = FULL_DICT[242]
 
     with ruleset('figure-part-25'):
         @when_all(rule_251)
         def r_251(c):
-            execute.results['腰臀比25'] = '黄金比例'
+            execute.results['腰臀比25'] = FULL_DICT[251]
 
         @when_all(rule_252)
         def r_252(c):
-            execute.results['腰臀比25'] = '肥胖'
+            execute.results['腰臀比25'] = FULL_DICT[252]
 
         @when_all(rule_253)
         def r_253(c):
-            execute.results['腰臀比25'] = '标准'
+            execute.results['腰臀比25'] = FULL_DICT[253]
 
     with ruleset('figure-part-26'):
         @when_all(rule_261)
         def r_261(c):
-            execute.results['胸型26'] = '胸外扩'
+            execute.results['胸型26'] = FULL_DICT[261]
 
         @when_all(rule_262)
         def r_262(c):
-            execute.results['胸型26'] = '标准胸型'
+            execute.results['胸型26'] = FULL_DICT[262]
 
     with ruleset('figure-body'):
         # whole body
         @when_all(rule_121)
         def r_121(c):
-            execute.results['身型12'] = '梨型身材'
+            execute.results['身型12'] = FULL_DICT[121]
         
         @when_all(rule_122)
         def r_122(c):
-            execute.results['身型12'] = '苹果型身材'
+            execute.results['身型12'] = FULL_DICT[122]
 
         @when_all(rule_123)
         def r_123(c):
-            execute.results['身型12'] = '直筒型身材'
+            execute.results['身型12'] = FULL_DICT[123]
 
         @when_all(rule_124)
         def r_124(c):
-            execute.results['身型12'] = '沙漏型身材'
+            execute.results['身型12'] = FULL_DICT[124]
 
     with ruleset('figure-bmi'):
         # thin bmi
         @when_all(trule_half0)
         def thin(c):
-            execute.results['BMI11'] = '偏瘦'
+            execute.results['BMI11'] = FULL_DICT[111]
 
         @when_all(trule_half1)
         def thin_a(c):
-            execute.results['BMI11'] = '偏瘦'
+            execute.results['BMI11'] = FULL_DICT[111]
         # fat bmi
 
         @when_all(frule_half0)
         def fat(c):
-            execute.results['BMI11'] = '偏胖'
+            execute.results['BMI11'] = FULL_DICT[114]
 
         @when_all(frule_half1)
         def fat_a(c):
-            execute.results['BMI11'] = '偏胖'
+            execute.results['BMI11'] = FULL_DICT[114]
         # standard bmi
 
         @when_all(srule_half0)
         def normal(c):
-            execute.results['BMI11'] = '标准'
+            execute.results['BMI11'] = FULL_DICT[113]
 
         @when_all(srule_half1)
         def normal_a(c):
-            execute.results['BMI11'] = '标准'
+            execute.results['BMI11'] = FULL_DICT[113]
         # perfect bmi
 
         @when_all(prule_half0)
         def perfect(c):
-            execute.results['BMI11'] = '完美'
+            execute.results['BMI11'] = FULL_DICT[112]
 
         @when_all(prule_half1)
         def perfect_a(c):
-            execute.results['BMI11'] = '完美'
+            execute.results['BMI11'] = FULL_DICT[112]
 
 register_rules()
 
