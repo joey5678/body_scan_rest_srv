@@ -74,18 +74,18 @@ def test_0():
         print(f"\nfigure-detail-3{i+1}\n")
         rule_exec(fx, f'figure-detail-3{i+1}')
 
-def new_figure(NT, f, d):
-    g_data = d['body']['result']['metrics']['girths']
+def new_figure(NT, f, height, g_data, lmp_data, slen_data):
+    # g_data = d['body']['result']['metrics']['girths']
     g_id_map = {g['id']: g for g  in g_data}
-    lmp_data = d['body']['result']['metrics']['landmarkPoints']
+    # lmp_data = d['body']['result']['metrics']['landmarkPoints']
     p_id_map = {p['id']: p for p in lmp_data}
-    print(p_id_map.keys())
-    slen_data = d['body']['result']['metrics']['surfaceLengths']
-    print(slen_data[0])
+    # print(p_id_map.keys())
+    # slen_data = d['body']['result']['metrics']['surfaceLengths']
+    # print(slen_data[0])
     s_id_map = {sl['id']: sl for sl in slen_data}
 
     
-    f['height'] =  d['others']['height']
+    f['height'] =  height #d['others']['height']
     f['weight'] = 0
     f['g_hip_167'] = _g(g_id_map, 167)
     f['g_shoulder_104'] = _g(g_id_map, 104)
@@ -123,7 +123,7 @@ def new_figure(NT, f, d):
 
     return nt
 
-def test_1():
+def main():
     figure_key_item = ( 'height', 'weight', 
                         'g_hip_167', 'g_shoulder_104', 'g_sum_167_104', 'g_waist_155', 'g_neck_140', 
                         'g_bust_144', 'g_lbiceps_125', 'g_lwrist_123', 'g_rbiceps_126', 'g_rwrist_121', 'g_lmthigh_111', 
@@ -134,21 +134,19 @@ def test_1():
     mock_json_file = '../mock/3dm_api/metrics/GET_200.json'
     data = json.load(open(mock_json_file))
     # print(data['body']['result'])
-    print(data['others'])
     rdata = data['body']['result']
-    print(rdata['metrics'].keys())
     girths_data = rdata['metrics']['girths']
     lmpoints_data = rdata['metrics']['landmarkPoints']
-    print(girths_data[0])
-    print(lmpoints_data[0])
+    slen_data = rdata['metrics']['surfaceLengths']
+    height = data['others']['height']
 
     # M = collections.namedtuple('Metric', girths_data[0])(**girths_data[0])
     # print(M.id)
     # print(M._field_defaults)
 
     f = dict.fromkeys(figure_key_item, -1.)
-    # M = collections.namedtuple('Metric', f)
-    # m = new_figure(M, f, data)
+    M = collections.namedtuple('Metric', f)
+    new_figure(M, f, height, girths_data, lmpoints_data, slen_data)
     # print(m)
 
     fx = f #dict(m._asdict())
@@ -167,6 +165,7 @@ def test_1():
     #     print(f"\nfigure-detail-3{i+1}\n")
     #     rule_exec(fx, f'figure-detail-3{i+1}')
 
-reset_rule_results()
-test_1()
-print(current_result())
+if __name__ == "__main__":
+    reset_rule_results()
+    main()
+    print(current_result())

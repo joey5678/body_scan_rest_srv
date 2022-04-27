@@ -5,6 +5,7 @@
 #   - receive some inputs: obj url; person infos
 #   - call 3rd api, get the results.
 
+import collections
 import time
 import json
 import random
@@ -20,6 +21,7 @@ from webutil import app, login_required, get_myself
 from buss import *
 from rule import execute as rule_exec
 from rule import reset_rule_results, current_result
+from rule_cli import new_figure
 import logging
 log = logging.getLogger("api.measure")
 
@@ -181,6 +183,21 @@ def measure_me():
 
     return jsonify(result), rsp_code
 
+def new_tt_calculate(height, girths_data, lmpoints_data, slen_data):
+    # titai 
+    figure_key_item = ('height', 'weight',
+                       'g_hip_167', 'g_shoulder_104', 'g_sum_167_104', 'g_waist_155', 'g_neck_140',
+                       'g_bust_144', 'g_lbiceps_125', 'g_lwrist_123', 'g_rbiceps_126', 'g_rwrist_121', 'g_lmthigh_111',
+                       'g_rmthigh_112', 'g_lmcalf_115', 'g_rmcalf_116', 'g_lankle_117', 'g_rankle_118',
+                       'w_shoulder_210_211', 'w_busts_205_206', 'w_head_212_213', 'h_head_202', 'h_upper_body', 'h_knee',
+                       'h_chin', 'h_leg_333_334', 'h_upper_leg', )
+    reset_rule_results()
+    f = dict.fromkeys(figure_key_item, -1.)
+    M = collections.namedtuple('Metric', f)
+    new_figure(M, f, height, girths_data, lmpoints_data, slen_data)
+    rule_exec(f)
+    return current_result()
+
 def handle_3d_measure_json(m_result):
     g_required_map = {
         "Xiong": [144, 105, 106],
@@ -198,21 +215,10 @@ def handle_3d_measure_json(m_result):
         "Tui_XO": [243, 244, 234, 235]
     }
 
-    # titai 
-    figure_key_item = ('height', 'weight',
-                       'g_hip_167', 'g_shoulder_104', 'g_sum_167_104', 'g_waist_155', 'g_neck_140',
-                       'g_bust_144', 'g_lbiceps_125', 'g_lwrist_123', 'g_rbiceps_126', 'g_rwrist_121', 'g_lmthigh_111',
-                       'g_rmthigh_112', 'g_lmcalf_115', 'g_rmcalf_116', 'g_lankle_117', 'g_rankle_118',
-                       'w_shoulder_210_211', 'w_busts_205_206', 'w_head_212_213', 'h_head_202', 'h_upper_body', 'h_knee',
-                       'h_chin', 'h_leg_333_334', 'h_upper_leg', )
     required_points = [210, 211, 212, 213, 204, 236, 234, 235, 243, 244 ]
     skipped_list = m_result.get("skippedMeasurements", [])
     skipped_ids = [ int(x.split(':')[0].strip()[1:-1]) for x in skipped_list]
 
-    reset_rule_results()
-    f = dict.fromkeys(figure_key_item, -1.)
-    rule_exec(f)
-    tt_result = current_result()
     try:
         girths = m_result['result']['metrics']['girths']
     except:
@@ -223,6 +229,12 @@ def handle_3d_measure_json(m_result):
         ldmk_points = m_result['result']['metrics']['landmarkPoints']
     except:
         ldmk_points = []
+
+    try:
+        slen_data = m_result['result']['metrics']['surfaceLengths']
+    except:
+        slen_data = []
+    eval_height = m_result['others']['height']
 
     try:
         coef = fit_scale(ldmk_points)
@@ -265,7 +277,6 @@ def handle_3d_measure_json(m_result):
         
     
     log.warn("[Debug] Handled TiWei.\n")
-   
     lp_original_result = {}
 
     log.warn("[Debug] Handling TiTai .....\n")
@@ -278,7 +289,10 @@ def handle_3d_measure_json(m_result):
     lp_result = result['TiTai']
     log.info("[Debug] Evaling TiTai .....\n")
     eval_titai(lp_original_result, lp_result)  
-    result['TiTai']['v2'] = tt_result           
+
+    log.warn("[Debug] Extra: calculate new TiTai.\n")
+    result['TiTai']['v2'] = new_tt_calculate(eval_height, girths, ldmk_points, slen_data)           
+
     log.warn("[Debug] Handled TiTai .\n")
     return result
     #return m_result
