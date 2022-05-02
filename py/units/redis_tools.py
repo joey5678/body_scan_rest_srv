@@ -1,5 +1,20 @@
 from rediscluster import RedisCluster
 from settings.evn_conf import startup_nodes
 
+import red
 
-redis_conn = RedisCluster(startup_nodes=startup_nodes, skip_full_coverage_check=True)
+
+class MyRedis():
+    def __init__(self, ) -> None:
+        pass
+
+    def set():
+        pass
+
+    def delete():
+        pass
+
+    def get():
+        pass
+
+redis_conn = MyRedis()
