@@ -12,9 +12,158 @@ import webutil
 import account
 from webutil import app, login_required, get_myself
 
+from apis.user_apis import UserService
+from public.vld_param import vld_params_encrypt, Validator
+from public.http_tool import check_login_encrypt, not_check_login
+from units.cryptoFunc import decode_base64
+
 import logging
 log = logging.getLogger("api")
+###################################################CMS User####################################################
+user_api = UserService()
 
+@app.route('/user/login_register', methods=["POST", "GET"])
+@not_check_login
+def register_login(data):
+    """
+        登录注册接口
+    :param data:
+    :return:
+    """
+    params = vld_params_encrypt(
+        data,
+        {
+            'versioncode:int':{'default': 1},
+            'android_id: str': {'default': None},
+            'login_type: int': {'default': 1},
+            'login_token: str': {'default': None},
+            'os': {'default': "0"},
+            'iOS_key:str': {'default': None},
+            'open_id:str': {'default': None},
+
+        }
+    )
+    params['ip'] = request.headers.get('X-Forwarded-For', '')
+    log.info("{}".format(params['ip']))
+    return user_api.register_or_login_new(**params)
+
+@app.route('/user/logout', methods=["POST", "GET"])
+@not_check_login
+def user_logout(data):
+    """
+        退出登录
+    """
+    params = vld_params_encrypt(
+        data,
+        {
+            'uid: str': {'default': None, 'rule': Validator.required},
+        })
+    return user_api.user_logout(**params)
+
+@app.route('/user/rtm/token', methods=['POST', "GET"])
+@check_login_encrypt
+def gen_rtm_token(data):
+    """
+        生成agora rtm token
+    """
+    params = vld_params_encrypt(
+        data,
+        {
+            'uid:str': {'default': ''},
+        })
+    return user_api.gen_rtm_token(**params)
+
+@app.route('/user/wechat/signature', methods=['POST', "GET"])
+@not_check_login
+def get_wechat_signature(data):
+    """
+        生成agora rtm token
+    """
+    params = vld_params_encrypt(
+        data,
+        {
+            'appid:str': {'default': ''},
+        })
+    return user_api.get_wechat_signature(**params)
+
+@app.route('/user/wechat/login', methods=['POST', "GET"])
+@not_check_login
+def wechat_login(data):
+    """
+        生成agora rtm token
+    """
+    params = vld_params_encrypt(
+        data,
+        {
+            'code:str': {'default': ''},
+            'versioncode:int': {'default': 1},
+            'android_id: str': {'default': None},
+            'iOS_key:str': {'default': None},
+            'os:int':{'default':1},
+        })
+    params['ip'] = request.headers.get('X-Forwarded-For', '')
+    return user_api.wechat_login(**params)
+
+@app.route('/user/loginpwd', methods=['POST', "GET"])
+@not_check_login
+def user_loginpwd(data):
+    """
+        生成agora rtm token
+    """
+    params = vld_params_encrypt(
+        data,
+        {
+            'username:str': {'default': ''},
+            'password:str': {'default': ''},
+            'versioncode:int': {'default': 1},
+            'android_id: str': {'default': None},
+            'iOS_key:str': {'default': None},
+            'os:int':{'default':1},
+        })
+    params['ip'] = request.headers.get('X-Forwarded-For', '')
+    return user_api.user_loginpwd(**params)
+
+@app.route('/user/getuid', methods=['POST', "GET"])
+@not_check_login
+def user_getuid(data):
+    """
+        生成agora rtm token
+    """
+    params = vld_params_encrypt(
+        data,
+        {
+            'versioncode:int': {'default': 1},
+            'android_id: str': {'default': None},
+            'iOS_key:str': {'default': None},
+            'os:int':{'default':1},
+        })
+    params['ip'] = request.headers.get('X-Forwarded-For', '')
+    return user_api.user_getuid(**params)
+
+
+#更新用户信息信息
+@app.route('/user/update_userinfo', methods=['POST', "GET"])
+@check_login_encrypt
+def update_userinfo(data):
+    """
+        生成agora rtm token
+    """
+    params = vld_params_encrypt(
+        data,
+        {
+            'uid:str':{'default': None},
+            'training_effect:int': {'default': 1},
+            'training_method: int': {'default': 1},
+            'training_interval:int': {'default': 1},
+            'height:int':{'default':155},
+            'weight:int': {'default': 50},
+            'birthday:str': {'default': None},
+            'gender:int': {'default': 1},
+        })
+    params['ip'] = request.headers.get('X-Forwarded-For', '')
+    return user_api.update_userinfo(**params)
+
+###############################################################################################################
 
 @app.route('/api/login', methods = ['POST'])
 def login():
