@@ -7,13 +7,13 @@
 
 # register REST API endpoints
 import api_account
-import api_dev
+#import api_dev
 #import api_movies
 import api_measure
 
 import ui_auth # quick login/signup pages
 
-import cron
+#import cron
 
 import logging
 log = logging.getLogger("main")

@@ -10,6 +10,7 @@ from . import SqlModelMixin
 
 Base = declarative_base()
 eng = create_engine(MYSQL_CONFIG, encoding='utf-8', echo=True, pool_size=20, max_overflow=10, pool_recycle=14000)
+#eng = create_engine('sqlite:///foo.db')
 Session = sessionmaker(bind=eng)
 
 

@@ -13,7 +13,7 @@ from units import tools
 from settings import errorCode, config#, kafka_topics
 from models.sql_models import User
 from units.redis_tools import redis_conn
-from settings.evn_conf import es
+#from settings.evn_conf import es
 from public import x_db
 from models.sql_models import Session
 from sqlalchemy import and_
@@ -187,6 +187,7 @@ class UserService(object):
         sdk_ticket=""
         ##先来获取 ticket
         redis_token = redis_conn.get("access_token")
+        print(f"--------------------redis token: {redis_token}")
         if not redis_token:
             response = requests.get(url=hosts, timeout=10)
             access_info = json.loads(response.text)
@@ -197,7 +198,7 @@ class UserService(object):
             redis_conn.set("access_token", token_value)
         else:
             log.info("redis_token :{}".format(redis_token))
-            item_value = str(redis_token,'utf-8')
+            item_value = redis_token #str(redis_token,'utf-8')
             log.info("item_value :{},timesmaple:{}".format(item_value,timesmaple))
             item = item_value.split("/")
             access_token = item[0]
@@ -221,7 +222,7 @@ class UserService(object):
             redis_conn.set("ticket",ticket_value)
         else:
             log.info("ticket_redis :{}".format(ticket_redis))
-            item_value = str(ticket_redis,'utf-8')
+            item_value = ticket_redis #str(ticket_redis,'utf-8')
             log.info("item_value :{}".format(item_value))
             item = item_value.split("/")
             log.info("item_value1:{},2:{}".format(item[0],item[1]))

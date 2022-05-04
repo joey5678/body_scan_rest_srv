@@ -218,7 +218,8 @@ def jsonify_unencrypt(func):
         log.debug("JsonResult:%s", ret)
         cryptograph = cryptoFun_new.aes_func.encrypt(json.dumps(ret))
         #ret = {"return_data": cryptograph}
-        json_str = json.dumps(cryptograph, ensure_ascii=False, cls=MyJsonEncode)
+        #json_str = json.dumps(cryptograph, ensure_ascii=False, cls=MyJsonEncode)
+        json_str = json.dumps(ret) #json.dumps(cryptograph, ensure_ascii=False, cls=MyJsonEncode)
         return json_str
 
     return decorated_function
@@ -286,13 +287,16 @@ def get_data_from_body():
     stream_params = getattr(request, "stream_params", None)
     if stream_params is None:
         data = request.stream.read()
-        log.debug("request.params:%s", data)
+        log.error("request.params:%s", data)
         if data:
             #stream_params = json.loads(data.decode())
             stream_params = data.decode()
-    log.debug("request.params:%s",stream_params)
+        else:
+            stream_params = request.json
+    log.error("request.params:%s",stream_params)
     #de_data = cryptoFun_new.aes_func.decrypt(stream_params.get("request_data", ""))
-    de_data = cryptoFun_new.aes_func.decrypt(stream_params)
-    log.debug("request.params:%s,de_data:%s",stream_params,de_data)
-    data = json.loads(de_data)
+    de_data = stream_params #cryptoFun_new.aes_func.decrypt(stream_params)
+    #de_data = cryptoFun_new.aes_func.decrypt(stream_params)
+    log.error("request.params:%s,de_data:%s",stream_params,de_data)
+    data = stream_params #json.loads(de_data)
     return data
