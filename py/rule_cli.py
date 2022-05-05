@@ -84,7 +84,6 @@ def new_figure(NT, f, height, g_data, lmp_data, slen_data):
     # print(slen_data[0])
     s_id_map = {sl['id']: sl for sl in slen_data}
 
-    
     f['height'] =  height #d['others']['height']
     f['weight'] = 0
     f['g_hip_167'] = _g(g_id_map, 167)
@@ -115,7 +114,9 @@ def new_figure(NT, f, height, g_data, lmp_data, slen_data):
 
     for k, v in f.items():
         f[k] = round(v * 100., 1) # meter to cm
-
+    f['height'] = int(f['height'])
+    f['weight'] = int(f['weight'])
+    print(f['height'])
     f['height'] = 175 if f['height'] > 175 else f['height']
     f['weight'] = 100 if f['weight'] <= 0 else f['weight']
 
@@ -131,7 +132,7 @@ def main():
                         'w_shoulder_210_211', 'w_busts_205_206', 'w_head_212_213', 'h_head_202', 'h_upper_body', 'h_knee',
                         'h_chin', 'h_leg_333_334', 'h_upper_leg', )
 
-    mock_json_file = '../mock/3dm_api/metrics/GET_200.json'
+    mock_json_file = '/root/ft_rest_srv/mock/3dm_api/metrics/GET_200.json'
     data = json.load(open(mock_json_file))
     # print(data['body']['result'])
     rdata = data['body']['result']
@@ -151,6 +152,8 @@ def main():
 
     fx = f #dict(m._asdict())
 
+    print(fx)
+    print('\n')
     rule_exec(fx)
     # print('\nbody\n')
     # rule_exec(fx, 'figure-body')
