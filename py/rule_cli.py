@@ -74,7 +74,7 @@ def test_0():
         print(f"\nfigure-detail-3{i+1}\n")
         rule_exec(fx, f'figure-detail-3{i+1}')
 
-def new_figure(NT, f, height, g_data, lmp_data, slen_data):
+def new_figure(NT, f, height, weight, g_data, lmp_data, slen_data):
     # g_data = d['body']['result']['metrics']['girths']
     g_id_map = {g['id']: g for g  in g_data}
     # lmp_data = d['body']['result']['metrics']['landmarkPoints']
@@ -85,7 +85,7 @@ def new_figure(NT, f, height, g_data, lmp_data, slen_data):
     s_id_map = {sl['id']: sl for sl in slen_data}
 
     f['height'] =  height #d['others']['height']
-    f['weight'] = 0
+    f['weight'] = weight
     f['g_hip_167'] = _g(g_id_map, 167)
     f['g_shoulder_104'] = _g(g_id_map, 104)
     f['g_sum_167_104'] = _g_sum(g_id_map, 167, 104)

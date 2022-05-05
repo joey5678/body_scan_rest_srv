@@ -91,6 +91,7 @@ def measure_me():
     input.pop("id", 0) # ignore id if given, is set by db
 
     m = dict_to_model(db.Measure, input, ignore_unknown=True)
+    _weight = input.weight
     log.info(f"input of post: {m}")
     #get measure result.
     m_url = m.file_path
@@ -98,6 +99,10 @@ def measure_me():
         input_check = False
         rsp_code = 403
         result = {"reason": "Not get the obj file."}
+    elif _weight <=0:
+        _weight = 100
+        rsp_code = 403
+        result = {"reason": "Wrong Weight value."}
     elif not m_url.startswith("http"):
         input_check = False
         rsp_code = 403
@@ -147,6 +152,7 @@ def measure_me():
                     m_result = rsp1['body'] 
                     _height = rsp1['others']['height']
                     m_result['height'] = _height
+                    m_result['weight'] = _weight
                     log.warn("Get the final result of measure data.")
                 elif s1 == 202:
                     log.warn("Got 202 code when request the measure data, sleep a while...")
@@ -185,7 +191,7 @@ def measure_me():
 
     return jsonify(result), rsp_code
 
-def new_tt_calculate(height, girths_data, lmpoints_data, slen_data):
+def new_tt_calculate(height, weight, girths_data, lmpoints_data, slen_data):
     # titai 
     figure_key_item = ('height', 'weight',
                        'g_hip_167', 'g_shoulder_104', 'g_sum_167_104', 'g_waist_155', 'g_neck_140',
@@ -196,7 +202,7 @@ def new_tt_calculate(height, girths_data, lmpoints_data, slen_data):
     reset_rule_results()
     f = dict.fromkeys(figure_key_item, -1.)
     M = collections.namedtuple('Metric', f)
-    new_figure(M, f, height, girths_data, lmpoints_data, slen_data)
+    new_figure(M, f, height, weight, girths_data, lmpoints_data, slen_data)
     rule_exec(f)
     return current_result()
 
@@ -293,7 +299,7 @@ def handle_3d_measure_json(m_result):
     eval_titai(lp_original_result, lp_result)  
 
     log.warn("[Debug] Extra: calculate new TiTai.\n")
-    result['TiTai']['v2'] = new_tt_calculate(eval_height, girths, ldmk_points, slen_data)           
+    result['TiTai']['v2'] = new_tt_calculate(eval_height, input_weight, girths, ldmk_points, slen_data)           
 
     log.warn("[Debug] Handled TiTai .\n")
     return result
