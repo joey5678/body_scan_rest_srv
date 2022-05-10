@@ -20,7 +20,7 @@ from webutil import app, login_required, get_myself
 
 from buss import *
 from rule import execute as rule_exec
-from rule import reset_rule_results, current_result
+from rule import reset_rule_results, current_result, get_eval_collection
 from rule_cli import new_figure
 import logging
 log = logging.getLogger("api.measure")
@@ -206,6 +206,26 @@ def new_tt_calculate(height, weight, girths_data, lmpoints_data, slen_data):
     rule_exec(f)
     return current_result()
 
+RC4_dict = {
+    "TouCeWai": get_eval_collection(41) ,
+    "TouQianYin": get_eval_collection(42),
+    "GaoDiJian": get_eval_collection(43),
+    "ShenTiQingXie":  get_eval_collection(44),
+    "YiXingTui":  get_eval_collection(45),
+}
+
+def merge_result(res_1, res_2):
+    tt_v1 = res_1['TiTai']
+    tw_v1 = res_1['TiWei']
+
+    res_2['YiTai'] = {}
+    for _k, _v in tt_v1.items():
+        rc = RC4_dict.get(_k, [])
+        _v['result_collection'] = rc
+        res_2['YiTai'][_k] = _v
+    
+    return res_2
+
 def handle_3d_measure_json(m_result):
     g_required_map = {
         "JingWei": [140],
@@ -309,10 +329,12 @@ def handle_3d_measure_json(m_result):
     log.warn("[Debug] Extra: calculate new TiTai.\n")
     input_weight = m_result['weight']
     result_v2 = new_tt_calculate(eval_height, input_weight, girths, ldmk_points, slen_data)
-    # result_v1['TiTai']['v2'] = new_tt_calculate(eval_height, input_weight, girths, ldmk_points, slen_data)           
+    # result_v1['TiTai']['v2'] = new_tt_calculate(eval_height, input_weight, girths, ldmk_points, slen_data) 
+    # 
+    result = merge_result(result_v1, result_v2)          
 
     log.warn("[Debug] Handled TiTai .\n")
-    return result_v1
+    return result
     #return m_result
 
 def eval_titai(titai_data, titai_result):
