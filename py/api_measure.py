@@ -253,8 +253,11 @@ def merge_result(res_1, res_2):
             result[_k] = []
         if not isinstance(cls_res, dict):
             continue
-        for _, cls_v in cls_res.items():
-            result[_k].append(cls_v)
+        for _sk, cls_v in cls_res.items():
+            if isinstance(cls_res, dict):
+                result[_k].append(cls_v)
+            else:
+                result[_k].append({_sk: cls_v})
 
     return result
 
