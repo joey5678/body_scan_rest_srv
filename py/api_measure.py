@@ -246,7 +246,17 @@ def merge_result(res_1, res_2):
             if len(_g) > 0:
                 wd_section[_k]['girth'] = round((sum(_g) / len(_g)), 1)
 
-    return res_2
+    # dict to list
+    result = {}
+    for _k, cls_res in res_2.items():
+        if result.get(_k, None) is None:
+            result[_k] = []
+        if not isinstance(cls_res, dict):
+            continue
+        for _, cls_v in cls_res.items():
+            result[_k].append(cls_v)
+
+    return result
 
 def handle_3d_measure_json(m_result):
     g_required_map = {
