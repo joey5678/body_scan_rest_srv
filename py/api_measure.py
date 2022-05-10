@@ -233,7 +233,7 @@ def merge_result(res_1, res_2):
             for _v in _list:
                 _g.append(_v['girth'])
             if len(_g) > 0:
-                wd_section[_k]['girth'] = round((sum(_g) / len(g)), 1)
+                wd_section[_k]['girth'] = round((sum(_g) / len(_g)), 1)
 
     return res_2
 
