@@ -224,6 +224,17 @@ def merge_result(res_1, res_2):
         _v['result_collection'] = rc
         res_2['YiTai'][_k] = _v
     
+    wd_section = res_2['WeiDu']
+    wd_keys = wd_section.keys()
+
+    for _k, _list in tw_v1.items():
+        if _k in wd_keys:
+            _g = []
+            for _v in _list:
+                _g.append(_v['girth'])
+            if len(_g) > 0:
+                wd_section[_k]['girth'] = round((sum(_g) / len(g)), 1)
+
     return res_2
 
 def handle_3d_measure_json(m_result):
