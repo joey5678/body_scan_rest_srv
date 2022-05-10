@@ -1036,7 +1036,9 @@ def current_result():
     sum_descs = []
     sum_suggs = []
     print(execute.results)
-    for _, _cls_res in execute.results.items():
+    for _kk, _cls_res in execute.results.items():
+        if _kk == "Summary":
+            continue
         for _, _res in _cls_res.items():
         # for _res in _cls_res:
             sum_scores += _res['scores']['score']
@@ -1122,6 +1124,16 @@ classify_dict = {
     'Overall': [12]
 }
 
+Summary_dict = {
+    "Head": [22, 31, 41, 42],
+    "Shoulder": [21, 43],
+    "Chest": [26, 33],
+    "YaoTun": [25, 32, 34],
+    "Leg": [23, 24, 36, 37, 38, 45],
+    "Other": [44, 35]
+}
+
+
 execute.results = {
 
 }
@@ -1135,6 +1147,14 @@ def find_classify_key(item_id):
             res.append(_k)
     
     return res, types
+
+def find_summary_key(item_id):
+    # res = []
+    for _k, _v in Summary_dict.items():
+        if item_id in _v:
+            return _k
+    return None
+    # return res
 
 def safe_div(x, y):
     x = float(x)
@@ -1158,11 +1178,19 @@ def eval_val(item_id, d):
 
     return None
 
+GOOD_RESULTS = ('标准', '完美', '八头身', '超长腿', '长腿', '标准腿', '黄金比例', '正常标准', '标准胸型', '修长', '标准脖', '纤细', '正常',)
+
 def rule_result(item_iid, data):
     
     item_id = item_iid // 10
     value = eval_val(item_id, data)
     cls_keys, cls_types = find_classify_key(item_id)
+
+    sm_key = "Summary"
+    if execute.results.get(sm_key, None) is None:
+        execute.results[sm_key] = {}
+    
+    sm_dict =  execute.results[sm_key]
 
     for cls_key, cls_type in zip(cls_keys, cls_types):
         if execute.results.get(cls_key, None) is None:
@@ -1171,6 +1199,15 @@ def rule_result(item_iid, data):
         py_key = ms_key_dict.get(item_id, "UNKNOWN")
         cls_res[py_key] = FULL_DICT[item_iid]
         # py_res = FULL_DICT[item_iid]
+
+        if 50 > item_id > 20 and FULL_DICT[item_iid]['result'] not in GOOD_RESULTS:
+            print("find item_id")
+            _sk = find_summary_key(item_id)
+            if _sk is not None:
+                if sm_dict.get(_sk, None) is None:
+                    sm_dict[_sk] = []
+                sm_dict[_sk].append(FULL_DICT[item_iid].copy())
+
         if value is not None:
             cls_res[py_key]['value'] = value
             # py_res['value'] = value
