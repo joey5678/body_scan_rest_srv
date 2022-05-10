@@ -252,9 +252,9 @@ def handle_3d_measure_json(m_result):
     if isinstance(coef, list):
         coef = coef[0]
 
-    result = {"TiWei":{}, "TiTai":{}}
+    result_v1 = {"TiWei":{}, "TiTai":{}}
     log.warn("[Debug] Handling TiWei .....\n")
-    g_result = result['TiWei']
+    g_result = result_v1['TiWei']
     for _k, _ids in g_required_map.items():
         if g_result.get(_k, None) is None:
             g_result[_k] = []
@@ -294,16 +294,17 @@ def handle_3d_measure_json(m_result):
         for lp in ldmk_points:
             if lp.get('id', 0) in _ids1:
                 lp_original_result[_k1].append(lp)
-    lp_result = result['TiTai']
+    lp_result = result_v1['TiTai']
     log.info("[Debug] Evaling TiTai .....\n")
     eval_titai(lp_original_result, lp_result)  
 
     log.warn("[Debug] Extra: calculate new TiTai.\n")
     input_weight = m_result['weight']
-    result['TiTai']['v2'] = new_tt_calculate(eval_height, input_weight, girths, ldmk_points, slen_data)           
+    result_v2 = new_tt_calculate(eval_height, input_weight, girths, ldmk_points, slen_data)
+    # result_v1['TiTai']['v2'] = new_tt_calculate(eval_height, input_weight, girths, ldmk_points, slen_data)           
 
     log.warn("[Debug] Handled TiTai .\n")
-    return result
+    return result_v1
     #return m_result
 
 def eval_titai(titai_data, titai_result):
