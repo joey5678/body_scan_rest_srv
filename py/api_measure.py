@@ -91,7 +91,7 @@ def measure_me():
     input.pop("id", 0) # ignore id if given, is set by db
 
     m = dict_to_model(db.Measure, input, ignore_unknown=True)
-    _weight = input.weight
+    _weight =  input.get('weight', 0) 
     log.info(f"input of post: {m}")
     #get measure result.
     m_url = m.file_path
@@ -299,6 +299,7 @@ def handle_3d_measure_json(m_result):
     eval_titai(lp_original_result, lp_result)  
 
     log.warn("[Debug] Extra: calculate new TiTai.\n")
+    input_weight = m_result['weight']
     result['TiTai']['v2'] = new_tt_calculate(eval_height, input_weight, girths, ldmk_points, slen_data)           
 
     log.warn("[Debug] Handled TiTai .\n")
