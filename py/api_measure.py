@@ -214,16 +214,27 @@ RC4_dict = {
     "YiXingTui":  get_eval_collection(45),
 }
 
+TT_KEYS = [
+    "TouCeWai",
+    "TouQianYin",
+    "GaoDiJian",
+    "ShenTiQingXie",
+    "YiXingTui",
+]
+
 def merge_result(res_1, res_2):
     tt_v1 = res_1['TiTai']
     tw_v1 = res_1['TiWei']
 
-    res_2['YiTai'] = {}
+    res_2['YiTai'] = {}  #加入之前计算的体态数据
+
     for _k, _v in tt_v1.items():
         rc = RC4_dict.get(_k, [])
         _v['result_collection'] = rc
+        _v['type'] = TT_KEYS.index(_k) + 1
         res_2['YiTai'][_k] = _v
     
+    # 将体围的值加进去
     wd_section = res_2['WeiDu']
     wd_keys = wd_section.keys()
 

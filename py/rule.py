@@ -1025,6 +1025,7 @@ def current_result():
     print(execute.results)
     for _, _cls_res in execute.results.items():
         for _, _res in _cls_res.items():
+        # for _res in _cls_res:
             sum_scores += _res['scores']['score']
             sum_descs.append(_res['scores']['desc'])
             if _res['scores'].get('suggest', None):
@@ -1109,20 +1110,18 @@ classify_dict = {
 }
 
 execute.results = {
-    'ChengFen': {},
-    'FeiPang' : {},
-    'WeiDu': {},
-    'BiLi' : {},
-    'YiTai': {}
+
 }
 
 def find_classify_key(item_id):
     res = []
+    types = []
     for _k, _v in classify_dict.items():
         if item_id in _v:
+            types.append(_v.index(item_id) + 1)
             res.append(_k)
     
-    return res
+    return res, types
 
 def safe_div(x, y):
     x = float(x)
@@ -1150,17 +1149,22 @@ def rule_result(item_iid, data):
     
     item_id = item_iid // 10
     value = eval_val(item_id, data)
-    cls_keys = find_classify_key(item_id)
+    cls_keys, cls_types = find_classify_key(item_id)
 
-    for cls_key in cls_keys:
+    for cls_key, cls_type in zip(cls_keys, cls_types):
         if execute.results.get(cls_key, None) is None:
             execute.results[cls_key] = {}
         cls_res = execute.results[cls_key]
         py_key = ms_key_dict.get(item_id, "UNKNOWN")
         cls_res[py_key] = FULL_DICT[item_iid]
+        # py_res = FULL_DICT[item_iid]
         if value is not None:
             cls_res[py_key]['value'] = value
+            # py_res['value'] = value
+        cls_res[py_key]['type'] = cls_type
         cls_res[py_key]['result_collection']  = get_eval_collection(item_id)
+        # py_res['result_collection']  = get_eval_collection(item_id)
+        # cls_res.append(py_res)
 
 def register_rules():
 
