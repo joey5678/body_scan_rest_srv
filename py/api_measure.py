@@ -208,19 +208,27 @@ def new_tt_calculate(height, weight, girths_data, lmpoints_data, slen_data):
 
 def handle_3d_measure_json(m_result):
     g_required_map = {
+        "JingWei": [140],
+        "YaoWei" : [155],
+        "TunWei" : [167],
+        "XiongWei": [144],
+        "ShouBiWei": [125, 126],
+        "DaTuiWei": [111, 112],
+        "XiaoTuiWei": [115, 116],
+        "JiaoHuai": [117, 118],
+        'Bi': [125, 126],
         "Xiong": [144, 105, 106],
         "Yao": [108, 107],
         "Tun": [109],
         "Tui": [141, 142],
-        "Bi": [125, 126]
     }
     # list order is important
     lp_required_map = {
-        "Tou_CeWai": [212, 213],
-        "Tou_QianYin": [212, 210, 213, 211],
-        "Jian_GaoDi": [210, 211],
-        "Body_QingXie": [204, 236],
-        "Tui_XO": [243, 244, 234, 235]
+        "TouCeWai": [212, 213],
+        "TouQianYin": [212, 210, 213, 211],
+        "GaoDiJian": [210, 211],
+        "ShenTiQingXie": [204, 236],
+        "YiXingTui": [243, 244, 234, 235]
     }
 
     required_points = [210, 211, 212, 213, 204, 236, 234, 235, 243, 244 ]
@@ -312,23 +320,23 @@ def eval_titai(titai_data, titai_result):
     log.info(f"\n[Debug] TT Data:\n {titai_data}\n")
     for tt_k, tt_items in titai_data.items():
         tt_item_dict = {item['id']: item for item in tt_items}
-        if tt_k == "Tou_CeWai":
+        if tt_k == "TouCeWai":
             log.info("[Debug] Cal Ce Wai ...")
             cw_rst = cal_head_cewai(tt_item_dict.get(212, None), tt_item_dict.get(213, None))
-            titai_result[f'{tt_k}_Result'] = cw_rst
-        elif tt_k == "Tou_QianYin":
+            titai_result[f'{tt_k}'] = cw_rst
+        elif tt_k == "TouQianYin":
             log.info("[Debug] Cal QianYin ...")
             qy_rst = cal_head_qianyin(tt_item_dict.get(210, None), tt_item_dict.get(211, None), tt_item_dict.get(212, None), tt_item_dict.get(213, None))
-            titai_result[f'{tt_k}_Result'] = qy_rst
-        elif tt_k == "Jian_GaoDi":
+            titai_result[f'{tt_k}'] = qy_rst
+        elif tt_k == "GaoDiJian":
             log.info("[Debug] Cal GaoDi ...")
             gd_rst = cal_shoulder_gaodi(tt_item_dict.get(210, None), tt_item_dict.get(211, None))
-            titai_result[f'{tt_k}_Result'] = gd_rst
-        elif tt_k == "Body_QingXie":
+            titai_result[f'{tt_k}'] = gd_rst
+        elif tt_k == "ShenTiQingXie":
             log.info("[Debug] Cal QingXie ...")
             qx_rst = cal_body_qingxie(tt_item_dict.get(204, None), tt_item_dict.get(236, None))
-            titai_result[f'{tt_k}_Result'] = qx_rst
-        elif tt_k == "Tui_XO":
+            titai_result[f'{tt_k}'] = qx_rst
+        elif tt_k == "YiXingTui":
             log.info("[Debug] Cal XO ...")
             xo_rst = cal_leg_xo(tt_item_dict.get(243, None), tt_item_dict.get(244, None), tt_item_dict.get(234, None), tt_item_dict.get(235, None))
-            titai_result[f'{tt_k}_Result'] = xo_rst
+            titai_result[f'{tt_k}'] = xo_rst
