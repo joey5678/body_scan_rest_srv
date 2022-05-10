@@ -222,6 +222,16 @@ TT_KEYS = [
     "YiXingTui",
 ]
 
+Summary_dict = {
+    "Head": [22, 31, 41, 42],
+    "Shoulder": [21, 43],
+    "Chest": [26, 33],
+    "YaoTun": [25, 32, 34],
+    "Leg": [23, 24, 36, 37, 38, 45],
+    "Other": [44, 35]
+}
+
+
 def merge_result(res_1, res_2):
     tt_v1 = res_1['TiTai']
     tw_v1 = res_1['TiWei']
@@ -249,15 +259,18 @@ def merge_result(res_1, res_2):
     # dict to list
     result = {}
     for _k, cls_res in res_2.items():
-        if result.get(_k, None) is None:
-            result[_k] = []
-        if not isinstance(cls_res, dict):
-            continue
-        for _sk, cls_v in cls_res.items():
-            if isinstance(cls_res, dict):
-                result[_k].append(cls_v)
-            else:
-                result[_k].append({_sk: cls_v})
+        if _k == 'Summary':
+            result[_k] = res_2[_k].copy()
+        else:
+            if result.get(_k, None) is None:
+                result[_k] = []
+            if not isinstance(cls_res, dict):
+                continue
+            for _sk, cls_v in cls_res.items():
+                if isinstance(cls_v, dict):
+                    result[_k].append(cls_v)
+                else:
+                    result[_k].append({_sk: cls_v})
 
     return result
 
