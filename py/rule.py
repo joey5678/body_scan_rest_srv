@@ -134,7 +134,7 @@ Part_Scores = {
     },
     242: {
         'score': 1,
-        'desc': '你的打小腿比例属于标准范围。',
+        'desc': '你的大小腿比例属于标准范围。',
         'suggest': ''
     },
 
@@ -1033,8 +1033,8 @@ def current_result():
         execute.results['Overall'] = {}
     overall_res = execute.results['Overall']
     overall_res['total_scores'] = sum_scores
-    overall_res['total_desc'] = " ".join(sum_descs)
-    overall_res['total_suggest'] = " ".join(sum_suggs)
+    # overall_res['total_desc'] = " ".join(sum_descs)
+    # overall_res['total_suggest'] = " ".join(sum_suggs)
     return execute.results
 
 def execute(facts, rule_str=None):

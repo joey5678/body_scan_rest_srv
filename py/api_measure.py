@@ -247,11 +247,11 @@ def handle_3d_measure_json(m_result):
         "DaTuiWei": [111, 112],
         "XiaoTuiWei": [115, 116],
         "JiaoHuai": [117, 118],
-        'Bi': [125, 126],
-        "Xiong": [144, 105, 106],
-        "Yao": [108, 107],
-        "Tun": [109],
-        "Tui": [141, 142],
+        # 'Bi': [125, 126],
+        # "Xiong": [144, 105, 106],
+        # "Yao": [108, 107],
+        # "Tun": [109],
+        # "Tui": [141, 142],
     }
     # list order is important
     lp_required_map = {
@@ -301,19 +301,19 @@ def handle_3d_measure_json(m_result):
             if girth.get('id', 0) in _ids:
                 g_result[_k].append({"id": girth['id'], "label": to_zh(girth['id'], girth['label']), "girth": round(girth['girth'][0] * 100, 1), "unit": "cm"})
     # handle exception case
-    tui_tws = g_result["Tui"]
+    tui_tws = g_result.get('Tui', [])
     if len(tui_tws) == 1:
         got_id = tui_tws[0]['id']
         got_girth = tui_tws[0]['girth']
         missed_id = 142 if got_id == 141 else 141
         tui_tws.append({"id": missed_id, "label": to_zh(missed_id, "leg"), "girth": round(got_girth + random.uniform(0.1, 1), 1), "unit": "cm"})
-    bi_tws = g_result["Bi"]
+    bi_tws = g_result.get('Bi', []) 
     if len(bi_tws) == 1:
         got_id = bi_tws[0]['id']
         got_girth = bi_tws[0]['girth']
         missed_id = 126 if got_id == 125 else 125
         bi_tws.append({"id": missed_id, "label": to_zh(missed_id, "arm"), "girth": round(got_girth + random.uniform(0.1, 1), 1), "unit": "cm"})
-    xiong_tws = g_result["Xiong"]
+    xiong_tws = g_result.get('Xiong', [])
     for xog_item in xiong_tws:
         if xog_item['id'] == 105:
             xog_item['girth'] = round((xog_item['girth'] - random.uniform(2, 3)), 1)
