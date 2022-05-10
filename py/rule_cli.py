@@ -135,7 +135,7 @@ def main():
                         'w_shoulder_210_211', 'w_busts_205_206', 'w_head_212_213', 'h_head_202', 'h_upper_body', 'h_knee',
                         'h_chin', 'h_leg_333_334', 'h_upper_leg', )
 
-    mock_json_file = '/root/ft_rest_srv/mock/3dm_api/metrics/GET_200.json'
+    mock_json_file = '../mock/3dm_api/metrics/GET_200.json'
     data = json.load(open(mock_json_file))
     # print(data['body']['result'])
     rdata = data['body']['result']
@@ -147,10 +147,10 @@ def main():
     # M = collections.namedtuple('Metric', girths_data[0])(**girths_data[0])
     # print(M.id)
     # print(M._field_defaults)
-
+    weight = 55
     f = dict.fromkeys(figure_key_item, -1.)
     M = collections.namedtuple('Metric', f)
-    new_figure(M, f, height, girths_data, lmpoints_data, slen_data)
+    new_figure(M, f, height, weight, girths_data, lmpoints_data, slen_data)
     # print(m)
 
     fx = f #dict(m._asdict())
