@@ -1176,6 +1176,8 @@ def eval_val(item_id, d):
         return round(safe_div(d.h_upper_leg, d.h_leg_333_334), 2)
     if item_id == 25:
         return round(safe_div(d.g_waist_155, d.g_hip_167), 2)
+    if item_id == 26:
+        return round(safe_div(d.w_busts_205_206, d.w_shoulder_210_211), 2)
 
     return None
 
