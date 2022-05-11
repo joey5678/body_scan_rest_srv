@@ -115,7 +115,7 @@ def new_figure(NT, f, height, weight, g_data, lmp_data, slen_data):
 
     for k, v in f.items():
         if k == 'weight':
-            f[k] = v * 2
+            f[k] = v * 1
         else:
             f[k] = round(v * 100., 1) # meter to cm
     f['height'] = int(f['height'])

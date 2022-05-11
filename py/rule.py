@@ -1003,15 +1003,15 @@ r384_a = m.g_lankle_117 < m.height * BS_D['radio_AnkleW_ShankW_down']
 r384_b = m.g_rankle_118 < m.height * BS_D['radio_AnkleW_ShankW_down']
 rule_384 = r384_a | r384_b
 
-r511 = m.weight < m.height2 * 18.5
+r511 = m.weight < m.height2 * 0.37
 rule_511 = r511
-r512_a = m.weight > m.height2 * 18.5
-r512_b =  m.weight <= m.height2 * 25
+r512_a = m.weight > m.height2 * 0.37
+r512_b =  m.weight <= m.height2 * 0.50
 rule_512 = r512_a & r512_b
-r513_a = m.weight > m.height2  * 25
-r513_b =  m.weight <= m.height2 * 30
+r513_a = m.weight > m.height2  * 0.50
+r513_b =  m.weight <= m.height2 * 0.60
 rule_513 = r513_a & r513_b
-r514 = m.weight > m.height2 * 30
+r514 = m.weight > m.height2 * 0.60
 rule_514 = r514
 
 
@@ -1170,7 +1170,7 @@ def safe_div(x, y):
 
 def eval_val(item_id, d):
     if item_id == 11:
-        return round(safe_div((d.weight * 100 * 100), (d.height * d.height)), 2)
+        return round(safe_div((d.weight * 50 * 100), (d.height * d.height)), 2)
     if item_id == 21:
         return round(safe_div(d.w_head_212_213, d.w_shoulder_210_211 ), 2)
     if item_id == 22:
