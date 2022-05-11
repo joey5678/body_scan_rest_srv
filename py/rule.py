@@ -1177,7 +1177,24 @@ def eval_val(item_id, d):
     if item_id == 25:
         return round(safe_div(d.g_waist_155, d.g_hip_167), 2)
     if item_id == 26:
-        return round(safe_div(d.w_busts_205_206, d.w_shoulder_210_211), 2)
+        return round(safe_div(d.w_busts_205_206 * 2, d.w_shoulder_210_211), 2)
+    
+    if item_id == 31:
+        return round(d.g_neck_140, 1)
+    if item_id == 32:
+        return round(d.g_waist_155, 1)
+    if item_id == 33:
+        return round(d.g_bust_144, 1)
+    if item_id == 34:
+        return round(d.g_hip_167, 1)
+    if item_id == 35:
+        return round((d.g_lbiceps_125 + d.g_rbiceps_126)/2, 1)
+    if item_id == 36:
+        return round((d.g_lmthigh_111 + d.g_rmthigh_112)/2, 1)
+    if item_id == 37:
+        return round((d.g_lmcalf_115 + d.g_rmcalf_116)/2, 1, 1)
+    if item_id == 38:
+        return round((d.g_lankle_117 + d.g_rankle_118)/2, 1, 1)
 
     return None
 
@@ -1202,15 +1219,6 @@ def rule_result(item_iid, data):
         py_key = ms_key_dict.get(item_id, "UNKNOWN")
         cls_res[py_key] = FULL_DICT[item_iid]
         # py_res = FULL_DICT[item_iid]
-
-        if 50 > item_id > 20 and FULL_DICT[item_iid]['result'] not in GOOD_RESULTS:
-            print("find item_id")
-            _sk = find_summary_key(item_id)
-            if _sk is not None:
-                if sm_dict.get(_sk, None) is None:
-                    sm_dict[_sk] = []
-                sm_dict[_sk].append(FULL_DICT[item_iid].copy())
-
         if value is not None:
             cls_res[py_key]['value'] = value
             # py_res['value'] = value
@@ -1218,6 +1226,14 @@ def rule_result(item_iid, data):
         cls_res[py_key]['result_collection']  = get_eval_collection(item_id)
         # py_res['result_collection']  = get_eval_collection(item_id)
         # cls_res.append(py_res)
+    
+        if 50 > item_id > 20 and FULL_DICT[item_iid]['result'] not in GOOD_RESULTS:
+            print("find item_id")
+            _sk = find_summary_key(item_id)
+            if _sk is not None:
+                if sm_dict.get(_sk, None) is None:
+                    sm_dict[_sk] = []
+                sm_dict[_sk].append(cls_res[py_key].copy())
 
 def register_rules():
 
