@@ -193,7 +193,7 @@ def measure_me():
 
 def new_tt_calculate(height, weight, girths_data, lmpoints_data, slen_data):
     # titai 
-    figure_key_item = ('height', 'weight',
+    figure_key_item = ('height', 'weight', 'height2',
                        'g_hip_167', 'g_shoulder_104', 'g_sum_167_104', 'g_waist_155', 'g_neck_140',
                        'g_bust_144', 'g_lbiceps_125', 'g_lwrist_123', 'g_rbiceps_126', 'g_rwrist_121', 'g_lmthigh_111',
                        'g_rmthigh_112', 'g_lmcalf_115', 'g_rmcalf_116', 'g_lankle_117', 'g_rankle_118',
@@ -201,6 +201,7 @@ def new_tt_calculate(height, weight, girths_data, lmpoints_data, slen_data):
                        'h_chin', 'h_leg_333_334', 'h_upper_leg', )
     reset_rule_results()
     f = dict.fromkeys(figure_key_item, -1.)
+    print(f)
     M = collections.namedtuple('Metric', f)
     new_figure(M, f, height, weight, girths_data, lmpoints_data, slen_data)
     rule_exec(f)
