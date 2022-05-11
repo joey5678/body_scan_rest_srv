@@ -7,6 +7,7 @@ from durable.lang import *
 class Figure():
     height: float
     weight: float
+    height2: float
 
     g_hip_167: float
     g_shoulder_104: float
@@ -695,15 +696,15 @@ FULL_DICT = {
 
     251: {'name': '腰臀比','result': '黄金比例',
           'scores': Part_Scores[251]},
-    252: {'name': '腰臀比','result': '肥胖',
-          'scores': Part_Scores[252]},
     253: {'name': '腰臀比','result': '标准',
           'scores': Part_Scores[253]},
+    252: {'name': '腰臀比','result': '肥胖',
+          'scores': Part_Scores[252]},
 
-    261: {'name': '胸型','result': '胸外扩',
-          'scores': Part_Scores[261]},
     262: {'name': '胸型','result': '标准胸型',
           'scores': Part_Scores[262]},
+    261: {'name': '胸型','result': '胸外扩',
+          'scores': Part_Scores[261]},
     
     311: {'name': '颈围','result': '修长',
           'scores': Detail_Scores[311]},
@@ -726,63 +727,69 @@ FULL_DICT = {
     333: {'name': '胸围','result': '偏小',
           'scores': Detail_Scores[333]},
 
+    343: {'name': '臀围','result': '偏大',
+          'scores': Detail_Scores[343]},
     341: {'name': '臀围','result': '完美',
           'scores': Detail_Scores[341]},
     342: {'name': '臀围','result': '标准',
           'scores': Detail_Scores[342]},
-    343: {'name': '臀围','result': '偏大',
-          'scores': Detail_Scores[343]},
     344: {'name': '臀围','result': '偏小',
           'scores': Detail_Scores[344]},
 
+    354: {'name': '手臂围','result': '偏细',
+          'scores': Detail_Scores[354]},
     351: {'name': '手臂围','result': '完美',
           'scores': Detail_Scores[351]},
     352: {'name': '手臂围','result': '标准',
           'scores': Detail_Scores[352]},
     353: {'name': '手臂围','result': '偏粗',
           'scores': Detail_Scores[353]},
-    354: {'name': '手臂围','result': '偏细',
-          'scores': Detail_Scores[354]},
 
+
+    363: {'name': '大腿围','result': '偏细',
+          'scores': Detail_Scores[363]},
     361: {'name': '大腿围','result': '完美',
           'scores': Detail_Scores[361]},
     362: {'name': '大腿围','result': '标准',
           'scores': Detail_Scores[362]},
-    363: {'name': '大腿围','result': '偏细',
-          'scores': Detail_Scores[363]},
     364: {'name': '大腿围','result': '偏粗',
           'scores': Detail_Scores[364]},
 
+    373: {'name': '小腿围','result': '偏细',
+          'scores': Detail_Scores[373]},
     371: {'name': '小腿围','result': '完美',
           'scores': Detail_Scores[371]},
     372: {'name': '小腿围','result': '标准',
           'scores': Detail_Scores[372]},
-    373: {'name': '小腿围','result': '偏细',
-          'scores': Detail_Scores[373]},
     374: {'name': '小腿围','result': '偏粗',
           'scores': Detail_Scores[374]},
 
+    384: {'name': '脚踝','result': '偏细',
+          'scores': Detail_Scores[384]},
     381: {'name': '脚踝','result': '完美',
           'scores': Detail_Scores[381]},
     382: {'name': '脚踝','result': '标准',
           'scores': Detail_Scores[382]},
     383: {'name': '脚踝','result': '偏粗',
           'scores': Detail_Scores[383]},
-    384: {'name': '脚踝','result': '偏细',
-          'scores': Detail_Scores[384]},
+
 
     411: {'result': '正常', 'scores': {}},
     412: {'result': '侧歪', 'scores': {}},
+
     421: {'result': '正常', 'scores': {}},
     422: {'result': '前引', 'scores': {}},
-    431: {'result': '正常', 'scores': {}},
+
     432: {'result': '左高', 'scores': {}},
+    431: {'result': '正常', 'scores': {}},
     433: {'result': '右高', 'scores': {}},
-    441: {'result': '正常', 'scores': {}},
+
     442: {'result': '左倾斜', 'scores': {}},
+    441: {'result': '正常', 'scores': {}},
     443: {'result': '右倾斜', 'scores': {}},
-    451: {'result': '正常', 'scores': {}},
+
     452: {'result': 'O型腿', 'scores': {}},
+    451: {'result': '正常', 'scores': {}},
     453: {'result': 'X型腿', 'scores': {}},
 
     511: {'name': '体重','result': '偏瘦',
@@ -996,17 +1003,15 @@ r384_a = m.g_lankle_117 < m.height * BS_D['radio_AnkleW_ShankW_down']
 r384_b = m.g_rankle_118 < m.height * BS_D['radio_AnkleW_ShankW_down']
 rule_384 = r384_a | r384_b
 
-r511 = m.weight < m.height * 18.5
+r511 = m.weight < m.height2 * 18.5
 rule_511 = r511
-r512_a = m.weight > m.height * 18.5
-r512_b =  m.weight <= m.height * 25
+r512_a = m.weight > m.height2 * 18.5
+r512_b =  m.weight <= m.height2 * 25
 rule_512 = r512_a & r512_b
-
-r513_a = m.weight > m.height  * 25
-r513_b =  m.weight <= m.height * 30
+r513_a = m.weight > m.height2  * 25
+r513_b =  m.weight <= m.height2 * 30
 rule_513 = r513_a & r513_b
-
-r514 = m.weight > m.height * 30
+r514 = m.weight > m.height2 * 30
 rule_514 = r514
 
 
@@ -1569,5 +1574,5 @@ def register_rules():
 register_rules()
 
 if __name__ == '__main__':
-    print(get_eval_collection(21))
-    print(get_eval_collection(32))
+    print(get_eval_collection(25))
+    print(get_eval_collection(34))

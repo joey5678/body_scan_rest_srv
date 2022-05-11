@@ -86,6 +86,7 @@ def new_figure(NT, f, height, weight, g_data, lmp_data, slen_data):
 
     f['height'] =  height #d['others']['height']
     f['weight'] = weight
+    f['height2'] = height * height
     f['g_hip_167'] = _g(g_id_map, 167)
     f['g_shoulder_104'] = _g(g_id_map, 104)
     f['g_sum_167_104'] = _g_sum(g_id_map, 167, 104)
@@ -128,7 +129,7 @@ def new_figure(NT, f, height, weight, g_data, lmp_data, slen_data):
     return nt
 
 def main():
-    figure_key_item = ( 'height', 'weight', 
+    figure_key_item = ( 'height', 'weight', 'height2',
                         'g_hip_167', 'g_shoulder_104', 'g_sum_167_104', 'g_waist_155', 'g_neck_140', 
                         'g_bust_144', 'g_lbiceps_125', 'g_lwrist_123', 'g_rbiceps_126', 'g_rwrist_121', 'g_lmthigh_111', 
                         'g_rmthigh_112', 'g_lmcalf_115', 'g_rmcalf_116', 'g_lankle_117', 'g_rankle_118', 

@@ -39,7 +39,7 @@ def cal_head_qianyin(ls_points, rs_points, lt_points, rt_points, coef=1.):
     _, _, rsz = get_xyz(rs_points)
     #print(lsz, rsz, ltz, rtz)
     dis = round((ltz - lsz + rtz - rsz) * coef * 100 /2, 1)
-    rst_str = "正常" if dis < 6. else "前引倾向"
+    rst_str = "正常" if dis < 6. else "前引"
     _desc = DESCS[2] if dis < 6. else DESCS[3]
     return {"name":"头部前引", "value": dis, "unit": "cm", "result": rst_str, "description": _desc}
 
@@ -53,7 +53,7 @@ def cal_head_cewai(lt_points, rt_points):
     d_x = abs(x0 - x1)
     d_y = y1 - y0
     degree =  round(math.atan2((d_y), d_x)/math.pi * 180, 1)
-    rst_str = "正常" if abs(degree) < 5. else "侧歪倾向" 
+    rst_str = "正常" if abs(degree) < 5. else "侧歪" 
     _desc = DESCS[0] if abs(degree) < 5. else DESCS[1]
     if degree > 0:
         description = f"head {abs(degree)} degree to the left."
@@ -72,7 +72,7 @@ def cal_shoulder_gaodi(ls_points, rs_points):
     h_ls = ls_points['level']
     h_rs = rs_points['level']
     d_h = round((h_ls - h_rs) * 100, 1)
-    rst_str = "正常" if abs(d_h) < 2. else ("左肩膀高" if d_h > 2. else "右肩膀高")
+    rst_str = "正常" if abs(d_h) < 2. else ("左高" if d_h > 2. else "右高")
     _desc =  DESCS[4] if abs(d_h) < 2. else (DESCS[5] if d_h > 2. else DESCS[6])
     if d_h > 0:
         description = f"left shoulder {abs(d_h)} cm higher than right. "
@@ -123,7 +123,7 @@ def cal_leg_xo(rof_points, lof_points, lkc_points, rkc_points):
     degree_r = math.atan2((d_ry), d_rx)/math.pi * 180
     print(f"d_l, d_r: {degree_l}, {degree_r}")
     degree = round(degree_l + degree_r, 1)
-    rst_str =  "正常" if 160 < degree < 200 else ("O形腿倾向" if degree > 200 else "X形腿倾向") 
+    rst_str =  "正常" if 160 < degree < 200 else ("O型腿" if degree > 200 else "X型腿") 
     _desc = DESCS[10] if 160 < degree < 200 else (DESCS[11] if degree > 200 else DESCS[12]) 
     return {"name":"腿型", "value": degree, "unit":DEG, "result": rst_str, "description": _desc}   
 
