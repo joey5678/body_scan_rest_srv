@@ -223,14 +223,19 @@ TT_KEYS = [
 ]
 
 Summary_dict = {
-    "Head": [22, 31, 41, 42],
-    "Shoulder": [21, 43],
-    "Chest": [26, 33],
-    "YaoTun": [25, 32, 34],
-    "Leg": [23, 24, 36, 37, 38, 45],
-    "Other": [44, 35]
+    "Head": [1, 2],
+    "Shoulder": [3],
+    "Leg": [5],
+    "Other": [4]
 }
 
+def find_summary_key(item_id):
+    # res = []
+    for _k, _v in Summary_dict.items():
+        if item_id in _v:
+            return _k
+    return None
+    # return res
 
 def merge_result(res_1, res_2):
     tt_v1 = res_1['TiTai']
@@ -261,6 +266,14 @@ def merge_result(res_1, res_2):
     for _k, cls_res in res_2.items():
         if _k == 'Summary':
             result[_k] = res_2[_k].copy()
+            # add YiTai exception results to summary.
+            for _k, _v in res_2['YiTai']:
+                if _v['result'] != '正常':
+                    _vtype = _v['type']
+                    sm_key = find_summary_key(_vtype)
+                    if result[_k].get(sm_key, None) is None:
+                        result[_k][sm_key] = []
+                    result[_k][sm_key].append(_v.copy())
         else:
             if result.get(_k, None) is None:
                 result[_k] = []
