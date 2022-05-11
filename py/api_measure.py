@@ -267,7 +267,7 @@ def merge_result(res_1, res_2):
         if _k == 'Summary':
             result[_k] = res_2[_k].copy()
             # add YiTai exception results to summary.
-            for _k, _v in res_2['YiTai']:
+            for _, _v in res_2['YiTai'].items():
                 if _v['result'] != '正常':
                     _vtype = _v['type']
                     sm_key = find_summary_key(_vtype)
