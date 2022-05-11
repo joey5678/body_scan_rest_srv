@@ -177,7 +177,7 @@ def measure_me():
                     with open(sv_json_path, 'w') as jf:
                        json.dump(m_result, jf)
                 log.warn("[Info] Handling result from 3th.")
-                result = handle_3d_measure_json(m_result)
+                rsp_code, result = handle_3d_measure_json(m_result)
                 log.warn("[Debug] Handled result from 3th.")
 
             m.result = json.dumps(m_result)
@@ -299,7 +299,8 @@ def handle_3d_measure_json(m_result):
         "YiXingTui": [243, 244, 234, 235]
     }
 
-    required_points = [210, 211, 212, 213, 204, 236, 234, 235, 243, 244 ]
+    required_points = [210, 211, 212, 213, 204, 236, ] #234, 235, 243, 244 ]
+    required_gs = [167, 104, 155, 144, 115, ]
     skipped_list = m_result.get("skippedMeasurements", [])
     skipped_ids = [ int(x.split(':')[0].strip()[1:-1]) for x in skipped_list]
 
@@ -308,11 +309,29 @@ def handle_3d_measure_json(m_result):
     except:
         girths = []
     
+    measured_gids = [g['id'] for g in girths]
+    missed_gids = list(set(required_gs).difference(set(measured_gids)))
+    if len(missed_gids) > 0:
+        rsp_code = 406
+        result = {
+            "reason": f"Key Body Girths: {missed_gids} not measured, pls measure again."
+        }
+        return rsp_code, result
+
     coef = 1.
     try:
         ldmk_points = m_result['result']['metrics']['landmarkPoints']
     except:
         ldmk_points = []
+
+    measured_pids = [p['id'] for p in ldmk_points]
+    missed_pids = list(set(required_points).difference(set(measured_pids)))
+    if len(missed_pids) > 0:
+        rsp_code = 406
+        result = {
+            "reason": f"Key Body Points: {missed_pids} not measured, pls measure again."
+        }
+        return rsp_code, result
 
     try:
         slen_data = m_result['result']['metrics']['surfaceLengths']
@@ -382,7 +401,7 @@ def handle_3d_measure_json(m_result):
     result = merge_result(result_v1, result_v2)          
 
     log.warn("[Debug] Handled TiTai .\n")
-    return result
+    return 200, result
     #return m_result
 
 def eval_titai(titai_data, titai_result):
