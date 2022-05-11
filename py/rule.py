@@ -25,11 +25,11 @@ class Figure():
     g_lankle_117: float
     g_rankle_118: float
 
-    w_shoulder_210_211: float
-    w_head_212_213: float
-    w_busts_205_206: float
+    w_shoulder_210_211: float #肩宽
+    w_head_212_213: float  #头宽
+    w_busts_205_206: float #乳距
 
-    h_head_202: float
+    h_head_202: float #头长
     h_leg_333_334: float
     h_upper_body: float # height - h_leg_333_334
     h_upper_leg: float # 
@@ -566,8 +566,9 @@ Body_Standards = {
         'range_Jian_Tou_up': 0.4,
         'range_Jian_Tou_down': 0.2,
         # 2.2
-        'ratio_Body_Head': 1.75,
-        'range_Body_Head': 0.05,
+        'ratio_Body_Head_top': 8.3,
+        'ratio_Body_Head_middle': 7.7,
+        'ratio_Body_Head_low': 6.5,
         # 2.3
         'ratio_half_top': 1.0,
         'ratio_half_middle': 0.9,
@@ -866,14 +867,14 @@ r213_a = m.w_shoulder_210_211 > m.w_head_212_213 * (BS_P['ratio_Jian_Tou'] + BS_
 r213_b = m.w_shoulder_210_211 <  m.w_head_212_213 * (BS_P['ratio_Jian_Tou'] - BS_P['range_Jian_Tou_down'])
 rule_213 = r213_a | r213_b
 
-r221_a = m.height == m.h_head_202 * BS_P['ratio_Body_Head'] 
-r222_a = m.height >= m.h_head_202 * (BS_P['ratio_Body_Head'] - BS_P['range_Body_Head'])
-r222_b = m.height <= m.h_head_202 * (BS_P['ratio_Body_Head'] + BS_P['range_Body_Head'])
-r222_c = m.height != m.h_head_202 * BS_P['ratio_Body_Head']
-r223_a = m.height < m.h_head_202 * (BS_P['ratio_Body_Head'] - BS_P['range_Body_Head'])
-r223_b = m.height > m.h_head_202 * (BS_P['ratio_Body_Head'] + BS_P['range_Body_Head'])
-rule_221 = r221_a 
-rule_222 = r222_a & r222_b & r222_c
+r221_a = m.height < m.h_head_202 * BS_P['ratio_Body_Head_top'] 
+r221_b = m.height >= m.h_head_202 * BS_P['ratio_Body_Head_middle'] 
+r222_a = m.height < m.h_head_202 * BS_P['ratio_Body_Head_middle']
+r222_b = m.height >= m.h_head_202 *  BS_P['ratio_Body_Head_low']
+r223_a = m.height < m.h_head_202 *  BS_P['ratio_Body_Head_low']
+r223_b = m.height >= m.h_head_202 * BS_P['ratio_Body_Head_top'] 
+rule_221 = r221_a & r221_b
+rule_222 = r222_a & r222_b 
 rule_223 = r223_a | r223_b
 
 
@@ -1164,17 +1165,17 @@ def safe_div(x, y):
 
 def eval_val(item_id, d):
     if item_id == 11:
-        return round(safe_div((d.weight * 100 * 100), (d.height * d.height)), 1)
+        return round(safe_div((d.weight * 100 * 100), (d.height * d.height)), 2)
     if item_id == 21:
-        return round(safe_div(d.w_head_212_213, d.w_shoulder_210_211 ), 1)
+        return round(safe_div(d.w_head_212_213, d.w_shoulder_210_211 ), 2)
     if item_id == 22:
-        return round(safe_div(d.h_head_202, d.height), 1)
+        return round(safe_div(d.h_head_202, d.height), 2)
     if item_id == 23:
-        return round(safe_div(d.h_leg_333_334, d.height), 1)
+        return round(safe_div(d.h_leg_333_334, d.height), 2)
     if item_id == 24:
-        return round(safe_div(d.h_upper_leg, d.h_leg_333_334), 1)
+        return round(safe_div(d.h_upper_leg, d.h_leg_333_334), 2)
     if item_id == 25:
-        return round(safe_div(d.g_waist_155, d.g_hip_167), 1)
+        return round(safe_div(d.g_waist_155, d.g_hip_167), 2)
 
     return None
 
