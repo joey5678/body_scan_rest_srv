@@ -148,7 +148,7 @@ def main():
     # M = collections.namedtuple('Metric', girths_data[0])(**girths_data[0])
     # print(M.id)
     # print(M._field_defaults)
-    weight = 55
+    weight = 110
     f = dict.fromkeys(figure_key_item, -1.)
     M = collections.namedtuple('Metric', f)
     new_figure(M, f, height, weight, girths_data, lmpoints_data, slen_data)

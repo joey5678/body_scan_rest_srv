@@ -1217,6 +1217,7 @@ def rule_result(item_iid, data):
     
     sm_dict =  execute.results[sm_key]
 
+    in_sm = False
     for cls_key, cls_type in zip(cls_keys, cls_types):
         if execute.results.get(cls_key, None) is None:
             execute.results[cls_key] = {}
@@ -1231,14 +1232,15 @@ def rule_result(item_iid, data):
         cls_res[py_key]['result_collection']  = get_eval_collection(item_id)
         # py_res['result_collection']  = get_eval_collection(item_id)
         # cls_res.append(py_res)
-    
-        if 50 > item_id > 20 and FULL_DICT[item_iid]['result'] not in GOOD_RESULTS:
+
+        if not in_sm and 50 > item_id > 20 and FULL_DICT[item_iid]['result'] not in GOOD_RESULTS:
             print("find item_id")
             _sk = find_summary_key(item_id)
             if _sk is not None:
                 if sm_dict.get(_sk, None) is None:
                     sm_dict[_sk] = []
                 sm_dict[_sk].append(cls_res[py_key].copy())
+                in_sm = True
 
 def register_rules():
 
