@@ -746,13 +746,13 @@ FULL_DICT = {
           'scores': Detail_Scores[353]},
 
 
-    363: {'name': '大腿围','result': '偏细',
+    363: {'name': '大腿围','result': '偏粗',
           'scores': Detail_Scores[363]},
     361: {'name': '大腿围','result': '完美',
           'scores': Detail_Scores[361]},
     362: {'name': '大腿围','result': '标准',
           'scores': Detail_Scores[362]},
-    364: {'name': '大腿围','result': '偏粗',
+    364: {'name': '大腿围','result': '偏细',
           'scores': Detail_Scores[364]},
 
     373: {'name': '小腿围','result': '偏细',

@@ -108,7 +108,7 @@ def new_figure(NT, f, height, weight, g_data, lmp_data, slen_data):
     f['w_busts_205_206'] = _w(p_id_map, 205, 206)
     f['w_head_212_213'] = _w(p_id_map, 212, 213)
     f['h_leg_333_334'] = _s_avg(s_id_map, 333,334)
-    f['h_leg_333_334'] = f['h_leg_333_334'] / 1.125
+    f['h_leg_333_334'] = f['h_leg_333_334'] / 1.25
     f['h_knee'] = _h_avg(p_id_map, 226, 227)
     f['h_upper_body'] = f['height'] - f['h_leg_333_334']
     f['h_upper_leg'] = f['h_leg_333_334'] - f['h_knee']
