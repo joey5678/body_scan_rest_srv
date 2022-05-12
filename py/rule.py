@@ -1189,7 +1189,7 @@ def eval_val(item_id, d):
     if item_id == 32:
         return round(d.g_waist_155, 1)
     if item_id == 33:
-        return round(d.g_bust_144, 1)
+        return round(d.g_bust_144 -5, 1)
     if item_id == 34:
         return round(d.g_hip_167, 1)
     if item_id == 35:
