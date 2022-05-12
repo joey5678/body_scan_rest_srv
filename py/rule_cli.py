@@ -22,7 +22,8 @@ def _w(p_id_map, id0, id1):
 
 def _h(p_id_map, _id, delta=0):
     p = p_id_map.get(_id, None)
-    return p['position']['y'] - delta if p else 0
+    return p['level'] - delta if p else 0
+    # return p['position']['y'] - delta if p else 0
 
 def _h_avg(p_id_map, id0, id1, delta=0):
     y0 = _h(p_id_map, id0, delta)
