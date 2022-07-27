@@ -195,7 +195,7 @@ def measure_me():
                 std_weight = (m.height * 100 -80) * 0.7
 
             delta_weight = round(abs(m.weight - std_weight), 0)
-            bmi_val = round(safe_div((m.weight * 50 * 100), (m.height * m.height)), 2)
+            bmi_val = round(safe_div((m.weight * 50 * 100), (m.height * m.height*10000)), 2)
             if bmi_val > 28:
                 star_num = 1
             elif bmi_val >= 24:
