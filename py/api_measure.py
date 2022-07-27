@@ -212,6 +212,7 @@ def measure_me():
             result['EXTRA'] = {
                 'star': star_num,
                 'bmi': bmi_val,
+                'delta_weight': delta_weight,
                 'h5_default': default_h5,
                 'h5': h5_link,
             }
