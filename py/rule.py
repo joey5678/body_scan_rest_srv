@@ -10,10 +10,13 @@ class Figure():
     height2: float
 
     g_hip_167: float
+    g_abdomen_161: float 
+    g_waist_163: float 
     g_shoulder_104: float
     g_sum_167_104: float # 167 + 104
     g_waist_155: float
     g_neck_140: float
+    g_upper_chest_143: float
     g_bust_144: float
     g_lbiceps_125: float
     g_lwrist_123: float
@@ -34,6 +37,102 @@ class Figure():
     h_leg_333_334: float
     h_upper_body: float # height - h_leg_333_334
     h_upper_leg: float # 
+
+
+Params_DICT = {
+    34: {
+        'symptom_desc': "女生想要看上去更具有女人味，是需要有曲线的，虽不一定要练出沙漏型身材，但是练出S型身材也是极好的。想要曲线突出，臀部是和关键的一个部位哦。"
+    },
+    35: {
+        'symptom_desc': "上臂对于女性的形体美，常常以臂部的围度来衡量和评价臂部的外形美。"
+    },
+    36: {
+        'symptom_desc': "大腿内外两侧容易堆积脂肪，结实健美的腿，才是人体最美的线条之一。身高(cm)×0.18;小腿的比例约为身高的17%-21%都属正常，重要的是其形状如何."
+    },
+    37: {
+        'symptom_desc': "腿围作为人体形态指标之一，形象地映射出人体腿部肌肉的发育水平和腿部的发达程度，以及形体美。小腿腿围也成为了当今社会越来越多男性女性关注的重点，每个年龄段和身高都有一个小腿腿围标准哦。"
+    },
+    31: {
+        'symptom_desc': "脖子这个部位是影响人整体身材和气质的关键，其他的部位，可以靠衣服遮掩，但是脖子不可以。你的脖子属于偏粗类型，它正影响着你的整体美观。"
+    },
+    32: {
+        'symptom_desc': "能够拥有纤细的小蛮腰是每个女生的梦想，无论是现代审美还是健康医学，都对腰围要求严格，这意味着——腰，是万万不可粗的！"
+    },
+    33: {
+        'symptom_desc': "标准的胸围范围是用身高乘以0.535，上下3厘米为标准范围。好看的胸围也并非越大越好，需要的是适合自己的身高比例。"
+    },
+    21: {
+        'symptom_desc': ""
+    },
+    22: {
+        'symptom_desc': ""
+    },
+    23: {
+        'symptom_desc': ""
+    },
+    24: {
+        'symptom_desc': ""
+    },
+    25: {
+        'symptom_desc': ""
+    },
+    411: {
+        'symptom_desc': "拥有完美“头肩比”的你，是每一次合影中最抢眼的那个，一个赤裸裸的合影杀手哦～"
+    },
+    421: {
+        'symptom_desc': ""
+    },
+    431: {
+        'symptom_desc': ""
+    },
+    441: {
+        'symptom_desc': ""
+    },
+    451: {
+        'symptom_desc': ""
+    },
+    461: {
+        'symptom_desc': ""
+    },
+    412: {
+        'symptom_desc': ""
+    },
+    422: {
+        'symptom_desc': ""
+    },
+    432: {
+        'symptom_desc': ""
+    },
+    442: {
+        'symptom_desc': ""
+    },
+    452: {
+        'symptom_desc': ""
+    },
+    462: {
+        'symptom_desc': ""
+    },
+    611: {
+        'symptom_desc': "拜拜肉藏在胳膊底下，一举手晃动着说“拜拜”就摇晃不已，故称为拜拜肉。拜拜肉位于我们手臂肱三头肌部分，除去多余的脂肪原因，因为肱三头肌松弛无力而导致拜拜肉急剧加重，从而形成拜拜肉。"
+    },
+    612: {
+        'symptom_desc': "拜拜肉藏在胳膊底下，一举手晃动着说“拜拜”就摇晃不已，故称为拜拜肉。拜拜肉位于我们手臂肱三头肌部分，除去多余的脂肪原因，因为肱三头肌松弛无力而导致拜拜肉急剧加重，从而形成拜拜肉。"
+    },
+    621: {
+        'symptom_desc': "乳房下垂是指乳房在合理情形下，尤其是年轻的妇女，乳头的水平位置是在乳房下皱襞之上，若掉在其下即是所谓的乳房下垂。下垂得越严峻，就掉得越低。"
+    },
+    622: {
+        'symptom_desc': "乳房下垂是指乳房在合理情形下，尤其是年轻的妇女，乳头的水平位置是在乳房下皱襞之上，若掉在其下即是所谓的乳房下垂。下垂得越严峻，就掉得越低。"
+    },
+    631: {
+        'symptom_desc': "腹部有游泳圈是长期摄入热量多、消耗少，腹部脂肪长期堆积，缺乏锻炼导致腹部肥胖的表现，此类肥胖属于内脏型肥胖。腹部肥胖对体型的美观影响较大"
+    },
+    632: {
+        'symptom_desc': "腹部有游泳圈是长期摄入热量多、消耗少，腹部脂肪长期堆积，缺乏锻炼导致腹部肥胖的表现，此类肥胖属于内脏型肥胖。腹部肥胖对体型的美观影响较大"
+    },
+
+
+}
 
 BMI_Scores = {
     'thin': {'score': 4, 'desc': '你的体重偏瘦弱，平时要多吃点肉肉哦～'},
@@ -74,97 +173,129 @@ Body_Results = ("梨型身材  ",
 
 Part_Scores = {
     211: {
-        'score': 8,
+        'score': 6,
         'desc': '拥有完美“头肩比”的你，是每一次合影中最抢眼的那个，一个赤裸裸的合影杀手哦～',
-        
-        'suggest': ''
+        'symptom_desc': '拥有完美“头肩比”的你，是每一次合影中最抢眼的那个，一个赤裸裸的合影杀手哦～',
+        'suggest': '',
+        'tip': ''
 
     },
     212: {
-        'score': 6,
+        'score': 4,
         'desc': '标准的头肩比，使得你看起来身姿相对挺拔有气场。',
-        'suggest': ''
+        'symptom_desc': '通常情况下,女性理想的头肩比在1 : 1.5左右,稍微宽一点会更显高,但不能超过1 : 2,否则就会显得“头太小”。',
+        'suggest': '你适合选择泡泡袖、荷叶边或者有小垫肩的衣服，从视觉上增加肩宽，让比例变得更加协调。',
+        'tip': '你适合选择泡泡袖、荷叶边或者有小垫肩的衣服，从视觉上增加肩宽，让比例变得更加协调。'
     },
     213: {
-        'score': 4,
-        'desc': '较窄的肩宽，使得在上镜时尤其容易暴露，所以想要让自己的“头肩比”更加和谐，选对发型和造型是关键！',
-        'suggest': '你适合选择泡泡袖、荷叶边或者有小垫肩的衣服，从视觉上增加肩宽，让比例变得更加协调。'
+        'score': 2,
+        'desc': '较窄的肩宽 ，使得在上镜时尤其容易暴露，所以想要让自己的“头肩比”更加和谐，选对发型和造型是关键！',
+        'symptom_desc': '通常情况下,女性理想的头肩比在1 : 1.5左右,稍微宽一点会更显高,但不能超过1 : 2,否则就会显得“头太小”。',
+        'suggest': '你适合选择泡泡袖、荷叶边或者有小垫肩的衣服，从视觉上增加肩宽，让比例变得更加协调。',
+        'tip': '在训练中适当的加入肩部的训练，比如肩上推举，实力举，侧平举等 。'
+
     },
 
     221: {
         'score': 2,
         'desc': '你的头身比例犹如古希腊的雕像。世界上只有0.01%的人才拥有这么完美的比例。',
+        'symptom_desc': '你的头身比例犹如古希腊的雕像。世界上只有0.01%的人才拥有这么完美的比例。',
+        'tip': '我没有办法为你推荐穿搭，因为你怎么穿都很美。',
         'suggest': '我没有办法为你推荐穿搭，因为你怎么穿都很美。'
     },
     222: {
         'score': 1,
         'desc': '你的头部和身体的比例为1:7，是标准的7头身。这样的比例会让人感觉很容易亲近，相处起来舒适。',
-        'suggest': ''
+        'symptom_desc': '你的头部和身体的比例为1:7，是标准的7头身。这样的比例会让人感觉很容易亲近，相处起来舒适。',
+        'suggest': '',
+        'tip': ''
     },
     223: {
         'score': 0,
         'desc': '这类女生最大的问题，上下身比例的失衡，造成一种“头重脚轻”的既视感。',
-        'suggest': '你适合穿着A字裙、阔腿裤，这样可以很好地拉长腿部，增加下半身的膨胀感，起到平衡身材的作用。'
+        'symptom_desc': '从人体美学来讲，净身长7个头是最接近更多人的比例，净身长7.5头是好看的比例，而净身长8个头是黄金比例，是最完美的。而上下身比例的失衡，造成一种“头重脚轻”的既视感。',
+        'suggest': '你适合穿着A字裙、阔腿裤，这样可以很好地拉长腿部，增加下半身的膨胀感，起到平衡身材的作用。',
+        'tip': '你适合穿着A字裙、阔腿裤，这样可以很好地拉长腿部，增加下半身的膨胀感，起到平衡身材的作用。'
     },
 
     231: {
         'score': 16,
         'desc': '站在我面前的是一个维密天使呀～',
-        'suggest': ''
+        'symptom_desc': '站在我面前的是一个维密天使呀～',
+        'suggest': '',
+        'tip': ''
     },
     232: {
         'score': 12,
         'desc': '站在我面前的是一个维密天使呀～',
-        'suggest': ''
+        'symptom_desc': '腿与身体比例的值越高，下半身就越长，下半身就越长，高能见度的感觉就出来了。',
+        'suggest': '',
+        'tip': ''
     },
     233: {
         'score': 10,
         'desc': '你的腿部比例是标准的亚洲腿比例。',
-        'suggest': ''
+        'symptom_desc':'你的腿部比例是标准的亚洲腿比例',
+        'suggest': '',
+        'tip': ''
     },
     234: {
         'score': 6,
         'desc': '你的小腿和大腿的比例低于1。',
-        'suggest': '你适合高腰的穿法，在视觉上营造“三七分”的效果，颜色搭配尽可能区分上衣和裤子的颜色，选择这种有反差感的搭配，在视觉上效果会更明显。'
+        'symptom_desc': '你的小腿和大腿的比例低于1',
+        'suggest': '你适合高腰的穿法，在视觉上营造“三七分”的效果，颜色搭配尽可能区分上衣和裤子的颜色，选择这种有反差感的搭配，在视觉上效果会更明显。',
+        'tip': '你适合高腰的穿法，在视觉上营造“三七分”的效果，颜色搭配尽可能区分上衣和裤子的颜色，选择这种有反差感的搭配，在视觉上效果会更明显'
     },
 
     241: {
         'score': 4,
         'desc': '你的大小腿比例太完美了。',
-        'suggest': ''
+        'symptom_desc': '你的大小腿比例太完美了',
+        'suggest': '',
+        'tip': ''
     },
     242: {
         'score': 1,
         'desc': '你的大小腿比例属于标准范围。',
-        'suggest': ''
+        'symptom_desc': '你的打小腿比例属于标准范围',
+        'suggest': '',
+        'tip': ''
     },
 
     251: {
         'score': 12,
         'desc': '你的腰臀比堪称完美，超级棒哦～',
-        'suggest': ''
+        'symptom_desc': '你的腰臀比堪称完美，超级棒哦～',
+        'suggest': '',
+        'tip': ''
     },
     252: {
         'score': 4,
         'desc': '你的腰臀比过高，一定要注意了，这是很危险的肥胖信号。腰臀比过高可能会导致糖尿病、高血压、高血脂等病症。另外，腰部脂肪还会导致肝肥大，使它无法发挥正常功能。',
-        'suggest': '你适合穿着V领、一字领的裙子，这样会让你看起来更瘦哦!'
+        'symptom_desc':'你的腰臀比过高，一定要注意了，这是很危险的肥胖信号。腰臀比过高可能会导致糖尿病、高血压、高血脂等病症。另外，腰部脂肪还会导致肝肥大，使它无法发挥正常功能。',
+        'suggest': '你适合穿着V领、一字领的裙子，这样会让你看起来更瘦哦!',
+        'tip': '你适合穿着V领、一字领的裙子，这样会让你看起来更瘦哦!'
     },
 
     253: {
         'score': 7,
         'desc': '你的腰臀比很标准，超过了58%的女性哦～',
-        'suggest': ''
+        'symptom_desc':'你的腰臀比很标准，超过了58%的女性哦～',
+        'suggest': '',
+        'tip': ''
     },
     261: {
         'score': 0,
         'desc': '胸型外扩是指乳房向两边长，形不成乳沟，影响美观。',
-        'suggest': ''
+        'suggest': '',
+        'tip': ''
     },
 
     262: {
         'score': 2,
         'desc': '你的胸型非常标准～',
-        'suggest': ''
+        'suggest': '',
+        'tip': ''
     },
 }
 
@@ -172,175 +303,233 @@ Detail_Scores = {
     311: {
         'score': 2,
         'desc': '你的脖型非常修长，请保持哦～',
-        'suggest': '你适合穿着简约的高领针织衫，配上修身的西服外套，就是飒酷时尚的模样，整体风格特别显高。'
+        'suggest': '你适合穿着简约的高领针织衫，配上修身的西服外套，就是飒酷时尚的模样，整体风格特别显高。',
+        'symptom_desc': Params_DICT[31]['symptom_desc'],
+        'tip': '你适合穿着简约的高领针织衫，配上修身的西服外套，就是飒酷时尚的模样，整体风格特别显高。'
     },
 
     312: {
         'score': 1,
         'desc': '你的脖型非常标准，请保持哦～',
-        'suggest': ''
+        'suggest': '',
+        'symptom_desc': Params_DICT[31]['symptom_desc'],
+        'tip': '你适合穿着简约的高领针织衫，配上修身的西服外套，就是飒酷时尚的模样，整体风格特别显高。'
     },
 
     313: {
         'score': 0,
         'desc': '你的脖型属于相对较粗类型，有很大的提升空间哦',
-        'suggest': '我们可以多多动起来，通过挥动天鹅臂来消除斜方肌哦。'
+        'suggest': '我们可以多多动起来，通过挥动天鹅臂来消除斜方肌哦。',
+        'symptom_desc':  Params_DICT[31]['symptom_desc'],
+        'tip': '胸部扩展：用自己的双手握住毛巾，然后再吸气、挺胸，抬起下巴向斜上方牵引颈椎，同时双臂向斜后方向伸展，扩展胸腔，保持几秒钟。最后呼气，含胸低头，收回下巴贴近锁骨，伸展肩颈肌肉。保持几秒钟，重复5-8次。每天最少要做二十组。'
     },
 
     321: {
         'score': 6,
         'desc': '你的腰围非常纤细，请保持哦～',
-        'suggest': ''
+        'suggest': '',
+        'symptom_desc':  Params_DICT[32]['symptom_desc'],
+        'tip': '你的腰围非常纤细，请保持哦～'
     },
     322: {
         'score': 4,
         'desc': '你的腰围很标准，请保持哦～',
-        'suggest': ''
+        'suggest': '',
+        'symptom_desc':  Params_DICT[32]['symptom_desc'],
+        'tip': ''
     },
 
     323: {
         'score': 0,
         'desc': '你的腰围属于偏胖类型，快快行动起来吧～',
-        'suggest': '你适合穿着上半身深色系的衣服，这样才能起到遮肉显瘦的作用哦。'
+        'suggest': '你适合穿着上半身深色系的衣服，这样才能起到遮肉显瘦的作用哦。',
+        'symptom_desc':  Params_DICT[32]['symptom_desc'],
+        'tip': '美腰体位曲线扭转式：站立，左小腿向后抬起弯曲，右手抓住左脚，双膝相合，右手臂伸直，左手放在右侧髋部，呼气时向右侧扭转，感受左侧腰部得到伸拉，保持呼吸6到10次。反方向重复。'
     },
 
     331: {
         'score': 6,
         'desc': '你拥有一对傲人的胸，真让人羡慕～',
-        'suggest': ''
+        'suggest': '',
+        'symptom_desc': Params_DICT[33]['symptom_desc'],
+        'tip': '胸大的女生要多露出脖子曲线，才能带来整体的拉伸效果，建议可选择衬衫领或V领的上衣。'
     },
 
     332: {
         'score': 4,
         'desc': '你的胸围很标准，已经超过了74%的女性哦～',
-        'suggest': ''
+        'suggest': '',
+        'symptom_desc': Params_DICT[33]['symptom_desc'],
+        'tip': '在选择上衣时，平胸的仙女们可以选择蕾丝、重叠的褶皱等带有立体装饰的款式，直观地延伸胸部线条，使胸部线条看起来更加丰满。'
     },
 
     333: {
         'score': 1,
         'desc': '你的胸围属于平坦型，可以尝试走气质路线',
-        'suggest': '你适合挑选设计简单的上衣，对于胸部的平面来说可以展现高级感。'
+        'suggest': '你适合挑选设计简单的上衣，对于胸部的平面来说可以展现高级感。',
+        'symptom_desc': Params_DICT[33]['symptom_desc'],
+        'tip': '你适合挑选设计简单的上衣，对于胸部的平面来说可以展现高级感。'
     },
 
     341: {
         'score': 4,
         'desc': '你的臀围堪称完美，请保持哦～',
-        'suggest': ''
+        'suggest': '',
+        'symptom_desc': Params_DICT[34]['symptom_desc'],
+        'tip': '你的臀围堪称完美，请保持哦～'
     },
 
     342: {
         'score': 2,
         'desc': '你的臀围非常标准，超过了59%的女性哦～',
-        'suggest': ''
+        'suggest': '',
+        'symptom_desc':  Params_DICT[34]['symptom_desc'],
+        'tip': ''
     },
 
     343: {
         'score': 0,
         'desc': '你的臀围属于偏大类型，你距离迷人蜜桃臀仅有一步之遥哦～',
-        'suggest': '你适合搭配百褶裙或者是A字裙，这两种裙子的裙型都是在腰部的地方进行收腰，下摆都会向外扩散，这样的话就会很好的掩盖臀围大的缺点。'
+        'suggest': '你适合搭配百褶裙或者是A字裙，这两种裙子的裙型都是在腰部的地方进行收腰，下摆都会向外扩散，这样的话就会很好的掩盖臀围大的缺点。',
+        'symptom_desc':  Params_DICT[34]['symptom_desc'],
+        'tip': '你适合搭配百褶裙或者是A字裙，这两种裙子的裙型都是在腰部的地方进行收腰，下摆都会向外扩散，这样的话就会很好的掩盖臀围大的缺点。'
     },
 
     344: {
         'score': 0,
         'desc': '你的臀围偏小，赶快行动修炼蜜桃臀吧～',
-        'suggest': '你适合穿着在臀部或胯部两侧有口袋设计的休闲裤，如果口袋有袋盖或是立体口袋，有铆钉、刺绣装饰，效果会更好。'
+        'suggest': '你适合穿着在臀部或胯部两侧有口袋设计的休闲裤，如果口袋有袋盖或是立体口袋，有铆钉、刺绣装饰，效果会更好。',
+        'symptom_desc':  Params_DICT[34]['symptom_desc'],
+        'tip': '你适合穿着在臀部或胯部两侧有口袋设计的休闲裤，如果口袋有袋盖或是立体口袋，有铆钉、刺绣装饰，效果会更好。'
     },
 
     351: {
         'score': 2,
         'desc': '你的臂围堪称完美，请保持哦～',
-        'suggest': ''
+        'suggest': '',
+        'symptom_desc':  Params_DICT[35]['symptom_desc'],
+        'tip': '你的臂围堪称完美，请保持哦～'
     },
 
     352: {
         'score': 1,
         'desc': '你的臂围非常标准，超过62%的女性哦～',
-        'suggest': ''
+        'suggest': '',
+        'symptom_desc': Params_DICT[35]['symptom_desc'],
+        'tip': ''
     },
 
     353: {
         'score': 0,
         'desc': '你的手臂有拜拜肉倾向，赶快消除它吧～',
-        'suggest': '你适合穿着带蝴蝶袖的上衣。蝴蝶袖的造型随性飘逸，设计感强，流畅的线条对体型有良好的修饰作用，遮盖粗手臂，毫不累赘'
+        'suggest': '你适合穿着带蝴蝶袖的上衣。蝴蝶袖的造型随性飘逸，设计感强，流畅的线条对体型有良好的修饰作用，遮盖粗手臂，毫不累赘',
+        'symptom_desc':   Params_DICT[35]['symptom_desc'],
+        'tip': '你适合穿着带蝴蝶袖的上衣。蝴蝶袖的造型随性飘逸，设计感强，流畅的线条对体型有良好的修饰作用，遮盖粗手臂，毫不累赘'
     },
 
     354: {
         'score': 0,
         'desc': '你的手臂偏细小，让他丰满起来更具魅力吧～',
-        'suggest': ''
+        'suggest': '',
+        'symptom_desc':  Params_DICT[35]['symptom_desc'],
+        'tip': '有花纹或者是有图案的面料是一款能够丰满身形的面料，而且不挑图案，不挑大小，不论是几何的图形，或者是零散的花朵，也不论它们是稀疏的还是密集的，都能够产生这种效果，丰满身体。'
     },
 
     361: {
         'score': 2,
         'desc': '你的大腿围堪称完美，请保持哦～',
-        'suggest': ''
+        'suggest': '',
+        'symptom_desc': Params_DICT[36]['symptom_desc'],
+        'tip': '你的大腿围堪称完美，请保持哦～'
     },
 
     362: {
         'score': 1,
         'desc': '你的大腿围非常标准，超过了59%的女性哦～',
-        'suggest': ''
+        'suggest': '',
+        'symptom_desc':Params_DICT[36]['symptom_desc'],
+        'tip': ''
     },
 
     363: {
         'score': 0,
         'desc': '你的大腿围偏粗，赶快行动起来吧！',
-        'suggest': '选择下装的时候，一定要注意面料的选择，绝对不能选择软塌塌、没型的版型，那样会更加暴露你腿部的缺点。像是针织裤、雪纺这些垂顺感强的面料也要慎重'
+        'suggest': '选择下装的时候，一定要注意面料的选择，绝对不能选择软塌塌、没型的版型，那样会更加暴露你腿部的缺点。像是针织裤、雪纺这些垂顺感强的面料也要慎重',
+        'symptom_desc': Params_DICT[36]['symptom_desc'],
+        'tip': '选择下装的时候，一定要注意面料的选择，绝对不能选择软塌塌、没型的版型，那样会更加暴露你腿部的缺点。像是针织裤、雪纺这些垂顺感强的面料也要慎重'
     },
 
     364: {
         'score': 0,
         'desc': '你的大腿偏细，快快让它丰满起来吧～',
-        'suggest': ''
+        'suggest': '',
+        'symptom_desc': Params_DICT[36]['symptom_desc'],
+        'tip': ''
     },
 
 
     371: {
         'score': 4,
         'desc': '你的小腿堪称完美，请保持哦～',
-        'suggest': ''
+        'suggest': '',
+        'symptom_desc': Params_DICT[37]['symptom_desc'],
+        'tip': '你的小腿围堪称完美，请保持哦～'
     },
 
     372: {
         'score': 2,
         'desc': '你的小腿围非常标准，超过了62%的女性哦～',
-        'suggest': ''
+        'suggest': '',
+        'symptom_desc': Params_DICT[37]['symptom_desc'],
+        'tip': ''
     },
 
     373: {
         'score': 0,
         'desc': '你的小腿偏细，让他丰满起来更具魅力吧～',
-        'suggest': ''
+        'suggest': '',
+        'symptom_desc':Params_DICT[37]['symptom_desc'],
+        'tip': ''
     },
 
     374: {
         'score': 0,
         'desc': '你的小腿偏粗，赶紧行动起来吧～',
-        'suggest': '你适合选择裸色的高跟鞋，鞋面会和脚背的肤色融合在一起，在视觉上能拉长小腿。需要注意的是，鞋跟不必太细太高，鞋跟太高会让小腿的肌肉更突出，而且会和小腿形成明显的锥子型，起到反效果。'
+        'suggest': '你适合选择裸色的高跟鞋，鞋面会和脚背的肤色融合在一起，在视觉上能拉长小腿。需要注意的是，鞋跟不必太细太高，鞋跟太高会让小腿的肌肉更突出，而且会和小腿形成明显的锥子型，起到反效果。',
+        'symptom_desc': Params_DICT[37]['symptom_desc'],
+        'tip': '你适合选择裸色的高跟鞋，鞋面会和脚背的肤色融合在一起，在视觉上能拉长小腿。需要注意的是，鞋跟不必太细太高，鞋跟太高会让小腿的肌肉更突出，而且会和小腿形成明显的锥子型，起到反效果。'
     },
 
     381: {
         'score': 2,
         'desc': '你的脚踝堪称完美，请保持哦～',
-        'suggest': ''
+        'suggest': '',
+        'symptom_desc': '',
+        'tip': ''
     },
 
     382: {
         'score': 1,
         'desc': '你的脚踝非常标准，超过了71%的女性哦～',
-        'suggest': ''
+        'suggest': '',
+        'symptom_desc': '',
+        'tip': ''
     },
 
     383: {
         'score': 0,
         'desc': '你的脚踝偏粗，赶紧瘦下来更具魅力吧～',
-        'suggest': '你适合穿高跟鞋，穿上高跟鞋后，脚踝变细了不少,整个小腿也变得纤细匀称。'
+        'suggest': '你适合穿高跟鞋，穿上高跟鞋后，脚踝变细了不少,整个小腿也变得纤细匀称。',
+        'symptom_desc': '',
+        'tip': ''
     },
 
     384: {
         'score': 0,
         'desc': '你的脚踝偏细，让他丰满起来更具魅力吧～',
-        'suggest': ''
+        'suggest': '',
+        'symptom_desc': '',
+        'tip': ''
     },
 
 }
@@ -417,6 +606,53 @@ Element_Scores = {
         'score': 0,
         'desc': '你当前的体脂水平严重偏高，处于危险区间。脂肪是维持人体新陈谢和运动的能量物质，过多/过少都不利于健康，请注意控制高油高脂食物的摄入，并且多做运动',
         'suggest': ''
+    },
+}
+
+Xiachui_Scores = {
+        611: {
+        'score': 0,
+        'desc': '',
+        'suggest': '',
+        'symptom_desc': Params_DICT[611]['symptom_desc'],
+        'tip': ''
+    },
+        612: {
+        'score': 0,
+        'desc': '',
+        'suggest': '',
+        'symptom_desc':  Params_DICT[612]['symptom_desc'],
+        'tip': '平时在饮食上，多吃促进血液循环的食物，如番茄、红辣椒等，以及草莓、苹果、菠萝、香蕉、梅子、猕猴桃、柠檬等水果'
+    },
+
+        621: {
+        'score': 0,
+        'desc': '',
+        'suggest': '',
+        'symptom_desc':  Params_DICT[621]['symptom_desc'],
+        'tip': '简易交叉坐，左臂屈头后，右臂屈背部。左右手相扣，背伸直，保持3—5个呼气。呼气缓慢。换另一侧相同。'
+    },
+
+        622: {
+        'score': 0,
+        'desc': '',
+        'suggest': '',
+        'symptom_desc':  Params_DICT[622]['symptom_desc'],
+        'tip': '女性要每天运动来做乳房的保养工作，工作一段时间就要做一次乳房保健操，如果在办公室、要做做深呼吸、甩甩手、跳跳脚，扭扭腰等运动，帮助身体活络经脉，推动气血，这样有效地牵拉乳房及乳房周围组织的运动，预防乳房下垂和预防保养。'
+    },
+        631: {
+        'score': 0,
+        'desc': '',
+        'suggest': '',
+        'symptom_desc':  Params_DICT[631]['symptom_desc'],
+        'tip': '可以选择多运动一下，比如说多出去跑跑步，游泳或者是跳绳之类的，这样都有利于这部分的赘肉减掉，另外可以做俯卧撑或者是仰卧起坐，还有在饮食方面也要记得适当的节食，千万不要再吃太油腻的食物。'
+    },
+        632: {
+        'score': 0,
+        'desc': '',
+        'suggest': '',
+        'symptom_desc':  Params_DICT[632]['symptom_desc'],
+        'tip': '日常一定注意清淡饮食，多摄入全麦类等膳食纤维含量丰富，又容易让人产生饱腹感的食物，保证正常热量的摄入。每日保证合适的体育锻炼，多做转呼啦圈等可以有效促进腹部脂肪燃烧的运动.'
     },
 }
 
@@ -817,8 +1053,14 @@ FULL_DICT = {
     528: {'name': '体脂率', 'result': '高',
           'scores': Element_Scores[528]},
 
-}
+    611: {'name': '拜拜肉', 'result': '拜拜肉倾向', 'scores': Xiachui_Scores[611]},
+    612: {'name': '拜拜肉', 'result': '正常', 'scores': Xiachui_Scores[612]},
+    621: {'name': '胸下垂', 'result': '胸下垂倾向', 'scores': Xiachui_Scores[621]},
+    622: {'name': '胸下垂', 'result': '正常', 'scores': Xiachui_Scores[622]},
+    631: {'name': '游泳圈', 'result': '游泳圈倾向', 'scores': Xiachui_Scores[631]},
+    632: {'name': '游泳圈', 'result': '正常', 'scores': Xiachui_Scores[632]},
 
+}
 
 def get_eval_collection(item_id): #item_id 
     res = []
@@ -1014,6 +1256,24 @@ rule_513 = r513_a & r513_b
 r514 = m.weight > m.height2 * 0.60
 rule_514 = r514
 
+r611_a = m.g_lbiceps_125 > m.height * 0.6 +3 
+r611_b = m.g_lbiceps_125 > m.g_lmthigh_111 * 0.5
+rule_611 = r611_a & r611_b
+
+r612_a = m.g_lbiceps_125 <= m.height * 0.6 +3 
+r612_b = m.g_lbiceps_125 <= m.g_lmthigh_111 * 0.5
+rule_612 = r611_a | r611_b
+
+r621 = m.g_upper_chest_143 < m.g_bust_144 * 0.333
+rule_621 = r621
+r622 = m.g_upper_chest_143 >= m.g_bust_144 * 0.333
+rule_622 = r622
+
+r631 = m.g_abdomen_161 > m.g_waist_163 + 5
+rule_631 = r631
+r632 = m.g_abdomen_161 <= m.g_waist_163 + 5
+rule_632 = r632
+
 
 def get2bmi_rules(bmi_rules):
     _half0 = None
@@ -1041,7 +1301,7 @@ def current_result():
     sum_scores = -1
     sum_descs = []
     sum_suggs = []
-    print(execute.results)
+    # print(execute.results)
     for _kk, _cls_res in execute.results.items():
         if _kk == "Summary":
             continue
@@ -1075,9 +1335,12 @@ def execute(facts, rule_str=None):
         
         for i in range(1):
             post(f"body-element-5{i+1}", facts)
+        
+        for i in range(3):
+            post(f"body-xiachui-6{i+1}", facts)
             
 
-    # print(f"result is {execute.results}")
+    print(f"result is {execute.results}")
     # print(get_facts(rule_str))
     return execute.results
 
@@ -1118,7 +1381,10 @@ ms_key_dict = {
     513: "PiXiaZhiFang",
     514: "FeiPangDengJi",
     515: "BiaoZhunTiZhong",
-    516: "TiZhongKongZhiLiang"
+    516: "TiZhongKongZhiLiang",
+    61: "拜拜肉",
+    62: "胸下垂",
+    63: "游泳圈",
 }
 
 classify_dict = {
@@ -1127,6 +1393,7 @@ classify_dict = {
     'WeiDu': [31, 32, 33, 34, 35, 36, 37, 38],
     'BiLi' : [21, 22, 23, 24, 25, 26],
     'YiTai': [42, 41, 43, 44, 45],
+    'XiaChui': [61, 62,63],
     'Overall': [12]
 }
 
@@ -1136,6 +1403,7 @@ Summary_dict = {
     "Chest": [26, 33],
     "YaoTun": [25, 32, 34],
     "Leg": [23, 24, 36, 37, 38, 45],
+    "XiaChui": [61, 62,63],
     "Other": [44, 35]
 }
 
@@ -1201,6 +1469,13 @@ def eval_val(item_id, d):
     if item_id == 38:
         return round((d.g_lankle_117 + d.g_rankle_118)/2, 1, 1)
 
+    if item_id == 61:
+        return round(0)
+    if item_id == 62:
+        return round(0)
+    if item_id == 63:
+        return round(0)
+
     return None
 
 GOOD_RESULTS = ('标准', '完美', '八头身', '超长腿', '长腿', '标准腿', '黄金比例', '正常标准', '标准胸型', '修长', '标准脖', '纤细', '正常',)
@@ -1243,6 +1518,33 @@ def rule_result(item_iid, data):
                 in_sm = True
 
 def register_rules():
+
+    with ruleset('body-xiachui-61'):
+        @when_all(rule_611)
+        def r_6(c):
+            rule_result(611, c.m)
+        
+        @when_all(rule_612)
+        def r_6(c):
+            rule_result(612, c.m)
+
+    with ruleset('body-xiachui-62'):
+        @when_all(rule_621)
+        def r_6(c):
+            rule_result(621, c.m)
+        
+        @when_all(rule_622)
+        def r_6(c):
+            rule_result(622, c.m)
+
+    with ruleset('body-xiachui-63'):
+        @when_all(rule_631)
+        def r_6(c):
+            rule_result(631, c.m)
+        
+        @when_all(rule_632)
+        def r_6(c):
+            rule_result(632, c.m)
 
     with ruleset('body-element-51'):
         @when_all(rule_511)
@@ -1577,4 +1879,4 @@ register_rules()
 
 if __name__ == '__main__':
     print(get_eval_collection(25))
-    print(get_eval_collection(34))
+    print(get_eval_collection(61))

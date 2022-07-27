@@ -104,6 +104,9 @@ def new_figure(NT, f, height, weight, g_data, lmp_data, slen_data):
     f['g_rmcalf_116'] = _g(g_id_map, 116)
     f['g_lankle_117'] = _g(g_id_map, 117)
     f['g_rankle_118'] = _g(g_id_map, 118)
+    f['g_abdomen_161'] = _g(g_id_map, 161)
+    f['g_waist_163'] = _g(g_id_map, 163)
+    f['g_upper_chest_143'] = _g(g_id_map, 143)
     f['w_shoulder_210_211'] = _w(p_id_map, 210, 211)
     f['w_busts_205_206'] = _w(p_id_map, 205, 206)
     f['w_head_212_213'] = _w(p_id_map, 212, 213)
@@ -136,7 +139,7 @@ def main():
                         'g_bust_144', 'g_lbiceps_125', 'g_lwrist_123', 'g_rbiceps_126', 'g_rwrist_121', 'g_lmthigh_111', 
                         'g_rmthigh_112', 'g_lmcalf_115', 'g_rmcalf_116', 'g_lankle_117', 'g_rankle_118', 
                         'w_shoulder_210_211', 'w_busts_205_206', 'w_head_212_213', 'h_head_202', 'h_upper_body', 'h_knee',
-                        'h_chin', 'h_leg_333_334', 'h_upper_leg', )
+                        'h_chin', 'h_leg_333_334', 'h_upper_leg', 'g_abdomen_161', 'g_waist_163', 'g_upper_chest_143')
 
     mock_json_file = '../mock/3dm_api/metrics/GET_200.json'
     data = json.load(open(mock_json_file))
