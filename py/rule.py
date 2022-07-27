@@ -1485,13 +1485,13 @@ def rule_result(item_iid, data):
     item_id = item_iid // 10
     value = eval_val(item_id, data)
     cls_keys, cls_types = find_classify_key(item_id)
-
+    print(f"cls keys is:{cls_keys}")
     sm_key = "Summary"
     if execute.results.get(sm_key, None) is None:
         execute.results[sm_key] = {}
     
     sm_dict =  execute.results[sm_key]
-
+  
     in_sm = False
     for cls_key, cls_type in zip(cls_keys, cls_types):
         if execute.results.get(cls_key, None) is None:
@@ -1516,7 +1516,8 @@ def rule_result(item_iid, data):
                     sm_dict[_sk] = []
                 sm_dict[_sk].append(cls_res[py_key].copy())
                 in_sm = True
-
+    print(execute.results.keys())
+    
 def register_rules():
 
     with ruleset('body-xiachui-61'):

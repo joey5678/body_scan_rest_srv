@@ -39,6 +39,11 @@ W_Dict = {
     126: "臂围(右上臂)"
 }
 
+def safe_div(x, y):
+    x = float(x)
+    y = float(y)
+    return x / y if y != 0. else 0
+
 def to_zh(num, en=""):
     return W_Dict.get(num, en)
 
@@ -179,7 +184,39 @@ def measure_me():
                 log.warn("[Info] Handling result from 3th.")
                 rsp_code, result = handle_3d_measure_json(m_result)
                 log.warn("[Debug] Handled result from 3th.")
+            
+            extra_dict = {}
+            gender_str = m.gender_str
+            if gender_str == "female":
+                default_h5 = 'http://122.51.149.232:8088/wireframe.html?gender=0'
+                std_weight = (m.height *100 - 70) * 0.6
+            else:
+                default_h5 = 'http://122.51.149.232:8088/wireframe.html?gender=1'
+                std_weight = (m.height * 100 -80) * 0.7
 
+            delta_weight = round(abs(m.weight - std_weight), 0)
+            bmi_val = round(safe_div((m.weight * 50 * 100), (m.height * m.height)), 2)
+            if bmi_val > 28:
+                star_num = 1
+            elif bmi_val >= 24:
+                star_num = 2
+            elif bmi_val >= 18.5:
+                star_num = 4
+            elif bmi_val < 18.5:
+                star_num = 3
+            else:
+                star_num = 5
+
+            h5_link = 'http://122.51.149.232:8088/wireframe.html?gender=1&model_url=2022-06-29/1656509814014.obj'
+
+            result['EXTRA'] = {
+                'star': star_num,
+                'bmi': bmi_val,
+                'h5_default': default_h5,
+                'h5': h5_link,
+            }
+
+            add_extra_info(result)
             m.result = json.dumps(m_result)
     if not m.result:
         m.result = json.dumps(result)
@@ -191,6 +228,10 @@ def measure_me():
 
     return jsonify(result), rsp_code
 
+def add_extra_info(result):
+    pass
+
+
 def new_tt_calculate(height, weight, girths_data, lmpoints_data, slen_data):
     # titai 
     figure_key_item = ('height', 'weight', 'height2',
@@ -198,7 +239,7 @@ def new_tt_calculate(height, weight, girths_data, lmpoints_data, slen_data):
                        'g_bust_144', 'g_lbiceps_125', 'g_lwrist_123', 'g_rbiceps_126', 'g_rwrist_121', 'g_lmthigh_111',
                        'g_rmthigh_112', 'g_lmcalf_115', 'g_rmcalf_116', 'g_lankle_117', 'g_rankle_118',
                        'w_shoulder_210_211', 'w_busts_205_206', 'w_head_212_213', 'h_head_202', 'h_upper_body', 'h_knee',
-                       'h_chin', 'h_leg_333_334', 'h_upper_leg', )
+                       'h_chin', 'h_leg_333_334', 'h_upper_leg', 'g_abdomen_161', 'g_waist_163', 'g_upper_chest_143')
     reset_rule_results()
     f = dict.fromkeys(figure_key_item, -1.)
     print(f)
