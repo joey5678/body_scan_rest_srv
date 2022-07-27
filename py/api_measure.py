@@ -186,7 +186,7 @@ def measure_me():
                 log.warn("[Debug] Handled result from 3th.")
             
             extra_dict = {}
-            gender_str = m.gender_str
+            gender_str = m.gender
             if gender_str == "female":
                 default_h5 = 'http://122.51.149.232:8088/wireframe.html?gender=0'
                 std_weight = (m.height *100 - 70) * 0.6
