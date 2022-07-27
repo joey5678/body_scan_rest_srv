@@ -104,8 +104,9 @@ class UserService(object):
         """
         real_token = str(uuid.uuid1()).replace("-", "")
         key = "get_uid_from_{}".format(real_token)
-        redis_conn.set(key, uid, ex=7 * 24 * 3600)
-        redis_conn.hset("uid_token", uid, real_token)
+        #redis_conn.set(key, uid, ex=7 * 24 * 3600)
+        redis_conn.set(key, uid)
+        #redis_conn.hset("uid_token", uid, real_token)
         return real_token
 
 
@@ -116,18 +117,19 @@ class UserService(object):
         end_index = start_page*page_size
         log.debug("end_index :%d",end_index)
         return_list = list()
-        user_obj = redis_conn.zrange('coach_status', start,end_index, desc=True, withscores=True)
-        log.info("user_obj :{}".format(user_obj))
-        total = redis_conn.zcard("coach_status")
-        log.info("total :{}".format(total))
+        user_obj = None
+        #user_obj = redis_conn.zrange('coach_status', start,end_index, desc=True, withscores=True)
+        #log.info("user_obj :{}".format(user_obj))
+        #total = redis_conn.zcard("coach_status")
+        #log.info("total :{}".format(total))
         session = Session()
         current_page = start_page
-        coach_number =0
+        #coach_number =0
 
-        end_index = start_page*page_size
-        log.info("current_page :{},current_page:{},end_index:{}".format(start_page,page_size,end_index))
-        if total <= end_index:
-            end_index = total
+        #end_index = start_page*page_size
+        #log.info("current_page :{},current_page:{},end_index:{}".format(start_page,page_size,end_index))
+        #if total <= end_index:
+        #    end_index = total
         if user_obj:
             coach_number = len(user_obj)
             for one in user_obj:
@@ -186,6 +188,7 @@ class UserService(object):
             config.wechatAppId, config.wechatAppSecret)
         sdk_ticket=""
         ##先来获取 ticket
+        redis_conn.delete("access_token")
         redis_token = redis_conn.get("access_token")
         print(f"--------------------redis token: {redis_token}")
         if not redis_token:
@@ -211,6 +214,7 @@ class UserService(object):
                 token_value = access_token + "/" + str(expires_time)
                 redis_conn.set("access_token", token_value)
         ticket=""
+        redis_conn.delete("ticket")
         ticket_redis = redis_conn.get("ticket")
         if not ticket_redis:
             hosts_ticket="https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token={0}&type=2".format(access_token)
@@ -315,7 +319,7 @@ class UserService(object):
             name = ret.name
             iscoach = ret.iscoach
             sex = ret.gender
-            birthday = ret.birthday
+            birthday = ret.birthday or ""
             height = ret.height
             weight = ret.weight
             token = self._set_token_(uid, ip, iOS_key, android_id)

@@ -2,7 +2,8 @@
 import os
 #from elasticsearch import Elasticsearch
 
-MYSQL_CONFIG = "mysql+mysqlconnector://appyunwei:appyunwei123@58f74d444593d.gz.cdb.myqcloud.com:14529/firenow"
+#MYSQL_CONFIG = "mysql+mysqlconnector://appyunwei:appyunwei123@58f74d444593d.gz.cdb.myqcloud.com:14529/firenow"
+MYSQL_CONFIG = "mysql+mysqlconnector://root:user@localhost:3306/firenow"
 # mysql测试环境和正式环境都有sql_server---亚马逊的endpoint
 ES_ADDRESS = "172.25.234.193:9200"
 KAFKA_ADDRESS ="172.25.234.193:9092"

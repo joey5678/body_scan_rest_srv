@@ -113,6 +113,9 @@ base64Credentials = base64Credentials.decode()
 wechatAppId = "wxc05113232cfc149e"
 wechatAppSecret = "184cb89dd3c03c5316eedbf9e727065a"
 
+#wechatAppId = "wxfa94ce88dbf3e08c"
+#wechatAppSecret = "286b247b000c11284fd588dcb753fa2f"
+
 #因为只是给kimi一个人登录，所以用户名和密码写道配置文件里面
 username="JVON001"
 password="123456"
