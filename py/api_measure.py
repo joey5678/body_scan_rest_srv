@@ -155,8 +155,9 @@ def measure_me():
                     
                 if s1 == 200:
                     m_result = rsp1['body'] 
-                    _height = rsp1['others']['height']
-                    m_result['height'] = _height
+                    _height = rsp1['others']['height'] #this height is evaluated by 3d measure up
+                    m_result['3mu_height'] = _height
+                    m_result['height'] = m.height or _height
                     m_result['weight'] = _weight
                     log.warn("Get the final result of measure data.")
                 elif s1 == 202:
@@ -195,7 +196,7 @@ def measure_me():
                 std_weight_kg = (m.height -80) * 0.7
 
             delta_weight = round(abs(m.weight/2 - std_weight_kg), 0)
-            bmi_val = round(safe_div((m.weight/2), (m.height * m.height)), 2)
+            bmi_val = round(safe_div((m.weight * 50 * 100), (m.height * m.height)), 2)
             if bmi_val > 28:
                 star_num = 1
             elif bmi_val >= 24:
@@ -204,14 +205,14 @@ def measure_me():
                 star_num = 4
             elif bmi_val < 18.5:
                 star_num = 3
-            else:
+            elif delta_weight == 0:
                 star_num = 5
 
             h5_link = 'http://122.51.149.232:8088/wireframe.html?gender=1&model_url=2022-06-29/1656509814014.obj'
 
             result['EXTRA'] = {
                 'star': star_num,
-                # 'bmi': bmi_val,
+                'bmi': bmi_val,
                 'delta_weight': delta_weight,
                 'h5_default': default_h5,
                 'h5': h5_link,

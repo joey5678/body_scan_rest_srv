@@ -1438,7 +1438,7 @@ def safe_div(x, y):
 
 def eval_val(item_id, d):
     if item_id == 11:
-        return round(safe_div((d.weight * 50 * 100), (d.height * d.height)), 2)
+        return round(safe_div((d.weight * 100 * 100), (d.height * d.height)), 2)
     if item_id == 21:
         return round(safe_div(d.w_head_212_213, d.w_shoulder_210_211 ), 2)
     if item_id == 22:
