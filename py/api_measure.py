@@ -244,6 +244,7 @@ def new_tt_calculate(height, weight, girths_data, lmpoints_data, slen_data):
     reset_rule_results()
     f = dict.fromkeys(figure_key_item, -1.)
     print(f)
+    print(f"================ height: {height}, weight: {weight}")
     M = collections.namedtuple('Metric', f)
     new_figure(M, f, height, weight, girths_data, lmpoints_data, slen_data)
     rule_exec(f)
