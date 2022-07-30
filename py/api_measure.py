@@ -187,15 +187,15 @@ def measure_me():
             
             extra_dict = {}
             gender_str = m.gender
-            if gender_str == "female":
+            if gender_str == 0:
                 default_h5 = 'http://122.51.149.232:8088/wireframe.html?gender=0'
-                std_weight = (m.height *100 - 70) * 0.6
+                std_weight_kg = (m.height - 70) * 0.6
             else:
                 default_h5 = 'http://122.51.149.232:8088/wireframe.html?gender=1'
-                std_weight = (m.height * 100 -80) * 0.7
+                std_weight_kg = (m.height -80) * 0.7
 
-            delta_weight = round(abs(m.weight - std_weight), 0)
-            bmi_val = round(safe_div((m.weight * 50 * 100), (m.height * m.height*10000)), 2)
+            delta_weight = round(abs(m.weight/2 - std_weight_kg), 0)
+            bmi_val = round(safe_div((m.weight/2), (m.height * m.height)), 2)
             if bmi_val > 28:
                 star_num = 1
             elif bmi_val >= 24:
@@ -211,7 +211,7 @@ def measure_me():
 
             result['EXTRA'] = {
                 'star': star_num,
-                'bmi': bmi_val,
+                # 'bmi': bmi_val,
                 'delta_weight': delta_weight,
                 'h5_default': default_h5,
                 'h5': h5_link,
@@ -451,7 +451,7 @@ def handle_3d_measure_json(m_result):
 
     log.warn("[Debug] Extra: calculate new TiTai.\n")
     input_weight = m_result['weight']
-    result_v2 = new_tt_calculate(eval_height, input_weight, girths, ldmk_points, slen_data)
+    result_v2 = new_tt_calculate(eval_height/100, input_weight/2, girths, ldmk_points, slen_data)
     # result_v1['TiTai']['v2'] = new_tt_calculate(eval_height, input_weight, girths, ldmk_points, slen_data) 
     # 
     result = merge_result(result_v1, result_v2)          
