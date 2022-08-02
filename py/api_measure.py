@@ -97,10 +97,12 @@ def scan3d():
     in_json = request.json
 
     global ws_store
+    print(ws_store)
     print(in_json)
     dev_id = in_json['dev_id']
     ts = in_json['time_stamp']
     _ws_key = f"{dev_id}:{ts}"
+    print(f"-------------wskey: {_ws_key}")
     if ws_store.get(_ws_key, None) is not None:
         return jsonify(ws_store[_ws_key]), 200
 
@@ -127,7 +129,6 @@ def scan3d():
             break
         time.sleep(10)
         tcount += 10
-    _ws_key = f"{dev_id}:{ts}"
     ws_store[_ws_key] = json_msg
 
 
