@@ -36,7 +36,8 @@ print("Receiving after sending connect msg")
 result =  ws.recv()
 print("Received '%s'" % result)
 
-ws_store = {}
+global ws_store
+ws_store = {'foo': 'bar'}
 
 W_Dict = {
     144: "胸围",
@@ -126,11 +127,11 @@ def scan3d():
         if json_msg['type'] == 'return_launch':
             print("received launch result, request finished.")
             print(json_msg)
+            ws_store[_ws_key] = json_msg
+            print(ws_store)
             break
         time.sleep(10)
         tcount += 10
-    ws_store[_ws_key] = json_msg
-
 
     return jsonify({"result":"success"}), 200
 
@@ -138,8 +139,15 @@ def scan3d():
 def scan_query():
     args = request.args
     print(args)
+    dev_id = args.get('dev_id', 0)
+    ts = args.get('ts', 0)
+    global ws_store
+    _key = f"{dev_id}:{ts}"
+    if ws_store.get(_key, None) is not None:
+        return jsonify(ws_store[_key]), 200
+    
+    return jsonify({'result':"no result"}), 201
 
-    return jsonify([]), 200
 
 @app.route('/api/measure', methods = ['POST'], strict_slashes=False)
 #@login_required(role='editor')
@@ -162,33 +170,33 @@ def measure_me():
 
     # Update: receive dev_id, the call websocket to notify device to execute scan
     # device will scan and upload the obj file to cloud and return the obj path
-    m_dev_id = m.dev_id
-    if not m_dev_id:
-        input_check = False
-        rsp_code = 403
-        result = {"reason": "Not get the device id(dev_id) in request."}
-        return jsonify(result), rsp_code
-    global ws
-    print("Sending launch request message")
-    ws.send('{"type": "request_launch", "data": {"dev_id":"%s"}}' % m_dev_id)
-    print("Receiving...")
-    result =  ws.recv()
-    print("Received '%s'" % result)
+    # m_dev_id = m.dev_id
+    # if not m_dev_id:
+    #     input_check = False
+    #     rsp_code = 403
+    #     result = {"reason": "Not get the device id(dev_id) in request."}
+    #     return jsonify(result), rsp_code
+    # global ws
+    # print("Sending launch request message")
+    # ws.send('{"type": "request_launch", "data": {"dev_id":"%s"}}' % m_dev_id)
+    # print("Receiving...")
+    # result =  ws.recv()
+    # print("Received '%s'" % result)
 
-    while True:
-        print("waiting launch result message")
-        result =  ws.recv()
-        print("Received '%s'" % result)
-        json_msg = json.loads(result)
-        if json_msg['type'] == 'return_launch':
-            print("received launch result, request finished.")
-            print(json_msg)
-            break
-        time.sleep(10)
+    # while True:
+    #     print("waiting launch result message")
+    #     result =  ws.recv()
+    #     print("Received '%s'" % result)
+    #     json_msg = json.loads(result)
+    #     if json_msg['type'] == 'return_launch':
+    #         print("received launch result, request finished.")
+    #         print(json_msg)
+    #         break
+    #     time.sleep(10)
 
     #get measure result.
-    m_url = json_msg['data'].get('obj_file_path', None)
-    # m_url = m.file_path
+    # m_url = json_msg['data'].get('obj_file_path', None)
+    m_url = m.file_path
     if not m_url:
         input_check = False
         rsp_code = 403
@@ -203,11 +211,11 @@ def measure_me():
         result = {"reason": "the obj file url not end with obj."}
     else:
         #1.POST 
-        full_m_url = os.path.join(cos_path, m_url)
-        print(f"-------------full_m_url: {full_m_url}")
+        # full_m_url = os.path.join(cos_path, m_url)
+        # print(f"-------------full_m_url: {full_m_url}")
         body_json = {
             "type": "all",
-            "fileurl": full_m_url,
+            "fileurl": m_url,
             "orientation_matrix": "1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1",
             "filesource": "url",
             "filetype": "obj",
@@ -298,7 +306,8 @@ def measure_me():
                 star_num = 3
             elif delta_weight == 0:
                 star_num = 5
-            s_m_url = m_url.split('/', 2)
+            
+            s_m_url = m_url[m_url.index('obj/')+4:]
             h5_link = f'http://122.51.149.232:8088/wireframe.html?gender={gender_str}&model_url={s_m_url}'
 
             result['EXTRA'] = {
