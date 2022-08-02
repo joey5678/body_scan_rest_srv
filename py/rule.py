@@ -1435,6 +1435,73 @@ def safe_div(x, y):
     y = float(y)
     return x / y if y != 0. else 0.
 
+def eval_g_delta(item_iid, d):
+    item_id = item_iid // 10 
+    if not 40 > item_id > 30:
+        return None
+    if item_iid == 311:
+        return '非常完美'
+    if item_iid == 312:
+        return '很标准，请继续保持'
+    if item_iid == 313:
+        delta_val = round(abs(d.g_neck_140 -35), 0)
+        return f'美体围脖35cm  超出{delta_val}cm'
+    if item_iid == 321:
+        return '非常完美'
+    if item_iid == 322:
+        return '很标准，请继续保持'
+    if item_iid == 323:
+        std_val = d.height * 0.37
+        delta_val = round(abs(std_val - d.g_waist_155), 0)
+        return f'美体腰围{std_val}cm  超出{delta_val}cm'
+    if item_iid == 331:
+        return '非常完美'
+    if item_iid == 332:
+        return '很标准，请继续保持'
+    if item_iid == 333: 
+        std_val = d.height * 0.53
+        delta_val = round(abs(std_val - d.g_bust_144), 0)
+        return f'美体胸围{std_val}cm  超出{delta_val}cm'
+    if item_iid == 341: 
+        return '非常完美'
+    if item_iid == 342: 
+        return '很标准，请继续保持'
+    if item_iid in (343, 344): 
+        std_val = d.height * 0.54
+        delta_val = round(abs(std_val - d.g_hip_167), 0)
+        return f'美体臀围{std_val}cm  超出{delta_val}cm'
+
+    if item_iid == 351: 
+        return  '非常完美'
+    if item_iid == 352: 
+        return '很标准，请继续保持'
+    if item_iid in (353, 354): 
+        std_val = (d.g_lwrist_123 + d.g_rwrist_121) * 1.7 / 2
+        my_value = (d.g_lbiceps_125 + d.g_rbiceps_126)/2
+        delta_val = round(abs(std_val - my_value), 0)
+        return f'美体臂围{std_val}cm  超出{delta_val}cm'
+
+    if item_iid == 361: 
+        return  '非常完美'
+    if item_iid == 362: 
+        return '很标准，请继续保持'
+    if item_iid in (363, 364): 
+        std_val = d.height * 0.26 + 7.8
+        my_value = (d.g_lmthigh_111 + d.g_rmthigh_112)/2
+        delta_val = round(abs(std_val - my_value), 0)
+        return f'美体大腿围{std_val}cm  超出{delta_val}cm'
+
+    if item_iid == 371: 
+        return  '非常完美'
+    if item_iid == 372: 
+        return '很标准，请继续保持'
+    if item_iid in (373, 374): 
+        std_val = d.height * 0.18
+        my_value = (d.g_lmcalf_115 + d.g_rmcalf_116)/2
+        delta_val = round(abs(std_val - my_value), 0)
+        return f'美体小腿围{std_val}cm  超出{delta_val}cm'
+
+    return ""
 
 def eval_val(item_id, d):
     if item_id == 11:
@@ -1484,6 +1551,7 @@ def rule_result(item_iid, data):
     
     item_id = item_iid // 10
     value = eval_val(item_id, data)
+    tag_str = eval_g_delta(item_iid, data)
     cls_keys, cls_types = find_classify_key(item_id)
     print(f"cls keys is:{cls_keys}")
     sm_key = "Summary"
@@ -1503,6 +1571,8 @@ def rule_result(item_iid, data):
         if value is not None:
             cls_res[py_key]['value'] = value
             # py_res['value'] = value
+        if tag_str is not None:
+            cls_res[py_key]['tag_str'] = tag_str
         cls_res[py_key]['type'] = cls_type
         cls_res[py_key]['result_collection']  = get_eval_collection(item_id)
         # py_res['result_collection']  = get_eval_collection(item_id)

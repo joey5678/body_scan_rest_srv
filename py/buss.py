@@ -32,7 +32,7 @@ def cal_head_qianyin(ls_points, rs_points, lt_points, rt_points, coef=1.):
     _desc = DESCS[2]
     if not all((ls_points, rs_points, lt_points, rt_points)):
         dis = round(random.uniform(2, 5), 1)
-        return {"name":"头部前引", "value": dis, "unit": "cm", "result": "正常", "description": _desc}
+        return {"name":"头前引", "value": dis, "unit": "cm", "result": "正常", "description": _desc}
     _, _, ltz = get_xyz(lt_points)
     _, _, lsz = get_xyz(ls_points)
     _, _, rtz = get_xyz(rt_points)
@@ -41,13 +41,13 @@ def cal_head_qianyin(ls_points, rs_points, lt_points, rt_points, coef=1.):
     dis = round((ltz - lsz + rtz - rsz) * coef * 100 /2, 1)
     rst_str = "正常" if dis < 6. else "前引"
     _desc = DESCS[2] if dis < 6. else DESCS[3]
-    return {"name":"头部前引", "value": dis, "unit": "cm", "result": rst_str, "description": _desc}
+    return {"name":"头前引", "value": dis, "unit": "cm", "result": rst_str, "description": _desc}
 
 def cal_head_cewai(lt_points, rt_points):
     _desc = DESCS[0]
     if not all((lt_points, rt_points)):
         degree = round(random.uniform(-4, 4), 1)
-        return {"name":"头部侧歪", "value": degree, "unit": DEG, "result": "正常", "description": _desc }
+        return {"name":"头侧歪", "value": degree, "unit": DEG, "result": "正常", "description": _desc }
     x0, y0, z0 = get_xyz(lt_points)
     x1, y1, z1 = get_xyz(rt_points)
     d_x = abs(x0 - x1)
@@ -61,7 +61,7 @@ def cal_head_cewai(lt_points, rt_points):
         description = f"head {abs(degree)} degree to the right."
     else:
         description = "head no left no right."
-    return {"name":"头部侧歪", "value": degree, "unit": DEG, "result": rst_str, "description": _desc }
+    return {"name":"头侧歪", "value": degree, "unit": DEG, "result": rst_str, "description": _desc }
 
 
 def cal_shoulder_gaodi(ls_points, rs_points):
@@ -108,7 +108,7 @@ def cal_leg_xo(rof_points, lof_points, lkc_points, rkc_points):
     _desc = DESCS[10]
     if not all((rof_points, lof_points, lkc_points, rkc_points)):
        degree = round(random.uniform(170, 195), 1) 
-       return {"name":"腿型", "value": degree, "unit":DEG, "result": "正常", "description": _desc}
+       return {"name":"异形腿", "value": degree, "unit":DEG, "result": "正常", "description": _desc}
     x0, y0, _ = get_xyz(lof_points)
     x1, y1, _ = get_xyz(rof_points)
     x2, y2, _ = get_xyz(lkc_points)
@@ -125,7 +125,7 @@ def cal_leg_xo(rof_points, lof_points, lkc_points, rkc_points):
     degree = round(degree_l + degree_r, 1)
     rst_str =  "正常" if 160 < degree < 200 else ("O型腿" if degree > 200 else "X型腿") 
     _desc = DESCS[10] if 160 < degree < 200 else (DESCS[11] if degree > 200 else DESCS[12]) 
-    return {"name":"腿型", "value": degree, "unit":DEG, "result": rst_str, "description": _desc}   
+    return {"name":"异形腿", "value": degree, "unit":DEG, "result": rst_str, "description": _desc}   
 
 
 def fit_scale(points):
