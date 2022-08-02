@@ -25,6 +25,17 @@ from rule_cli import new_figure
 import logging
 log = logging.getLogger("api.measure")
 
+# connect ws server:
+from websocket import create_connection
+ws = create_connection("ws://127.0.0.1:9001")
+print("Receiving after creating conn...")
+print(ws.recv())
+
+ws.send('{"type": "connect", "data": {"websrv":"1"}}')
+print("Receiving after sending connect msg")
+result =  ws.recv()
+print("Received '%s'" % result)
+
 
 W_Dict = {
     144: "胸围",
@@ -98,8 +109,36 @@ def measure_me():
     m = dict_to_model(db.Measure, input, ignore_unknown=True)
     _weight =  input.get('weight', 0) 
     log.info(f"input of post: {m}")
+
+    # Update: receive dev_id, the call websocket to notify device to execute scan
+    # device will scan and upload the obj file to cloud and return the obj path
+    m_dev_id = m.dev_id
+    if not m_dev_id:
+        input_check = False
+        rsp_code = 403
+        result = {"reason": "Not get the device id(dev_id) in request."}
+        return jsonify(result), rsp_code
+    global ws
+    print("Sending launch request message")
+    ws.send('{"type": "request_launch", "data": {"dev_id":"%s"}}' % m_dev_id)
+    print("Receiving...")
+    result =  ws.recv()
+    print("Received '%s'" % result)
+
+    while True:
+        print("waiting launch result message")
+        result =  ws.recv()
+        print("Received '%s'" % result)
+        json_msg = json.loads(result)
+        if json_msg['type'] == 'return_launch':
+            print("received launch result, request finished.")
+            print(json_msg)
+            break
+        time.sleep(10)
+
     #get measure result.
-    m_url = m.file_path
+    m_url = json_msg.get('obj_file_path', None)
+    # m_url = m.file_path
     if not m_url:
         input_check = False
         rsp_code = 403

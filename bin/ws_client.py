@@ -12,7 +12,7 @@ def on_close(ws):
     print("$$$$$$close@@@@@")
 
 def on_open(ws):
-    ws.send('{"device_id": "111111111111111111"}')
+    ws.send('{"device_id": "123456"}')
 
 
 if __name__ == "__main__":
@@ -31,7 +31,7 @@ if __name__ == "__main__":
 
 #发送设备标识信息
     print("Sending Connect message")
-    ws.send('{"type": "connect", "data": {"dev_id":"xxxxxxxx"}}')
+    ws.send('{"type": "connect", "data": {"dev_id":"123456"}}')
     # print("Receiving...")
     # result =  ws.recv()
     # print("Received '%s'" % result)
@@ -52,7 +52,7 @@ if __name__ == "__main__":
 
 # 返回obj文件云存储的路径
     print("Sending result message")
-    ws.send('{"type": "return_launch", "data": {"dev_id":"xxxxxxxx", "obj_file_path": "http://xxxxx.obj"}}')
+    ws.send('{"type": "return_launch", "data": {"dev_id":"123456", "obj_file_path": "https://3dp-1302477916.cos.ap-mumbai.myqcloud.com/obj/2022-07-29/1659082295053.obj"}}')
     print("Receiving...")
     result =  ws.recv()
     print("Received '%s'" % result)
