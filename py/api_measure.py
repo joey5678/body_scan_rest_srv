@@ -36,6 +36,7 @@ print("Receiving after sending connect msg")
 result =  ws.recv()
 print("Received '%s'" % result)
 
+ws_store = {}
 
 W_Dict = {
     144: "胸围",
@@ -91,10 +92,58 @@ def measure_get(id):
     m = db.get_measure(id)
     return jsonify(m), 200
 
+@app.route('/api/scan', methods = ['POST'], strict_slashes=False)
+def scan3d():
+    in_json = request.json
+
+    global ws_store
+    print(in_json)
+    dev_id = in_json['dev_id']
+    ts = in_json['time_stamp']
+    _ws_key = f"{dev_id}:{ts}"
+    if ws_store.get(_ws_key, None) is not None:
+        return jsonify(ws_store[_ws_key]), 200
+
+    global ws
+
+    print("Sending launch request message")
+    ws.send('{"type": "request_launch", "data": {"dev_id":"%s"}}' % dev_id)
+    print("Receiving...")
+    result =  ws.recv()
+    print("Received '%s'" % result)
+    tout = 300
+    tcount = 0
+    while True:
+        if tcount > tout:
+            print("------------waiting timeout----------------.")
+            return jsonify({'result': 'timeout to wait scan result'}), 200
+        print("waiting launch result message")
+        result =  ws.recv()
+        print("Received '%s'" % result)
+        json_msg = json.loads(result)
+        if json_msg['type'] == 'return_launch':
+            print("received launch result, request finished.")
+            print(json_msg)
+            break
+        time.sleep(10)
+        tcount += 10
+    _ws_key = f"{dev_id}:{ts}"
+    ws_store[_ws_key] = json_msg
+
+
+    return jsonify({"result":"success"}), 200
+
+@app.route('/api/scan/', method = ['GET'])
+def scan_query():
+    args = request.args
+    print(args)
+
+    return jsonify([]), 200
 
 @app.route('/api/measure', methods = ['POST'], strict_slashes=False)
 #@login_required(role='editor')
 def measure_me():
+    cos_path = 'https://3dp-1302477916.cos.ap-mumbai.myqcloud.com/'
     """Creates a measure and returns measure result."""
     input_check = True
     rsp_code = 200
@@ -147,15 +196,17 @@ def measure_me():
         _weight = 100
         rsp_code = 403
         result = {"reason": "Wrong Weight value."}
-    elif not m_url.startswith("http"):
+    elif not m_url.endswith("obj"):
         input_check = False
         rsp_code = 403
-        result = {"reason": "the obj file url not start with http."}
+        result = {"reason": "the obj file url not end with obj."}
     else:
         #1.POST 
+        full_m_url = os.path.join(cos_path, m_url)
+        print(f"-------------full_m_url: {full_m_url}")
         body_json = {
             "type": "all",
-            "fileurl": m_url,
+            "fileurl": full_m_url,
             "orientation_matrix": "1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1",
             "filesource": "url",
             "filetype": "obj",
@@ -246,8 +297,8 @@ def measure_me():
                 star_num = 3
             elif delta_weight == 0:
                 star_num = 5
-
-            h5_link = 'http://122.51.149.232:8088/wireframe.html?gender=1&model_url=2022-06-29/1656509814014.obj'
+            s_m_url = m_url.split('/', 2)
+            h5_link = f'http://122.51.149.232:8088/wireframe.html?gender={gender_str}&model_url={s_m_url}'
 
             result['EXTRA'] = {
                 'star': star_num,
