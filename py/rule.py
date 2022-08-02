@@ -1382,9 +1382,9 @@ ms_key_dict = {
     514: "FeiPangDengJi",
     515: "BiaoZhunTiZhong",
     516: "TiZhongKongZhiLiang",
-    61: "拜拜肉",
-    62: "胸下垂",
-    63: "游泳圈",
+    61: "拜拜肉倾向",
+    62: "胸下垂倾向",
+    63: "游泳圈倾向",
 }
 
 classify_dict = {
@@ -1439,6 +1439,40 @@ def eval_g_delta(item_iid, d):
     item_id = item_iid // 10 
     if not 40 > item_id > 30:
         return None
+
+    if item_iid == 211:
+        return '非常完美'
+    if item_iid == 212:
+        return '很标准，请继续保持'
+    if item_iid == 213:
+        return '美体头肩比1:2.5 有待改善'
+
+    if item_iid == 221:
+        return '非常完美'
+    if item_iid == 222:
+        return '很标准，请继续保持'
+    if item_iid == 223:
+        return '美体头身比1:8 有待改善'
+
+    if item_iid in (231, 232):
+        return '非常完美'
+    if item_iid == 233:
+        return '很标准，请继续保持'
+    if item_iid == 234:
+        return '比例失衡，有待改善'
+
+    if item_iid == 241:
+        return '非常完美'
+    if item_iid == 242:
+        return '很标准，请继续保持'
+
+    if item_iid == 251:
+        return '非常完美'
+    if item_iid == 252:
+        return '美体腰臀比0.7，有待改善'
+    if item_iid == 253:
+        return '很标准，请继续保持'
+
     if item_iid == 311:
         return '非常完美'
     if item_iid == 312:
@@ -1500,6 +1534,21 @@ def eval_g_delta(item_iid, d):
         my_value = (d.g_lmcalf_115 + d.g_rmcalf_116)/2
         delta_val = round(abs(std_val - my_value), 0)
         return f'美体小腿围{std_val}cm  超出{delta_val}cm'
+
+    if item_iid == 611: 
+        return  '具有拜拜肉倾向'
+    if item_iid == 612: 
+        return '健康状态，请继续保持哦'
+
+    if item_iid == 621: 
+        return  '具有胸下垂倾向'
+    if item_iid == 622: 
+        return '健康状态，请继续保持哦'
+
+    if item_iid == 631: 
+        return  '具有游泳圈倾向'
+    if item_iid == 632: 
+        return '健康状态，请继续保持哦'
 
     return ""
 

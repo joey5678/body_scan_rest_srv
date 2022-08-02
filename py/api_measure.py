@@ -137,7 +137,7 @@ def measure_me():
         time.sleep(10)
 
     #get measure result.
-    m_url = json_msg.get('obj_file_path', None)
+    m_url = json_msg['data'].get('obj_file_path', None)
     # m_url = m.file_path
     if not m_url:
         input_check = False
