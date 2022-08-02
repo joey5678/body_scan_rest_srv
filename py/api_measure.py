@@ -133,7 +133,7 @@ def scan3d():
 
     return jsonify({"result":"success"}), 200
 
-@app.route('/api/scan/', method = ['GET'])
+@app.route('/api/scan/', methods = ['GET'])
 def scan_query():
     args = request.args
     print(args)
