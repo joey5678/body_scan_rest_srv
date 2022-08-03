@@ -14,7 +14,7 @@ result =  ws.recv()
 print("Received '%s'" % result)
 
 print("Sending launch request message")
-ws.send('{"type": "request_launch", "data": {"dev_id":"123456"}}')
+ws.send('{"type": "request_launch", "data": {"dev_id":"ftsk_100001"}}')
 print("Receiving...")
 result =  ws.recv()
 print("Received '%s'" % result)

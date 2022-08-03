@@ -1437,7 +1437,7 @@ def safe_div(x, y):
 
 def eval_g_delta(item_iid, d):
     item_id = item_iid // 10 
-    if not 40 > item_id > 30:
+    if not 70 > item_id > 10:
         return None
 
     if item_iid == 211:
@@ -1472,6 +1472,11 @@ def eval_g_delta(item_iid, d):
         return '美体腰臀比0.7，有待改善'
     if item_iid == 253:
         return '很标准，请继续保持'
+    
+    if item_iid == 261:
+        return '胸外扩，有待改善'
+    if item_iid == 262:
+        return '健康状态，请继续保持哦'
 
     if item_iid == 311:
         return '非常完美'

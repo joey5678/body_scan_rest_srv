@@ -143,7 +143,7 @@ def cal_head_qianyin(ls_points, rs_points, lt_points, rt_points, coef=1.):
     _desc = DESCS[2]
     if not all((ls_points, rs_points, lt_points, rt_points)):
         dis = round(random.uniform(2, 5), 1)
-        return {"name":"头前引", "value": dis, "unit": "cm", "result": "正常", "description": _desc}
+        return desc_map[421]
     _, _, ltz = get_xyz(lt_points)
     _, _, lsz = get_xyz(ls_points)
     _, _, rtz = get_xyz(rt_points)
@@ -161,7 +161,7 @@ def cal_head_cewai(lt_points, rt_points):
     _desc = DESCS[0]
     if not all((lt_points, rt_points)):
         degree = round(random.uniform(-4, 4), 1)
-        return {"name":"头侧歪", "value": degree, "unit": DEG, "result": "正常", "description": _desc }
+        return desc_map[411]
     x0, y0, z0 = get_xyz(lt_points)
     x1, y1, z1 = get_xyz(rt_points)
     d_x = abs(x0 - x1)
@@ -185,7 +185,7 @@ def cal_shoulder_gaodi(ls_points, rs_points):
     _desc = DESCS[4]
     if not all((ls_points, rs_points)):
        d_h = round(random.uniform(-1, 1), 1) 
-       return {"name":"高低肩", "value": d_h, "unit":"cm", "result": "正常",  "description": _desc}
+       return desc_map[431]
     h_ls = ls_points['level']
     h_rs = rs_points['level']
     d_h = round((h_ls - h_rs) * 100, 1)
@@ -207,7 +207,7 @@ def cal_body_qingxie(cc_points, crotch_points):
     _desc = DESCS[7]
     if not all((cc_points, crotch_points)):
         degree = round(random.uniform(-2, 2), 1)
-        return {"name":"身体倾斜", "value": degree, "unit":DEG, "result": "正常", "description": _desc}
+        return desc_map[441]
     x0, y0, z0 = get_xyz(cc_points) 
     x1, y1, z1 = get_xyz(crotch_points)
     d_x = x0 - x1
@@ -231,7 +231,7 @@ def cal_leg_xo(rof_points, lof_points, lkc_points, rkc_points):
     _desc = DESCS[10]
     if not all((rof_points, lof_points, lkc_points, rkc_points)):
        degree = round(random.uniform(170, 195), 1) 
-       return {"name":"异形腿", "value": degree, "unit":DEG, "result": "正常", "description": _desc}
+       return desc_map[451]
     x0, y0, _ = get_xyz(lof_points)
     x1, y1, _ = get_xyz(rof_points)
     x2, y2, _ = get_xyz(lkc_points)

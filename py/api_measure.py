@@ -105,7 +105,12 @@ def scan3d():
     _ws_key = f"{dev_id}:{ts}"
     print(f"-------------wskey: {_ws_key}")
     if ws_store.get(_ws_key, None) is not None:
-        return jsonify(ws_store[_ws_key]), 200
+        if ws_store.get('data', None) is not None:
+            return jsonify(ws_store[_ws_key]), 200
+        else:
+            return jsonify(ws_store[_ws_key]), 500
+    else:
+        ws_store[_ws_key] = {'result': 'None'}
 
     global ws
 
