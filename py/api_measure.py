@@ -15,6 +15,7 @@ from playhouse.shortcuts import dict_to_model, update_model_from_dict
 
 import db
 import util
+import red
 from client import rest_get, rest_post
 from webutil import app, login_required, get_myself
 
@@ -36,8 +37,6 @@ print("Receiving after sending connect msg")
 result =  ws.recv()
 print("Received '%s'" % result)
 
-global ws_store
-ws_store = {'foo': 'bar'}
 
 W_Dict = {
     144: "胸围",
@@ -97,20 +96,21 @@ def measure_get(id):
 def scan3d():
     in_json = request.json
 
-    global ws_store
-    print(ws_store)
     print(in_json)
     dev_id = in_json['dev_id']
     ts = in_json['time_stamp']
     _ws_key = f"{dev_id}:{ts}"
+
     print(f"-------------wskey: {_ws_key}")
-    if ws_store.get(_ws_key, None) is not None:
-        if ws_store.get('data', None) is not None:
-            return jsonify(ws_store[_ws_key]), 200
+
+    _res = red.get_keyval(_ws_key)
+    if _res is not None: 
+        if _res.get('data', None) is not None:
+            return jsonify(_res), 200
         else:
-            return jsonify(ws_store[_ws_key]), 500
+            return jsonify(_res), 500
     else:
-        ws_store[_ws_key] = {'result': 'None'}
+        red.set_keyval(_ws_key, {'result': 'None'})
 
     global ws
 
@@ -132,8 +132,7 @@ def scan3d():
         if json_msg['type'] == 'return_launch':
             print("received launch result, request finished.")
             print(json_msg)
-            ws_store[_ws_key] = json_msg
-            print(ws_store)
+            red.set_keyval(_ws_key, json_msg)
             break
         time.sleep(10)
         tcount += 10
@@ -146,10 +145,11 @@ def scan_query():
     print(args)
     dev_id = args.get('dev_id', 0)
     ts = args.get('ts', 0)
-    global ws_store
+
     _key = f"{dev_id}:{ts}"
-    if ws_store.get(_key, None) is not None:
-        return jsonify(ws_store[_key]), 200
+    _val = red.get_keyval(_key) 
+    if _val is not None and _val.get('data', None) is not None:
+        return jsonify(_val), 200
     
     return jsonify({'result':"no result"}), 201
 
