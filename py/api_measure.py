@@ -137,7 +137,7 @@ def scan3d():
         time.sleep(10)
         tcount += 10
 
-    return jsonify({"result":"success"}), 200
+    return jsonify(json_msg), 200
 
 @app.route('/api/scan/', methods = ['GET'])
 def scan_query():

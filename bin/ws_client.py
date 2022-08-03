@@ -31,7 +31,7 @@ if __name__ == "__main__":
 
 #发送设备标识信息
     print("Sending Connect message")
-    ws.send('{"type": "connect", "data": {"dev_id":"123456"}}')
+    ws.send('{"type": "connect", "data": {"dev_id":"ftsk_100001"}}')
     # print("Receiving...")
     # result =  ws.recv()
     # print("Received '%s'" % result)

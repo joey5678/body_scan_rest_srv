@@ -221,28 +221,28 @@ Part_Scores = {
     231: {
         'score': 16,
         'desc': '站在我面前的是一个维密天使呀～',
-        'symptom_desc': '站在我面前的是一个维密天使呀～',
+        'symptom_desc': '决定腿长的因素有很多，我们日常观察中，看一个人是否腿长，主要注意的要点是腰高和档位。显而易见，腰和档位越高的人，腿看起来（实际上也）就越长。',
         'suggest': '',
         'tip': ''
     },
     232: {
         'score': 12,
         'desc': '站在我面前的是一个维密天使呀～',
-        'symptom_desc': '腿与身体比例的值越高，下半身就越长，下半身就越长，高能见度的感觉就出来了。',
+        'symptom_desc': '决定腿长的因素有很多，我们日常观察中，看一个人是否腿长，主要注意的要点是腰高和档位。显而易见，腰和档位越高的人，腿看起来（实际上也）就越长。',
         'suggest': '',
         'tip': ''
     },
     233: {
         'score': 10,
         'desc': '你的腿部比例是标准的亚洲腿比例。',
-        'symptom_desc':'你的腿部比例是标准的亚洲腿比例',
+        'symptom_desc':'决定腿长的因素有很多，我们日常观察中，看一个人是否腿长，主要注意的要点是腰高和档位。显而易见，腰和档位越高的人，腿看起来（实际上也）就越长。',
         'suggest': '',
         'tip': ''
     },
     234: {
         'score': 6,
         'desc': '你的小腿和大腿的比例低于1。',
-        'symptom_desc': '你的小腿和大腿的比例低于1',
+        'symptom_desc': '决定腿长的因素有很多，我们日常观察中，看一个人是否腿长，主要注意的要点是腰高和档位。显而易见，腰和档位越高的人，腿看起来（实际上也）就越长。',
         'suggest': '你适合高腰的穿法，在视觉上营造“三七分”的效果，颜色搭配尽可能区分上衣和裤子的颜色，选择这种有反差感的搭配，在视觉上效果会更明显。',
         'tip': '你适合高腰的穿法，在视觉上营造“三七分”的效果，颜色搭配尽可能区分上衣和裤子的颜色，选择这种有反差感的搭配，在视觉上效果会更明显'
     },
@@ -250,14 +250,14 @@ Part_Scores = {
     241: {
         'score': 4,
         'desc': '你的大小腿比例太完美了。',
-        'symptom_desc': '你的大小腿比例太完美了',
+        'symptom_desc': '大小腿的正常比例是按自身的体重和身高进行计算，上下身的较好比例一般为5:8。大腿的正常尺寸是身高乘0.34，小腿的正常比例是身高乘0.21，也就是说大小腿的正常比例一般为3:2。如果大小腿的比例不太符合3:2，就是说腿部比例失衡。',
         'suggest': '',
         'tip': ''
     },
     242: {
         'score': 1,
         'desc': '你的大小腿比例属于标准范围。',
-        'symptom_desc': '你的打小腿比例属于标准范围',
+        'symptom_desc': '大小腿的正常比例是按自身的体重和身高进行计算，上下身的较好比例一般为5:8。大腿的正常尺寸是身高乘0.34，小腿的正常比例是身高乘0.21，也就是说大小腿的正常比例一般为3:2。如果大小腿的比例不太符合3:2，就是说腿部比例失衡。',
         'suggest': '',
         'tip': ''
     },
@@ -265,14 +265,14 @@ Part_Scores = {
     251: {
         'score': 12,
         'desc': '你的腰臀比堪称完美，超级棒哦～',
-        'symptom_desc': '你的腰臀比堪称完美，超级棒哦～',
+        'symptom_desc': '腰臀比是早期研究中预测肥胖的指标。比值越小，说明越健康。这是预测一个人是否肥胖及是否面临患心脏病风险的较佳方法，比目前普遍使用的测量体重指数(体重除以身高的平方)的方法要准确3倍。腰围尺寸大，表明脂肪存在于腹部，是危险较大的信号；而一个人臀围大，表明其下身肌肉发达，对人的健康有益。',
         'suggest': '',
         'tip': ''
     },
     252: {
         'score': 4,
         'desc': '你的腰臀比过高，一定要注意了，这是很危险的肥胖信号。腰臀比过高可能会导致糖尿病、高血压、高血脂等病症。另外，腰部脂肪还会导致肝肥大，使它无法发挥正常功能。',
-        'symptom_desc':'你的腰臀比过高，一定要注意了，这是很危险的肥胖信号。腰臀比过高可能会导致糖尿病、高血压、高血脂等病症。另外，腰部脂肪还会导致肝肥大，使它无法发挥正常功能。',
+        'symptom_desc':'腰臀比是早期研究中预测肥胖的指标。比值越小，说明越健康。这是预测一个人是否肥胖及是否面临患心脏病风险的较佳方法，比目前普遍使用的测量体重指数(体重除以身高的平方)的方法要准确3倍。腰围尺寸大，表明脂肪存在于腹部，是危险较大的信号；而一个人臀围大，表明其下身肌肉发达，对人的健康有益。',
         'suggest': '你适合穿着V领、一字领的裙子，这样会让你看起来更瘦哦!',
         'tip': '你适合穿着V领、一字领的裙子，这样会让你看起来更瘦哦!'
     },
@@ -280,7 +280,7 @@ Part_Scores = {
     253: {
         'score': 7,
         'desc': '你的腰臀比很标准，超过了58%的女性哦～',
-        'symptom_desc':'你的腰臀比很标准，超过了58%的女性哦～',
+        'symptom_desc':'腰臀比是早期研究中预测肥胖的指标。比值越小，说明越健康。这是预测一个人是否肥胖及是否面临患心脏病风险的较佳方法，比目前普遍使用的测量体重指数(体重除以身高的平方)的方法要准确3倍。腰围尺寸大，表明脂肪存在于腹部，是危险较大的信号；而一个人臀围大，表明其下身肌肉发达，对人的健康有益。',
         'suggest': '',
         'tip': ''
     },
@@ -288,14 +288,14 @@ Part_Scores = {
         'score': 0,
         'desc': '胸型外扩是指乳房向两边长，形不成乳沟，影响美观。',
         'suggest': '',
-        'tip': ''
+        'tip': '建议穿具有调整胸型的内衣，多做胸部运动或者多做健美操让胸部坚挺，需要长时间坚持锻炼。'
     },
 
     262: {
         'score': 2,
         'desc': '你的胸型非常标准～',
         'suggest': '',
-        'tip': ''
+        'tip': '建议穿具有调整胸型的内衣，多做胸部运动或者多做健美操让胸部坚挺，需要长时间坚持锻炼。'
     },
 }
 
@@ -1490,7 +1490,7 @@ def eval_g_delta(item_iid, d):
     if item_iid == 322:
         return '很标准，请继续保持'
     if item_iid == 323:
-        std_val = d.height * 0.37
+        std_val = round(d.height * 0.37, 0)
         delta_val = round(abs(std_val - d.g_waist_155), 0)
         return f'美体腰围{std_val}cm  超出{delta_val}cm'
     if item_iid == 331:
@@ -1498,7 +1498,7 @@ def eval_g_delta(item_iid, d):
     if item_iid == 332:
         return '很标准，请继续保持'
     if item_iid == 333: 
-        std_val = d.height * 0.53
+        std_val = round(d.height * 0.53, 0)
         delta_val = round(abs(std_val - d.g_bust_144), 0)
         return f'美体胸围{std_val}cm  超出{delta_val}cm'
     if item_iid == 341: 
@@ -1506,7 +1506,7 @@ def eval_g_delta(item_iid, d):
     if item_iid == 342: 
         return '很标准，请继续保持'
     if item_iid in (343, 344): 
-        std_val = d.height * 0.54
+        std_val = round(d.height * 0.54, 0)
         delta_val = round(abs(std_val - d.g_hip_167), 0)
         return f'美体臀围{std_val}cm  超出{delta_val}cm'
 
@@ -1515,7 +1515,7 @@ def eval_g_delta(item_iid, d):
     if item_iid == 352: 
         return '很标准，请继续保持'
     if item_iid in (353, 354): 
-        std_val = (d.g_lwrist_123 + d.g_rwrist_121) * 1.7 / 2
+        std_val = round((d.g_lwrist_123 + d.g_rwrist_121) * 1.7 / 2, 0)
         my_value = (d.g_lbiceps_125 + d.g_rbiceps_126)/2
         delta_val = round(abs(std_val - my_value), 0)
         return f'美体臂围{std_val}cm  超出{delta_val}cm'
@@ -1525,7 +1525,7 @@ def eval_g_delta(item_iid, d):
     if item_iid == 362: 
         return '很标准，请继续保持'
     if item_iid in (363, 364): 
-        std_val = d.height * 0.26 + 7.8
+        std_val = round((d.height * 0.26 + 7.8), 0)
         my_value = (d.g_lmthigh_111 + d.g_rmthigh_112)/2
         delta_val = round(abs(std_val - my_value), 0)
         return f'美体大腿围{std_val}cm  超出{delta_val}cm'
@@ -1535,7 +1535,7 @@ def eval_g_delta(item_iid, d):
     if item_iid == 372: 
         return '很标准，请继续保持'
     if item_iid in (373, 374): 
-        std_val = d.height * 0.18
+        std_val = round(d.height * 0.18, 0)
         my_value = (d.g_lmcalf_115 + d.g_rmcalf_116)/2
         delta_val = round(abs(std_val - my_value), 0)
         return f'美体小腿围{std_val}cm  超出{delta_val}cm'
