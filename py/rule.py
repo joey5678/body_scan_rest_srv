@@ -1586,9 +1586,9 @@ def eval_val(item_id, d):
     if item_id == 36:
         return round((d.g_lmthigh_111 + d.g_rmthigh_112)/2, 1)
     if item_id == 37:
-        return round((d.g_lmcalf_115 + d.g_rmcalf_116)/2, 1, 1)
+        return round((d.g_lmcalf_115 + d.g_rmcalf_116)/2, 1)
     if item_id == 38:
-        return round((d.g_lankle_117 + d.g_rankle_118)/2, 1, 1)
+        return round((d.g_lankle_117 + d.g_rankle_118)/2, 1)
 
     if item_id == 61:
         return round(0)
@@ -1602,10 +1602,11 @@ def eval_val(item_id, d):
 GOOD_RESULTS = ('标准', '完美', '八头身', '超长腿', '长腿', '标准腿', '黄金比例', '正常标准', '标准胸型', '修长', '标准脖', '纤细', '正常',)
 
 def rule_result(item_iid, data):
-    
+    print(item_iid)
     item_id = item_iid // 10
     value = eval_val(item_id, data)
     tag_str = eval_g_delta(item_iid, data)
+    print(item_id)
     cls_keys, cls_types = find_classify_key(item_id)
     print(f"cls keys is:{cls_keys}")
     sm_key = "Summary"
@@ -2003,5 +2004,13 @@ def register_rules():
 register_rules()
 
 if __name__ == '__main__':
-    print(get_eval_collection(25))
+    print(get_eval_collection(37))
     print(get_eval_collection(61))
+    cls_keys, cls_types = find_classify_key(37)
+    print(cls_keys, cls_types)
+    item_iid = 372
+    item_id = item_iid // 10
+    # value = eval_val(item_id, data)
+    # tag_str = eval_g_delta(item_iid, data)
+    cls_keys, cls_types = find_classify_key(item_id)
+    print(f"cls keys is:{cls_keys}")
