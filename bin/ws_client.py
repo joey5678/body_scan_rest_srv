@@ -44,7 +44,7 @@ if __name__ == "__main__":
         json_msg = json.loads(result)
         if json_msg['type'] == 'request_launch':
             print("received launch command, start to run..")
-
+            time.sleep(60)
             break
         time.sleep(10)
     # 执行3D扫描，生成obj文件并上传到云
