@@ -41,13 +41,13 @@ class Figure():
 
 Params_DICT = {
     34: {
-        'symptom_desc': "女生想要看上去更具有女人味，是需要有曲线的，虽不一定要练出沙漏型身材，但是练出S型身材也是极好的。想要曲线突出，臀部是和关键的一个部位哦。"
+        'symptom_desc': "臀围反映髋部骨骼和肌肉的发育情况。测量时，两腿并拢直立，两臂自然下垂，皮尺水平放在前面的耻骨联合和背后臀大肌最凸处。"
     },
     35: {
-        'symptom_desc': "上臂对于女性的形体美，常常以臂部的围度来衡量和评价臂部的外形美。"
+        'symptom_desc': "男人的臂围，直接反映了男人的力量。手臂围度是男人的第二张脸，是你的门面，是安全感的象征。"
     },
     36: {
-        'symptom_desc': "大腿内外两侧容易堆积脂肪，结实健美的腿，才是人体最美的线条之一。身高(cm)×0.18;小腿的比例约为身高的17%-21%都属正常，重要的是其形状如何."
+        'symptom_desc': "大腿内外两侧容易堆积脂肪，结实健美的腿，才是人体最美的线条之一。身高(cm)×0.18;小腿的比例约为身高的17%-21%都属正常，重要的是其形状如何。"
     },
     37: {
         'symptom_desc': "腿围作为人体形态指标之一，形象地映射出人体腿部肌肉的发育水平和腿部的发达程度，以及形体美。小腿腿围也成为了当今社会越来越多男性女性关注的重点，每个年龄段和身高都有一个小腿腿围标准哦。"
@@ -56,10 +56,10 @@ Params_DICT = {
         'symptom_desc': "脖子这个部位是影响人整体身材和气质的关键，其他的部位，可以靠衣服遮掩，但是脖子不可以。你的脖子属于偏粗类型，它正影响着你的整体美观。"
     },
     32: {
-        'symptom_desc': "能够拥有纤细的小蛮腰是每个女生的梦想，无论是现代审美还是健康医学，都对腰围要求严格，这意味着——腰，是万万不可粗的！"
+        'symptom_desc': "腰粗一寸，病长一分。倘若人的腰围过粗的话，不仅会影响到人的相貌，而且也会影响到身体的身体健康。"
     },
     33: {
-        'symptom_desc': "标准的胸围范围是用身高乘以0.535，上下3厘米为标准范围。好看的胸围也并非越大越好，需要的是适合自己的身高比例。"
+        'symptom_desc': "一个身材好与不好，都可以从三围来判定，特别是胸围。不仅是女性会在意自己的身材，男性也会在意自己的身材。而且现在越来越多男性喜欢去健身房了，希望自己也能有一个让人羡慕的身材。"
     },
     21: {
         'symptom_desc': ""
@@ -118,16 +118,16 @@ Params_DICT = {
     612: {
         'symptom_desc': "拜拜肉藏在胳膊底下，一举手晃动着说“拜拜”就摇晃不已，故称为拜拜肉。拜拜肉位于我们手臂肱三头肌部分，除去多余的脂肪原因，因为肱三头肌松弛无力而导致拜拜肉急剧加重，从而形成拜拜肉。"
     },
+    # 621: {
+    #     'symptom_desc': "乳房下垂是指乳房在合理情形下，尤其是年轻的妇女，乳头的水平位置是在乳房下皱襞之上，若掉在其下即是所谓的乳房下垂。下垂得越严峻，就掉得越低。"
+    # },
+    # 622: {
+    #     'symptom_desc': "乳房下垂是指乳房在合理情形下，尤其是年轻的妇女，乳头的水平位置是在乳房下皱襞之上，若掉在其下即是所谓的乳房下垂。下垂得越严峻，就掉得越低。"
+    # },
     621: {
-        'symptom_desc': "乳房下垂是指乳房在合理情形下，尤其是年轻的妇女，乳头的水平位置是在乳房下皱襞之上，若掉在其下即是所谓的乳房下垂。下垂得越严峻，就掉得越低。"
-    },
-    622: {
-        'symptom_desc': "乳房下垂是指乳房在合理情形下，尤其是年轻的妇女，乳头的水平位置是在乳房下皱襞之上，若掉在其下即是所谓的乳房下垂。下垂得越严峻，就掉得越低。"
-    },
-    631: {
         'symptom_desc': "腹部有游泳圈是长期摄入热量多、消耗少，腹部脂肪长期堆积，缺乏锻炼导致腹部肥胖的表现，此类肥胖属于内脏型肥胖。腹部肥胖对体型的美观影响较大"
     },
-    632: {
+    622: {
         'symptom_desc': "腹部有游泳圈是长期摄入热量多、消耗少，腹部脂肪长期堆积，缺乏锻炼导致腹部肥胖的表现，此类肥胖属于内脏型肥胖。腹部肥胖对体型的美观影响较大"
     },
 
@@ -143,33 +143,33 @@ BMI_Scores = {
 
 Body_Scores ={
     121: {
-        'score': 15, 
-        'desc':'梨型身材特征为肩窄、腰细、髋宽、大腿丰满，脂肪主要沉积在臀部及大腿，状似梨型。',
-        'suggest': '你适合高腰衣衫搭配伞裙 ，伞裙能够把比较胖的胯部和臀部很好得遮盖起来。'
+        'score': 20, 
+        'desc':'。',
+        'suggest': ''
     },
     122: {
-        'score': 6, 
-        'desc':'苹果型身材也叫做O型身材，这种身材的典型特征就是胸大肩厚，腰腹部有肉，但腿比较细，整体造有点类似于中年男性，所以有时候也被称作男性型身形。',
-        'suggest': '你适合穿着A字型、荷叶边等款式的裙子，能小露腰线，显瘦显高'
+        'score': 15, 
+        'desc':'。',
+        'suggest': ''
         },
     123: {
         'score': 10, 
-        'desc':'直筒型身材是典型的欧美范儿身材，上下一致，穿衣显瘦，俗称“衣服架子”。但H型身材唯一的缺点是无明显的腰际线。',
-        'suggest': '你适合穿着上身大口袋或者大围巾等装饰来强调多层次。'
+        'desc':'',
+        'suggest': ''
         },
     124: {
-        'score': 20, 
-        'desc':'沙漏型身材特征为胸丰、腰细、臀宽、大腿丰满，是拥有曼妙腰胯线的身材。沙漏型身材又称为X型身材。',
-        'suggest': '身材如此完美的你，穿什么都好看哦～'
+        'score': 6, 
+        'desc':'。',
+        'suggest': ''
         },
 
 }
 
 BMI_Results = ("偏瘦", "完美", "标准", "偏胖")
-Body_Results = ("梨型身材  ",
-                "苹果型身材",
-                "直筒型身材",
-                "沙漏型身材",)
+Body_Results = ("倒三角身材  ",
+                "矩形身材",
+                "正三角身材",
+                "椭圆形身材",)
 
 Part_Scores = {
     211: {
@@ -183,9 +183,9 @@ Part_Scores = {
     212: {
         'score': 4,
         'desc': '标准的头肩比，使得你看起来身姿相对挺拔有气场。',
-        'symptom_desc': '通常情况下,女性理想的头肩比在1 : 1.5左右,稍微宽一点会更显高,但不能超过1 : 2,否则就会显得“头太小”。',
-        'suggest': '你适合选择泡泡袖、荷叶边或者有小垫肩的衣服，从视觉上增加肩宽，让比例变得更加协调。',
-        'tip': '你适合选择泡泡袖、荷叶边或者有小垫肩的衣服，从视觉上增加肩宽，让比例变得更加协调。'
+        'symptom_desc': '通常情况下,男性理想的头肩比在1 : 1.5左右,稍微宽一点会更显高,但不能超过1 : 2,否则就会显得“头太小”。',
+        'suggest': '',
+        'tip': '选衣服应该圆领不选V领，因为V领的视觉效果是往下延伸的，会把肩膀切割出来。而圆领的视觉效果是左右延伸的，看起来肩膀更平更宽。'
     },
     213: {
         'score': 2,
@@ -200,7 +200,7 @@ Part_Scores = {
         'score': 2,
         'desc': '你的头身比例犹如古希腊的雕像。世界上只有0.01%的人才拥有这么完美的比例。',
         'symptom_desc': '你的头身比例犹如古希腊的雕像。世界上只有0.01%的人才拥有这么完美的比例。',
-        'tip': '我没有办法为你推荐穿搭，因为你怎么穿都很美。',
+        'tip': '',
         'suggest': '我没有办法为你推荐穿搭，因为你怎么穿都很美。'
     },
     222: {
@@ -212,22 +212,22 @@ Part_Scores = {
     },
     223: {
         'score': 0,
-        'desc': '这类女生最大的问题，上下身比例的失衡，造成一种“头重脚轻”的既视感。',
+        'desc': '',
         'symptom_desc': '从人体美学来讲，净身长7个头是最接近更多人的比例，净身长7.5头是好看的比例，而净身长8个头是黄金比例，是最完美的。而上下身比例的失衡，造成一种“头重脚轻”的既视感。',
-        'suggest': '你适合穿着A字裙、阔腿裤，这样可以很好地拉长腿部，增加下半身的膨胀感，起到平衡身材的作用。',
-        'tip': '你适合穿着A字裙、阔腿裤，这样可以很好地拉长腿部，增加下半身的膨胀感，起到平衡身材的作用。'
+        'suggest': '',
+        'tip': '可以通过合适的穿搭改变视觉效果，只要注意选择合适的衣长，以及适当地露出腰线即可。'
     },
 
     231: {
         'score': 16,
-        'desc': '站在我面前的是一个维密天使呀～',
+        'desc': '',
         'symptom_desc': '决定腿长的因素有很多，我们日常观察中，看一个人是否腿长，主要注意的要点是腰高和档位。显而易见，腰和档位越高的人，腿看起来（实际上也）就越长。',
         'suggest': '',
         'tip': ''
     },
     232: {
         'score': 12,
-        'desc': '站在我面前的是一个维密天使呀～',
+        'desc': '',
         'symptom_desc': '决定腿长的因素有很多，我们日常观察中，看一个人是否腿长，主要注意的要点是腰高和档位。显而易见，腰和档位越高的人，腿看起来（实际上也）就越长。',
         'suggest': '',
         'tip': ''
@@ -305,7 +305,7 @@ Detail_Scores = {
         'desc': '你的脖型非常修长，请保持哦～',
         'suggest': '你适合穿着简约的高领针织衫，配上修身的西服外套，就是飒酷时尚的模样，整体风格特别显高。',
         'symptom_desc': Params_DICT[31]['symptom_desc'],
-        'tip': '你适合穿着简约的高领针织衫，配上修身的西服外套，就是飒酷时尚的模样，整体风格特别显高。'
+        'tip': '你适合穿着简约的高领针织衫，配上修身的西服外套，就是飒酷时尚的绅士，整体风格特别显高。'
     },
 
     312: {
@@ -329,7 +329,7 @@ Detail_Scores = {
         'desc': '你的腰围非常纤细，请保持哦～',
         'suggest': '',
         'symptom_desc':  Params_DICT[32]['symptom_desc'],
-        'tip': '你的腰围非常纤细，请保持哦～'
+        'tip': '你有一个倒三角形身材的底子，锻炼你的肩部和背部肌肉，可以让你看起来更加具有魅力哦'
     },
     322: {
         'score': 4,
@@ -344,7 +344,7 @@ Detail_Scores = {
         'desc': '你的腰围属于偏胖类型，快快行动起来吧～',
         'suggest': '你适合穿着上半身深色系的衣服，这样才能起到遮肉显瘦的作用哦。',
         'symptom_desc':  Params_DICT[32]['symptom_desc'],
-        'tip': '美腰体位曲线扭转式：站立，左小腿向后抬起弯曲，右手抓住左脚，双膝相合，右手臂伸直，左手放在右侧髋部，呼气时向右侧扭转，感受左侧腰部得到伸拉，保持呼吸6到10次。反方向重复。'
+        'tip': '男性朋友如果想要减掉肚子上的赘肉，一定要避免久坐，改掉久坐不运动的坏习惯，坐一段时间一定要站起来走一走，这样能够帮助加速身体的血液循环和新陈代谢速率，坚持下去你的大肚腩会悄悄溜走。'
     },
 
     331: {
@@ -352,7 +352,7 @@ Detail_Scores = {
         'desc': '你拥有一对傲人的胸，真让人羡慕～',
         'suggest': '',
         'symptom_desc': Params_DICT[33]['symptom_desc'],
-        'tip': '胸大的女生要多露出脖子曲线，才能带来整体的拉伸效果，建议可选择衬衫领或V领的上衣。'
+        'tip': ''
     },
 
     332: {
@@ -360,7 +360,7 @@ Detail_Scores = {
         'desc': '你的胸围很标准，已经超过了74%的女性哦～',
         'suggest': '',
         'symptom_desc': Params_DICT[33]['symptom_desc'],
-        'tip': '在选择上衣时，平胸的仙女们可以选择蕾丝、重叠的褶皱等带有立体装饰的款式，直观地延伸胸部线条，使胸部线条看起来更加丰满。'
+        'tip': ''
     },
 
     333: {
@@ -368,7 +368,7 @@ Detail_Scores = {
         'desc': '你的胸围属于平坦型，可以尝试走气质路线',
         'suggest': '你适合挑选设计简单的上衣，对于胸部的平面来说可以展现高级感。',
         'symptom_desc': Params_DICT[33]['symptom_desc'],
-        'tip': '你适合挑选设计简单的上衣，对于胸部的平面来说可以展现高级感。'
+        'tip': '胸大肌分为胸肌上束、中束、下束，我们需要全方位锻炼，比如：卧推的时候可以采用上斜卧推、平板卧推、下斜卧推等不同角度来刺激胸肌，还可以采用哑铃夹胸、飞鸟来刺激胸肌中缝。'
     },
 
     341: {
@@ -376,7 +376,7 @@ Detail_Scores = {
         'desc': '你的臀围堪称完美，请保持哦～',
         'suggest': '',
         'symptom_desc': Params_DICT[34]['symptom_desc'],
-        'tip': '你的臀围堪称完美，请保持哦～'
+        'tip': ''
     },
 
     342: {
@@ -392,7 +392,7 @@ Detail_Scores = {
         'desc': '你的臀围属于偏大类型，你距离迷人蜜桃臀仅有一步之遥哦～',
         'suggest': '你适合搭配百褶裙或者是A字裙，这两种裙子的裙型都是在腰部的地方进行收腰，下摆都会向外扩散，这样的话就会很好的掩盖臀围大的缺点。',
         'symptom_desc':  Params_DICT[34]['symptom_desc'],
-        'tip': '你适合搭配百褶裙或者是A字裙，这两种裙子的裙型都是在腰部的地方进行收腰，下摆都会向外扩散，这样的话就会很好的掩盖臀围大的缺点。'
+        'tip': '双腿后踢：男生可以扶住墙面或者栏杆,将一侧下肢最大限度向后踢,双侧下肢交替完成双腿后踢,也可以有效减少臀部脂肪'
     },
 
     344: {
@@ -400,7 +400,7 @@ Detail_Scores = {
         'desc': '你的臀围偏小，赶快行动修炼蜜桃臀吧～',
         'suggest': '你适合穿着在臀部或胯部两侧有口袋设计的休闲裤，如果口袋有袋盖或是立体口袋，有铆钉、刺绣装饰，效果会更好。',
         'symptom_desc':  Params_DICT[34]['symptom_desc'],
-        'tip': '你适合穿着在臀部或胯部两侧有口袋设计的休闲裤，如果口袋有袋盖或是立体口袋，有铆钉、刺绣装饰，效果会更好。'
+        'tip': '宽距高脚杯深蹲：双脚分开站立，保证之间的距离比肩宽且易于进行动作，身体挺直不要弯曲，胸部挺起，腹部肌肉收紧，双臂弯曲在胸前，双手捧住哑铃。双腿弯曲，臀部向后坐，下蹲一直到大腿大约与地面平行，下蹲过程中身体上半身保证不要弯曲向前稍微倾斜，下蹲结束后起身还原准备的姿势。'
     },
 
     351: {
@@ -408,7 +408,7 @@ Detail_Scores = {
         'desc': '你的臂围堪称完美，请保持哦～',
         'suggest': '',
         'symptom_desc':  Params_DICT[35]['symptom_desc'],
-        'tip': '你的臂围堪称完美，请保持哦～'
+        'tip': ''
     },
 
     352: {
@@ -424,7 +424,7 @@ Detail_Scores = {
         'desc': '你的手臂有拜拜肉倾向，赶快消除它吧～',
         'suggest': '你适合穿着带蝴蝶袖的上衣。蝴蝶袖的造型随性飘逸，设计感强，流畅的线条对体型有良好的修饰作用，遮盖粗手臂，毫不累赘',
         'symptom_desc':   Params_DICT[35]['symptom_desc'],
-        'tip': '你适合穿着带蝴蝶袖的上衣。蝴蝶袖的造型随性飘逸，设计感强，流畅的线条对体型有良好的修饰作用，遮盖粗手臂，毫不累赘'
+        'tip': '负重摇臂运动：首先需要准备一个重量物体，比如哑铃或者是一本书;然后身体站立并且挺直，让双手拿着重物放在胸前;接着晃动手臂，向下摆到大腿位置，注意摆动的时候手臂肘尽量贴近身体的两侧;然后，再向上举到与肩同高的位置，手臂向内弯曲。最后重复上述动作即可。'
     },
 
     354: {
@@ -432,7 +432,7 @@ Detail_Scores = {
         'desc': '你的手臂偏细小，让他丰满起来更具魅力吧～',
         'suggest': '',
         'symptom_desc':  Params_DICT[35]['symptom_desc'],
-        'tip': '有花纹或者是有图案的面料是一款能够丰满身形的面料，而且不挑图案，不挑大小，不论是几何的图形，或者是零散的花朵，也不论它们是稀疏的还是密集的，都能够产生这种效果，丰满身体。'
+        'tip': '单臂哑铃训练：选用合适重量的哑铃辅助训练，训练时靠单手和单腿的力量支撑在一定的训练椅上，上身保持平直状态，单手紧握杠铃，利用大臂的力量带动抬举杠铃，多次重复抬举动作后进行换边训练。'
     },
 
     361: {
@@ -440,7 +440,7 @@ Detail_Scores = {
         'desc': '你的大腿围堪称完美，请保持哦～',
         'suggest': '',
         'symptom_desc': Params_DICT[36]['symptom_desc'],
-        'tip': '你的大腿围堪称完美，请保持哦～'
+        'tip': ''
     },
 
     362: {
@@ -456,7 +456,7 @@ Detail_Scores = {
         'desc': '你的大腿围偏粗，赶快行动起来吧！',
         'suggest': '选择下装的时候，一定要注意面料的选择，绝对不能选择软塌塌、没型的版型，那样会更加暴露你腿部的缺点。像是针织裤、雪纺这些垂顺感强的面料也要慎重',
         'symptom_desc': Params_DICT[36]['symptom_desc'],
-        'tip': '选择下装的时候，一定要注意面料的选择，绝对不能选择软塌塌、没型的版型，那样会更加暴露你腿部的缺点。像是针织裤、雪纺这些垂顺感强的面料也要慎重'
+        'tip': '游泳是对于一些平时缺乏运动的朋友来说，不仅强度适中，而且还能够有效锻炼身体，减少身体堆积的肥肉。在水中运动的时候，我们需要调动身体各个部位的肌肉，所以也能够完整塑造我们美妙的身材。这对于想要减去腿部肥肉的朋友来说，是非常重要的一件事情。'
     },
 
     364: {
@@ -464,7 +464,7 @@ Detail_Scores = {
         'desc': '你的大腿偏细，快快让它丰满起来吧～',
         'suggest': '',
         'symptom_desc': Params_DICT[36]['symptom_desc'],
-        'tip': ''
+        'tip': '蛙跳、下蹲与深蹲跳作为开始是个不错的选择，而作为进阶，硬拉与深蹲则能更好的塑造你的腿部肌肉，从而使腿部的线条更为有力。同时，作为训练后的一环，腿部训练要求更多的休息与放松。'
     },
 
 
@@ -473,7 +473,7 @@ Detail_Scores = {
         'desc': '你的小腿堪称完美，请保持哦～',
         'suggest': '',
         'symptom_desc': Params_DICT[37]['symptom_desc'],
-        'tip': '你的小腿围堪称完美，请保持哦～'
+        'tip': ''
     },
 
     372: {
@@ -489,7 +489,7 @@ Detail_Scores = {
         'desc': '你的小腿偏细，让他丰满起来更具魅力吧～',
         'suggest': '',
         'symptom_desc':Params_DICT[37]['symptom_desc'],
-        'tip': ''
+        'tip': '平时可以多训练冲刺跑。因为对爆发力要求高，能够全面提升小腿腿围和肌肉。'
     },
 
     374: {
@@ -497,7 +497,7 @@ Detail_Scores = {
         'desc': '你的小腿偏粗，赶紧行动起来吧～',
         'suggest': '你适合选择裸色的高跟鞋，鞋面会和脚背的肤色融合在一起，在视觉上能拉长小腿。需要注意的是，鞋跟不必太细太高，鞋跟太高会让小腿的肌肉更突出，而且会和小腿形成明显的锥子型，起到反效果。',
         'symptom_desc': Params_DICT[37]['symptom_desc'],
-        'tip': '你适合选择裸色的高跟鞋，鞋面会和脚背的肤色融合在一起，在视觉上能拉长小腿。需要注意的是，鞋跟不必太细太高，鞋跟太高会让小腿的肌肉更突出，而且会和小腿形成明显的锥子型，起到反效果。'
+        'tip': ' 平躺在靠近墙的垫子上，脚踩住墙面坐提踵，形象点就是上文提到的判断方法旋转90度，再形象点就是平常的坐姿，只不过变成背着地，脚贴墙，然后做抬脚跟，踮脚尖的动作。'
     },
 
     381: {
@@ -630,7 +630,7 @@ Xiachui_Scores = {
         'desc': '',
         'suggest': '',
         'symptom_desc':  Params_DICT[621]['symptom_desc'],
-        'tip': '简易交叉坐，左臂屈头后，右臂屈背部。左右手相扣，背伸直，保持3—5个呼气。呼气缓慢。换另一侧相同。'
+        'tip': '可以选择多运动一下，比如说多出去跑跑步，游泳或者是跳绳之类的，这样都有利于这部分的赘肉减掉，另外可以做俯卧撑或者是仰卧起坐，还有在饮食方面也要记得适当的节食，千万不要再吃太油腻的食物。'
     },
 
         622: {
@@ -638,22 +638,22 @@ Xiachui_Scores = {
         'desc': '',
         'suggest': '',
         'symptom_desc':  Params_DICT[622]['symptom_desc'],
-        'tip': '女性要每天运动来做乳房的保养工作，工作一段时间就要做一次乳房保健操，如果在办公室、要做做深呼吸、甩甩手、跳跳脚，扭扭腰等运动，帮助身体活络经脉，推动气血，这样有效地牵拉乳房及乳房周围组织的运动，预防乳房下垂和预防保养。'
+        'tip': '日常一定注意清淡饮食，多摄入全麦类等膳食纤维含量丰富，又容易让人产生饱腹感的食物，保证正常热量的摄入。每日保证合适的体育锻炼，多做转呼啦圈等可以有效促进腹部脂肪燃烧的运动。'
     },
-        631: {
-        'score': 0,
-        'desc': '',
-        'suggest': '',
-        'symptom_desc':  Params_DICT[631]['symptom_desc'],
-        'tip': '可以选择多运动一下，比如说多出去跑跑步，游泳或者是跳绳之类的，这样都有利于这部分的赘肉减掉，另外可以做俯卧撑或者是仰卧起坐，还有在饮食方面也要记得适当的节食，千万不要再吃太油腻的食物。'
-    },
-        632: {
-        'score': 0,
-        'desc': '',
-        'suggest': '',
-        'symptom_desc':  Params_DICT[632]['symptom_desc'],
-        'tip': '日常一定注意清淡饮食，多摄入全麦类等膳食纤维含量丰富，又容易让人产生饱腹感的食物，保证正常热量的摄入。每日保证合适的体育锻炼，多做转呼啦圈等可以有效促进腹部脂肪燃烧的运动.'
-    },
+    #     631: {
+    #     'score': 0,
+    #     'desc': '',
+    #     'suggest': '',
+    #     'symptom_desc':  Params_DICT[631]['symptom_desc'],
+    #     'tip': '可以选择多运动一下，比如说多出去跑跑步，游泳或者是跳绳之类的，这样都有利于这部分的赘肉减掉，另外可以做俯卧撑或者是仰卧起坐，还有在饮食方面也要记得适当的节食，千万不要再吃太油腻的食物。'
+    # },
+    #     632: {
+    #     'score': 0,
+    #     'desc': '',
+    #     'suggest': '',
+    #     'symptom_desc':  Params_DICT[632]['symptom_desc'],
+    #     'tip': '日常一定注意清淡饮食，多摄入全麦类等膳食纤维含量丰富，又容易让人产生饱腹感的食物，保证正常热量的摄入。每日保证合适的体育锻炼，多做转呼啦圈等可以有效促进腹部脂肪燃烧的运动.'
+    # },
 }
 
 BMI_Standards = {
@@ -822,31 +822,31 @@ Body_Standards = {
     },
     'detail': {
         # 3.1
-        'girth_Neck_top': 45,
-        'girth_Neck_down': 35,
+        'girth_Neck_top': 48,
+        'girth_Neck_down': 38,
         # 3.2
-        'ratio_YaoW_height_top': 0.49,
-        'ratio_YaoW_height_down': 0.37,
+        'ratio_YaoW_height_top': 0.54,
+        'ratio_YaoW_height_down': 0.42,
         # 3.3
-        'ratio_XiongW_height_top': 0.53,
-        'ratio_XiongW_height_down': 0.39,
+        'ratio_XiongW_height_top': 0.48,
+        'ratio_XiongW_height_down': 0.32,
         # 3.4
-        'radio_TunW_height_top': 0.62,
-        'radio_TunW_height_down': 0.49,
-        'radio_TunW_height_perfect': 0.54,
+        'radio_TunW_height_top': 0.69,
+        'radio_TunW_height_down': 0.59,
+        'radio_TunW_height_perfect': 0.64,
         # 3.5
         'radio_ArmW_Wrist_top': 2,
         'radio_ArmW_Wrist_down': 1.4,
         'radio_ArmW_Wrist_perfect': 1.7,
         # 3.6
         'radio_ThighW_height': 0.26,
-        'plus_ThighW_height_top': 8.6,
-        'plus_ThighW_height_down': 7,
+        'plus_ThighW_height_top': 8.9,
+        'plus_ThighW_height_down': 6.5,
         'plus_ThighW_height_perfect': 7.8,
         # 3.7
-        'radio_ShankW_height_top': 0.22,
-        'radio_ShankW_height_down': 0.15,
-        'radio_ShankW_height_perfect': 0.18,
+        'radio_ShankW_height_top': 0.25,
+        'radio_ShankW_height_down': 0.12,
+        'radio_ShankW_height_perfect': 0.2,
         # 3.8
         'radio_AnkleW_ShankW_top': 0.7,
         'radio_AnkleW_ShankW_down': 0.5,
@@ -878,22 +878,22 @@ FULL_DICT = {
     },
     121: {
 		'name': '身型',
-        'result': '梨型身材',
+        'result': '倒三角形身材',
         'scores': Body_Scores[121]
     },
     122: {
 		'name': '身型',
-        'result': '苹果型身材',
+        'result': '矩形身材',
         'scores': Body_Scores[122]
     },
     123: {
 		'name': '身型',
-        'result': '直筒型身材',
+        'result': '正三角形身材',
         'scores': Body_Scores[123]
     },
     124: {
 		'name': '身型',
-        'result': '漏斗型身材',
+        'result': '椭圆形身材',
         'scores': Body_Scores[124]
     },
 
@@ -1055,10 +1055,8 @@ FULL_DICT = {
 
     611: {'name': '拜拜肉', 'result': '拜拜肉倾向', 'scores': Xiachui_Scores[611]},
     612: {'name': '拜拜肉', 'result': '正常', 'scores': Xiachui_Scores[612]},
-    621: {'name': '胸下垂', 'result': '胸下垂倾向', 'scores': Xiachui_Scores[621]},
-    622: {'name': '胸下垂', 'result': '正常', 'scores': Xiachui_Scores[622]},
-    631: {'name': '游泳圈', 'result': '游泳圈倾向', 'scores': Xiachui_Scores[631]},
-    632: {'name': '游泳圈', 'result': '正常', 'scores': Xiachui_Scores[632]},
+    621: {'name': '游泳圈', 'result': '游泳圈倾向', 'scores': Xiachui_Scores[621]},
+    622: {'name': '游泳圈', 'result': '正常', 'scores': Xiachui_Scores[622]},
 
 }
 
@@ -1098,10 +1096,10 @@ bw_r_4 = (m.g_shoulder_104 <= m.g_waist_155 + BS_W['delta_Jian_Yao'])
 bw_r_5 = (m.g_sum_167_104 <= (m.g_waist_155  + BS_W['delta_TJ_Yao']) * 2 )
 bw_r_6 = (m.g_sum_167_104 >  (m.g_waist_155 + BS_W['delta_TJ_Yao']) * 2 )
 #- m.g_shoulder_104
-rule_121 = bw_r_1 & bw_r_2
-rule_122 = bw_r_1 & bw_r_4
-rule_123 = bw_r_3 & bw_r_5
-rule_124 = bw_r_3 & bw_r_6
+rule_123 = bw_r_1 & bw_r_2
+rule_124 = bw_r_1 & bw_r_4
+rule_122 = bw_r_3 & bw_r_5
+rule_121 = bw_r_3 & bw_r_6
 
 BS_P = Body_Standards['part']
 r211_a = m.w_shoulder_210_211 <= m.w_head_212_213 * (BS_P['ratio_Jian_Tou'] + BS_P['range_Jian_Tou_down'])
@@ -1256,23 +1254,23 @@ rule_513 = r513_a & r513_b
 r514 = m.weight > m.height2 * 0.60
 rule_514 = r514
 
-r611_a = m.g_lbiceps_125 > m.height * 0.6 +3 
+r611_a = m.g_lbiceps_125 > m.height * 0.6 +6 
 r611_b = m.g_lbiceps_125 > m.g_lmthigh_111 * 0.5
 rule_611 = r611_a & r611_b
 
-r612_a = m.g_lbiceps_125 <= m.height * 0.6 +3 
+r612_a = m.g_lbiceps_125 <= m.height * 0.6 +6 
 r612_b = m.g_lbiceps_125 <= m.g_lmthigh_111 * 0.5
 rule_612 = r612_a | r612_b
 
-r621 = m.g_upper_chest_143 < m.g_bust_144 * 0.333
-rule_621 = r621
-r622 = m.g_upper_chest_143 >= m.g_bust_144 * 0.333
-rule_622 = r622
+# r621 = m.g_upper_chest_143 < m.g_bust_144 * 0.333
+# rule_621 = r621
+# r622 = m.g_upper_chest_143 >= m.g_bust_144 * 0.333
+# rule_622 = r622
 
-r631 = m.g_abdomen_161 > m.g_waist_163 + 5
-rule_631 = r631
-r632 = m.g_abdomen_161 <= m.g_waist_163 + 5
-rule_632 = r632
+r621 = m.g_abdomen_161 > m.g_waist_163 + 5
+rule_621 = r621
+r622 = m.g_abdomen_161 <= m.g_waist_163 + 5
+rule_622 = r622
 
 
 def get2bmi_rules(bmi_rules):
@@ -1330,13 +1328,13 @@ def execute(facts, rule_str=None):
         for i in range(6):
             post(f'figure-part-2{i+1}', facts)
 
-        for i in range(8):
+        for i in range(7):
             post(f"figure-detail-3{i+1}", facts)
         
         for i in range(1):
             post(f"body-element-5{i+1}", facts)
         
-        for i in range(3):
+        for i in range(2):
             post(f"body-xiachui-6{i+1}", facts)
             
 
@@ -1383,17 +1381,17 @@ ms_key_dict = {
     515: "BiaoZhunTiZhong",
     516: "TiZhongKongZhiLiang",
     61: "拜拜肉倾向",
-    62: "胸下垂倾向",
-    63: "游泳圈倾向",
+    62: "游泳圈倾向",
+    # 63: "游泳圈倾向",
 }
 
 classify_dict = {
     'ChengFen': [51, 53],
     'FeiPang' : [11, 52, 25],
-    'WeiDu': [31, 32, 33, 34, 35, 36, 37, 38],
+    'WeiDu': [31, 32, 33, 34, 35, 36, 37, ],
     'BiLi' : [21, 22, 23, 24, 25, 26],
     'YiTai': [42, 41, 43, 44, 45],
-    'XiaChui': [61, 62,63],
+    'XiaChui': [61, 62,],
     'Overall': [12]
 }
 
@@ -1402,8 +1400,8 @@ Summary_dict = {
     "Shoulder": [21, 43],
     "Chest": [26, 33],
     "YaoTun": [25, 32, 34],
-    "Leg": [23, 24, 36, 37, 38, 45],
-    "XiaChui": [61, 62,63],
+    "Leg": [23, 24, 36, 37, 45],
+    "XiaChui": [61, 62,],
     "Other": [44, 35]
 }
 
@@ -1545,14 +1543,9 @@ def eval_g_delta(item_iid, d):
     if item_iid == 612: 
         return '健康状态，请继续保持哦'
 
-    if item_iid == 621: 
-        return  '具有胸下垂倾向'
-    if item_iid == 622: 
-        return '健康状态，请继续保持哦'
-
-    if item_iid == 631: 
+    if item_iid == 621:
         return  '具有游泳圈倾向'
-    if item_iid == 632: 
+    if item_iid == 622: 
         return '健康状态，请继续保持哦'
 
     return ""
@@ -1594,8 +1587,8 @@ def eval_val(item_id, d):
         return round(0)
     if item_id == 62:
         return round(0)
-    if item_id == 63:
-        return round(0)
+    # if item_id == 63:
+    #     return round(0)
 
     return None
 
@@ -1663,14 +1656,14 @@ def register_rules():
         def r_6(c):
             rule_result(622, c.m)
 
-    with ruleset('body-xiachui-63'):
-        @when_all(rule_631)
-        def r_6(c):
-            rule_result(631, c.m)
+    # with ruleset('body-xiachui-63'):
+    #     @when_all(rule_631)
+    #     def r_6(c):
+    #         rule_result(631, c.m)
         
-        @when_all(rule_632)
-        def r_6(c):
-            rule_result(632, c.m)
+    #     @when_all(rule_632)
+    #     def r_6(c):
+    #         rule_result(632, c.m)
 
     with ruleset('body-element-51'):
         @when_all(rule_511)
@@ -1821,26 +1814,26 @@ def register_rules():
             rule_result(374, c.m)
             # execute.results['小腿围37'] = FULL_DICT[374]
 
-    with ruleset('figure-detail-38'):
-        @when_all(rule_381)
-        def r_3(c):
-            rule_result(381, c.m)
-            # execute.results['脚踝38'] = FULL_DICT[381]
+    # with ruleset('figure-detail-38'):
+    #     @when_all(rule_381)
+    #     def r_3(c):
+    #         rule_result(381, c.m)
+    #         # execute.results['脚踝38'] = FULL_DICT[381]
 
-        @when_all(rule_382)
-        def r_3(c):
-            rule_result(382, c.m)
-            # execute.results['脚踝38'] = FULL_DICT[382]
+    #     @when_all(rule_382)
+    #     def r_3(c):
+    #         rule_result(382, c.m)
+    #         # execute.results['脚踝38'] = FULL_DICT[382]
 
-        @when_all(rule_383)
-        def r_3(c):
-            rule_result(383, c.m)
-            # execute.results['脚踝38'] = FULL_DICT[383]
+    #     @when_all(rule_383)
+    #     def r_3(c):
+    #         rule_result(383, c.m)
+    #         # execute.results['脚踝38'] = FULL_DICT[383]
 
-        @when_all(rule_384)
-        def r_3(c):
-            rule_result(384, c.m)
-            # execute.results['脚踝38'] = FULL_DICT[384]
+    #     @when_all(rule_384)
+    #     def r_3(c):
+    #         rule_result(384, c.m)
+    #         # execute.results['脚踝38'] = FULL_DICT[384]
 
     with ruleset('figure-part-21'):
         # part of body
