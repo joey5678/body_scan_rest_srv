@@ -20,7 +20,8 @@ from client import rest_get, rest_post
 from webutil import app, login_required, get_myself
 
 from buss import *
-from rule import execute as rule_exec
+from rule import execute as rule_exec_f
+from rule_m import execute as rule_exec_m
 from rule import reset_rule_results, current_result, get_eval_collection
 from rule_cli import new_figure
 import logging
@@ -263,6 +264,7 @@ def measure_me():
                     m_result['3mu_height'] = _height
                     m_result['height'] = m.height or _height
                     m_result['weight'] = _weight
+                    m_result['gender'] = m.gender or 0
                     log.warn("Get the final result of measure data.")
                 elif s1 == 202:
                     log.warn("Got 202 code when request the measure data, sleep a while...")
@@ -339,7 +341,7 @@ def add_extra_info(result):
     pass
 
 
-def new_tt_calculate(height, weight, girths_data, lmpoints_data, slen_data):
+def new_tt_calculate(height, weight, gender, girths_data, lmpoints_data, slen_data):
     # titai 
     figure_key_item = ('height', 'weight', 'height2',
                        'g_hip_167', 'g_shoulder_104', 'g_sum_167_104', 'g_waist_155', 'g_neck_140',
@@ -353,6 +355,7 @@ def new_tt_calculate(height, weight, girths_data, lmpoints_data, slen_data):
     print(f"================ height: {height}, weight: {weight}")
     M = collections.namedtuple('Metric', f)
     new_figure(M, f, height, weight, girths_data, lmpoints_data, slen_data)
+    rule_exec = rule_exec_f if gender == 0 else rule_exec_m
     rule_exec(f)
     return current_result()
 
@@ -558,7 +561,8 @@ def handle_3d_measure_json(m_result):
 
     log.warn("[Debug] Extra: calculate new TiTai.\n")
     input_weight = m_result['weight']
-    result_v2 = new_tt_calculate(eval_height/100, input_weight/2, girths, ldmk_points, slen_data)
+    _gender = m_result.get('gender', 0)
+    result_v2 = new_tt_calculate(eval_height/100, input_weight/2, _gender, girths, ldmk_points, slen_data)
     # result_v1['TiTai']['v2'] = new_tt_calculate(eval_height, input_weight, girths, ldmk_points, slen_data) 
     # 
     result = merge_result(result_v1, result_v2)          
