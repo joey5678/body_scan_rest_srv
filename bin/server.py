@@ -33,7 +33,7 @@ def _get_client_obj(_id):
 			if _cid > max_id:
 				max_id = _cid
 	if max_id > 0:
-		return client_query[max_id]
+		return client_query[max_id]['obj']
 
 	return None
 

@@ -1293,14 +1293,14 @@ prule_half0, prule_half1 = get2bmi_rules(bmi_perfect_rules)
 # global rule_result
 
 def reset_rule_results():
-    execute.results = {}
+    execute_m.results = {}
 
 def current_result():
     sum_scores = -1
     sum_descs = []
     sum_suggs = []
-    # print(execute.results)
-    for _kk, _cls_res in execute.results.items():
+    # print(execute_m.results)
+    for _kk, _cls_res in execute_m.results.items():
         if _kk == "Summary":
             continue
         for _, _res in _cls_res.items():
@@ -1309,15 +1309,15 @@ def current_result():
             sum_descs.append(_res['scores']['desc'])
             if _res['scores'].get('suggest', None):
                 sum_suggs.append(_res['scores']['suggest'])
-    if execute.results.get('Overall', None) is None:
-        execute.results['Overall'] = {}
-    overall_res = execute.results['Overall']
+    if execute_m.results.get('Overall', None) is None:
+        execute_m.results['Overall'] = {}
+    overall_res = execute_m.results['Overall']
     overall_res['total_scores'] = sum_scores
     # overall_res['total_desc'] = " ".join(sum_descs)
     # overall_res['total_suggest'] = " ".join(sum_suggs)
-    return execute.results
+    return execute_m.results
 
-def execute(facts, rule_str=None):
+def execute_m(facts, rule_str=None):
     # global rule_result
     if rule_str:
         assert_fact(rule_str, facts)
@@ -1338,9 +1338,9 @@ def execute(facts, rule_str=None):
             post(f"body-xiachui-6{i+1}", facts)
             
 
-    print(f"result is {execute.results}")
+    print(f"result is {execute_m.results}")
     # print(get_facts(rule_str))
-    return execute.results
+    return execute_m.results
 
 ms_key_dict = {
     11: "BMI",
@@ -1406,7 +1406,7 @@ Summary_dict = {
 }
 
 
-execute.results = {
+execute_m.results = {
 
 }
 
@@ -1603,16 +1603,16 @@ def rule_result(item_iid, data):
     cls_keys, cls_types = find_classify_key(item_id)
     print(f"cls keys is:{cls_keys}")
     sm_key = "Summary"
-    if execute.results.get(sm_key, None) is None:
-        execute.results[sm_key] = {}
+    if execute_m.results.get(sm_key, None) is None:
+        execute_m.results[sm_key] = {}
     
-    sm_dict =  execute.results[sm_key]
+    sm_dict =  execute_m.results[sm_key]
   
     in_sm = False
     for cls_key, cls_type in zip(cls_keys, cls_types):
-        if execute.results.get(cls_key, None) is None:
-            execute.results[cls_key] = {}
-        cls_res = execute.results[cls_key]
+        if execute_m.results.get(cls_key, None) is None:
+            execute_m.results[cls_key] = {}
+        cls_res = execute_m.results[cls_key]
         py_key = ms_key_dict.get(item_id, "UNKNOWN")
         cls_res[py_key] = FULL_DICT[item_iid]
         # py_res = FULL_DICT[item_iid]
@@ -1634,7 +1634,7 @@ def rule_result(item_iid, data):
                     sm_dict[_sk] = []
                 sm_dict[_sk].append(cls_res[py_key].copy())
                 in_sm = True
-    print(execute.results.keys())
+    print(execute_m.results.keys())
     
 def register_rules():
 
@@ -1686,313 +1686,313 @@ def register_rules():
         @when_all(rule_311)
         def r_3(c):
             rule_result(311, c.m)
-            # execute.results['颈围31'] = FULL_DICT[311]
+            # execute_m.results['颈围31'] = FULL_DICT[311]
 
         @when_all(rule_312)
         def r_3(c):
             rule_result(312, c.m)
-            # execute.results['颈围31'] = FULL_DICT[312]
+            # execute_m.results['颈围31'] = FULL_DICT[312]
 
         @when_all(rule_313)
         def r_3(c):
             rule_result(313, c.m)
-            # execute.results['颈围31'] = FULL_DICT[313]
+            # execute_m.results['颈围31'] = FULL_DICT[313]
 
     with ruleset('figure-detail-32'):
         @when_all(rule_321)
         def r_3(c):
             rule_result(321, c.m)
-            # execute.results['腰围32'] = FULL_DICT[321]
+            # execute_m.results['腰围32'] = FULL_DICT[321]
 
         @when_all(rule_322)
         def r_3(c):
             rule_result(322, c.m)
-            # execute.results['腰围32'] = FULL_DICT[322]
+            # execute_m.results['腰围32'] = FULL_DICT[322]
 
         @when_all(rule_323)
         def r_3(c):
             rule_result(323, c.m)
-            # execute.results['腰围32'] = FULL_DICT[323]
+            # execute_m.results['腰围32'] = FULL_DICT[323]
 
     with ruleset('figure-detail-33'):
         @when_all(rule_331)
         def r_3(c):
             rule_result(331, c.m)
-            # execute.results['胸围33'] = FULL_DICT[331]
+            # execute_m.results['胸围33'] = FULL_DICT[331]
 
         @when_all(rule_332)
         def r_3(c):
             rule_result(332, c.m)
-            # execute.results['胸围33'] = FULL_DICT[332]
+            # execute_m.results['胸围33'] = FULL_DICT[332]
 
         @when_all(rule_333)
         def r_3(c):
             rule_result(333, c.m)
-            # execute.results['胸围33'] = FULL_DICT[333]
+            # execute_m.results['胸围33'] = FULL_DICT[333]
 
     with ruleset('figure-detail-34'):
         @when_all(rule_341)
         def r_3(c):
             rule_result(341, c.m)
-            # execute.results['臀围34'] = FULL_DICT[341]
+            # execute_m.results['臀围34'] = FULL_DICT[341]
 
         @when_all(rule_342)
         def r_3(c):
             rule_result(342, c.m)
-            # execute.results['臀围34'] = FULL_DICT[342]
+            # execute_m.results['臀围34'] = FULL_DICT[342]
 
         @when_all(rule_343)
         def r_3(c):
             rule_result(343, c.m)
-            # execute.results['臀围34'] = FULL_DICT[343]
+            # execute_m.results['臀围34'] = FULL_DICT[343]
 
         @when_all(rule_344)
         def r_3(c):
             rule_result(344, c.m)
-            # execute.results['臀围34'] = FULL_DICT[344]
+            # execute_m.results['臀围34'] = FULL_DICT[344]
 
     with ruleset('figure-detail-35'):
         @when_all(rule_351)
         def r_3(c):
             rule_result(351, c.m)
-            # execute.results['手臂围35'] = FULL_DICT[351]
+            # execute_m.results['手臂围35'] = FULL_DICT[351]
 
         @when_all(rule_352)
         def r_3(c):
             rule_result(352, c.m)
-            # execute.results['手臂围35'] = FULL_DICT[352]
+            # execute_m.results['手臂围35'] = FULL_DICT[352]
 
         @when_all(rule_353)
         def r_3(c):
             rule_result(353, c.m)
-            # execute.results['手臂围35'] = FULL_DICT[353]
+            # execute_m.results['手臂围35'] = FULL_DICT[353]
 
         @when_all(rule_354)
         def r_3(c):
             rule_result(354, c.m)
-            # execute.results['手臂围35'] = FULL_DICT[354]
+            # execute_m.results['手臂围35'] = FULL_DICT[354]
 
     with ruleset('figure-detail-36'):
         @when_all(rule_361)
         def r_3(c):
             rule_result(361, c.m)
-            # execute.results['大腿围36'] = FULL_DICT[361]
+            # execute_m.results['大腿围36'] = FULL_DICT[361]
 
         @when_all(rule_362)
         def r_3(c):
             rule_result(362, c.m)
-            # execute.results['大腿围36'] = FULL_DICT[362]
+            # execute_m.results['大腿围36'] = FULL_DICT[362]
 
         @when_all(rule_363)
         def r_3(c):
             rule_result(363, c.m)
-            # execute.results['大腿围36'] = FULL_DICT[363]
+            # execute_m.results['大腿围36'] = FULL_DICT[363]
 
         @when_all(rule_364)
         def r_3(c):
             rule_result(364, c.m)
-            # execute.results['大腿围36'] = FULL_DICT[364]
+            # execute_m.results['大腿围36'] = FULL_DICT[364]
 
     with ruleset('figure-detail-37'):
         @when_all(rule_371)
         def r_3(c):
             rule_result(371, c.m)
-            # execute.results['小腿围37'] = FULL_DICT[371]
+            # execute_m.results['小腿围37'] = FULL_DICT[371]
 
         @when_all(rule_372)
         def r_3(c):
             rule_result(372, c.m)
-            # execute.results['小腿围37'] = FULL_DICT[372]
+            # execute_m.results['小腿围37'] = FULL_DICT[372]
 
         @when_all(rule_373)
         def r_3(c):
             rule_result(373, c.m)
-            # execute.results['小腿围37'] = FULL_DICT[373]
+            # execute_m.results['小腿围37'] = FULL_DICT[373]
 
         @when_all(rule_374)
         def r_3(c):
             rule_result(374, c.m)
-            # execute.results['小腿围37'] = FULL_DICT[374]
+            # execute_m.results['小腿围37'] = FULL_DICT[374]
 
     # with ruleset('figure-detail-38'):
     #     @when_all(rule_381)
     #     def r_3(c):
     #         rule_result(381, c.m)
-    #         # execute.results['脚踝38'] = FULL_DICT[381]
+    #         # execute_m.results['脚踝38'] = FULL_DICT[381]
 
     #     @when_all(rule_382)
     #     def r_3(c):
     #         rule_result(382, c.m)
-    #         # execute.results['脚踝38'] = FULL_DICT[382]
+    #         # execute_m.results['脚踝38'] = FULL_DICT[382]
 
     #     @when_all(rule_383)
     #     def r_3(c):
     #         rule_result(383, c.m)
-    #         # execute.results['脚踝38'] = FULL_DICT[383]
+    #         # execute_m.results['脚踝38'] = FULL_DICT[383]
 
     #     @when_all(rule_384)
     #     def r_3(c):
     #         rule_result(384, c.m)
-    #         # execute.results['脚踝38'] = FULL_DICT[384]
+    #         # execute_m.results['脚踝38'] = FULL_DICT[384]
 
     with ruleset('figure-part-21'):
         # part of body
         @when_all(rule_211)
         def r_211(c):
             rule_result(211, c.m)
-            # execute.results['头肩比21'] = FULL_DICT[211]
+            # execute_m.results['头肩比21'] = FULL_DICT[211]
 
         @when_all(rule_212)
         def r_212(c):
             rule_result(212, c.m)
-            # execute.results['头肩比21'] = FULL_DICT[212]
+            # execute_m.results['头肩比21'] = FULL_DICT[212]
 
         @when_all(rule_213)
         def r_213(c):
             rule_result(213, c.m)
-            # execute.results['头肩比21'] = FULL_DICT[213]
+            # execute_m.results['头肩比21'] = FULL_DICT[213]
 
     with ruleset('figure-part-22'):
         @when_all(rule_221)
         def r_221(c):
             rule_result(221, c.m)
-            # execute.results['头身比22'] = FULL_DICT[221]
+            # execute_m.results['头身比22'] = FULL_DICT[221]
 
         @when_all(rule_222)
         def r_222(c):
             rule_result(222, c.m)
-            # execute.results['头身比22'] = FULL_DICT[222]
+            # execute_m.results['头身比22'] = FULL_DICT[222]
 
         @when_all(rule_223)
         def r_223(c):
             rule_result(223, c.m)
-            # execute.results['头身比22'] = FULL_DICT[223]
+            # execute_m.results['头身比22'] = FULL_DICT[223]
 
     with ruleset('figure-part-23'):
         @when_all(rule_231)
         def r_231(c):
             rule_result(231, c.m)
-            # execute.results['腿身比23'] = FULL_DICT[231]
+            # execute_m.results['腿身比23'] = FULL_DICT[231]
         
         @when_all(rule_232)
         def r_232(c):
             rule_result(232, c.m)
-            # execute.results['腿身比23'] = FULL_DICT[232]
+            # execute_m.results['腿身比23'] = FULL_DICT[232]
 
         @when_all(rule_233)
         def r_233(c):
             rule_result(233, c.m)
-            # execute.results['腿身比23'] = FULL_DICT[233]
+            # execute_m.results['腿身比23'] = FULL_DICT[233]
 
         @when_all(rule_234)
         def r_234(c):
             rule_result(234, c.m)
-            # execute.results['腿身比23'] = FULL_DICT[234]
+            # execute_m.results['腿身比23'] = FULL_DICT[234]
 
     with ruleset('figure-part-24'):
         @when_all(rule_241)
         def r_241(c):
             rule_result(241, c.m)
-            # execute.results['大小腿长比24'] = FULL_DICT[241]
+            # execute_m.results['大小腿长比24'] = FULL_DICT[241]
 
         @when_all(rule_242)
         def r_242(c):
             rule_result(242, c.m)
-            # execute.results['大小腿长比24'] = FULL_DICT[242]
+            # execute_m.results['大小腿长比24'] = FULL_DICT[242]
 
     with ruleset('figure-part-25'):
         @when_all(rule_251)
         def r_251(c):
             rule_result(251, c.m)
-            # execute.results['腰臀比25'] = FULL_DICT[251]
+            # execute_m.results['腰臀比25'] = FULL_DICT[251]
 
         @when_all(rule_252)
         def r_252(c):
             rule_result(252, c.m)
-            # execute.results['腰臀比25'] = FULL_DICT[252]
+            # execute_m.results['腰臀比25'] = FULL_DICT[252]
 
         @when_all(rule_253)
         def r_253(c):
             rule_result(253, c.m)
-            # execute.results['腰臀比25'] = FULL_DICT[253]
+            # execute_m.results['腰臀比25'] = FULL_DICT[253]
 
     with ruleset('figure-part-26'):
         @when_all(rule_261)
         def r_261(c):
             rule_result(261, c.m)
-            # execute.results['胸型26'] = FULL_DICT[261]
+            # execute_m.results['胸型26'] = FULL_DICT[261]
 
         @when_all(rule_262)
         def r_262(c):
             rule_result(262, c.m)
-            # execute.results['胸型26'] = FULL_DICT[262]
+            # execute_m.results['胸型26'] = FULL_DICT[262]
 
     with ruleset('figure-body'):
         # whole body
         @when_all(rule_121)
         def r_121(c):
             rule_result(121, c.m)
-            # execute.results['身型12'] = FULL_DICT[121]
+            # execute_m.results['身型12'] = FULL_DICT[121]
         
         @when_all(rule_122)
         def r_122(c):
             rule_result(122, c.m)
-            # execute.results['身型12'] = FULL_DICT[122]
+            # execute_m.results['身型12'] = FULL_DICT[122]
 
         @when_all(rule_123)
         def r_123(c):
             rule_result(123, c.m)
-            # execute.results['身型12'] = FULL_DICT[123]
+            # execute_m.results['身型12'] = FULL_DICT[123]
 
         @when_all(rule_124)
         def r_124(c):
             rule_result(124, c.m)
-            # execute.results['身型12'] = FULL_DICT[124]
+            # execute_m.results['身型12'] = FULL_DICT[124]
 
     with ruleset('figure-bmi'):
         # thin bmi
         @when_all(trule_half0)
         def thin(c):
             rule_result(111, c.m)
-            # execute.results['BMI11'] = FULL_DICT[111]
+            # execute_m.results['BMI11'] = FULL_DICT[111]
 
         @when_all(trule_half1)
         def thin_a(c):
             rule_result(111, c.m)
-            # execute.results['BMI11'] = FULL_DICT[111]
+            # execute_m.results['BMI11'] = FULL_DICT[111]
         # fat bmi
 
         @when_all(frule_half0)
         def fat(c):
             rule_result(114, c.m)
-            # execute.results['BMI11'] = FULL_DICT[114]
+            # execute_m.results['BMI11'] = FULL_DICT[114]
 
         @when_all(frule_half1)
         def fat_a(c):
             rule_result(114, c.m)
-            # execute.results['BMI11'] = FULL_DICT[114]
+            # execute_m.results['BMI11'] = FULL_DICT[114]
         # standard bmi
 
         @when_all(srule_half0)
         def normal(c):
             rule_result(113, c.m)
-            # execute.results['BMI11'] = FULL_DICT[113]
+            # execute_m.results['BMI11'] = FULL_DICT[113]
 
         @when_all(srule_half1)
         def normal_a(c):
             rule_result(113, c.m)
-            # execute.results['BMI11'] = FULL_DICT[113]
+            # execute_m.results['BMI11'] = FULL_DICT[113]
         # perfect bmi
 
         @when_all(prule_half0)
         def perfect(c):
             rule_result(112, c.m)
-            # execute.results['BMI11'] = FULL_DICT[112]
+            # execute_m.results['BMI11'] = FULL_DICT[112]
 
         @when_all(prule_half1)
         def perfect_a(c):
             rule_result(112, c.m)
-            # execute.results['BMI11'] = FULL_DICT[112]
+            # execute_m.results['BMI11'] = FULL_DICT[112]
 
 register_rules()
 
