@@ -301,7 +301,7 @@ def measure_me():
                 default_h5 = 'http://122.51.149.232:8088/wireframe.html?gender=1'
                 std_weight_kg = (m.height -80) * 0.7
 
-            delta_weight = round(abs(m.weight/2 - std_weight_kg), 0)
+            delta_weight = round((m.weight/2 - std_weight_kg), 0)
             bmi_val = round(safe_div((m.weight * 50 * 100), (m.height * m.height)), 2)
             if bmi_val > 28:
                 star_num = 1
