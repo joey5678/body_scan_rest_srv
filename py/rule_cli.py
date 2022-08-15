@@ -3,7 +3,7 @@ import json
 
 Person = collections.namedtuple('figure', 'name age gender')
 from rule import execute as rule_exec_f
-from rule_m import execute as rule_exec_m
+from rule_m import execute_m as rule_exec_m
 from rule_m import reset_rule_results, current_result
 
 
