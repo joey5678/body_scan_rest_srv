@@ -20,9 +20,21 @@ from client import rest_get, rest_post
 from webutil import app, login_required, get_myself
 
 from buss import *
+
+#from rule import execute as rule_exec_f
+#from rule_m import execute_m as rule_exec_m
+#from rule import reset_rule_results, current_result, get_eval_collection
+
 from rule import execute as rule_exec_f
-from rule_m import execute as rule_exec_m
-from rule import reset_rule_results, current_result, get_eval_collection
+from rule import reset_rule_results as reset_rule_results_f
+from rule import current_result as current_result_f
+from rule import get_eval_collection as get_eval_collection_f
+
+from rule_m import execute_m as rule_exec_m
+from rule_m import reset_rule_results as reset_rule_results_m
+from rule_m import current_result as current_result_m
+from rule_m import get_eval_collection as get_eval_collection_m
+
 from rule_cli import new_figure
 import logging
 log = logging.getLogger("api.measure")
@@ -158,7 +170,7 @@ def scan_query():
 @app.route('/api/measure', methods = ['POST'], strict_slashes=False)
 #@login_required(role='editor')
 def measure_me():
-    cos_path = 'https://3dp-1302477916.cos.ap-mumbai.myqcloud.com/'
+    cos_path = 'https://fitshike.oss-cn-hangzhou.aliyuncs.com/'
     """Creates a measure and returns measure result."""
     input_check = True
     rsp_code = 200
@@ -262,7 +274,7 @@ def measure_me():
                     m_result = rsp1['body'] 
                     _height = rsp1['others']['height'] #this height is evaluated by 3d measure up
                     m_result['3mu_height'] = _height
-                    m_result['height'] = m.height or _height
+                    m_result['height'] = _height * 100 or m.height
                     m_result['weight'] = _weight
                     m_result['gender'] = m.gender or 0
                     log.warn("Get the final result of measure data.")
@@ -343,28 +355,47 @@ def add_extra_info(result):
 
 def new_tt_calculate(height, weight, gender, girths_data, lmpoints_data, slen_data):
     # titai 
+    print("--------------------------GENDER ------------------------------------------------------------")
+    print(gender)
+    print("--------------------------GENDER .------------------------------------------------------------")
     figure_key_item = ('height', 'weight', 'height2',
                        'g_hip_167', 'g_shoulder_104', 'g_sum_167_104', 'g_waist_155', 'g_neck_140',
                        'g_bust_144', 'g_lbiceps_125', 'g_lwrist_123', 'g_rbiceps_126', 'g_rwrist_121', 'g_lmthigh_111',
                        'g_rmthigh_112', 'g_lmcalf_115', 'g_rmcalf_116', 'g_lankle_117', 'g_rankle_118',
                        'w_shoulder_210_211', 'w_busts_205_206', 'w_head_212_213', 'h_head_202', 'h_upper_body', 'h_knee',
                        'h_chin', 'h_leg_333_334', 'h_upper_leg', 'g_abdomen_161', 'g_waist_163', 'g_upper_chest_143')
-    reset_rule_results()
-    f = dict.fromkeys(figure_key_item, -1.)
-    print(f)
-    print(f"================ height: {height}, weight: {weight}")
-    M = collections.namedtuple('Metric', f)
-    new_figure(M, f, height, weight, girths_data, lmpoints_data, slen_data)
-    rule_exec = rule_exec_f if gender == 0 else rule_exec_m
-    rule_exec(f)
-    return current_result()
+    if gender == 0:
+        reset_rule_results_f()
+        #reset_rule_results_f() if gender ==0 else reset_rule_results_m()
+        f = dict.fromkeys(figure_key_item, -1.)
+        #print(f)
+        print(f"================ height: {height}, weight: {weight}")
+        M = collections.namedtuple('Metric', f)
+        new_figure(M, f, height, weight, girths_data, lmpoints_data, slen_data)
+        rule_exec_f(f)
+        return current_result_f()
+    else:
+        reset_rule_results_m()
+        f = dict.fromkeys(figure_key_item, -1.)
+        #print(f)
+        print(f"================ height: {height}, weight: {weight}")
+        M = collections.namedtuple('Metric', f)
+        new_figure(M, f, height, weight, girths_data, lmpoints_data, slen_data)
+        rule_exec_m(f)
+        return current_result_m()
+    #rule_exec = rule_exec_f if gender == 0 else rule_exec_m
+    #f_test = {'height': 173, 'weight': 60, 'height2': 300.15, 'g_hip_167': 105.7, 'g_shoulder_104': 105.7, 'g_sum_167_104': 211.4, 'g_waist_155': 90.0, 'g_neck_140': 44.8, 'g_bust_144': 111.7, 'g_lbiceps_125': 33.7, 'g_lwrist_123': 19.9, 'g_rbiceps_126': 34.3, 'g_rwrist_121': 20.4, 'g_lmthigh_111': 49.7, 'g_rmthigh_112': 51.3, 'g_lmcalf_115': 36.6, 'g_rmcalf_116': 36.0, 'g_lankle_117': 27.4, 'g_rankle_118': 34.5, 'w_shoulder_210_211': 43.7, 'w_busts_205_206': 22.9, 'w_head_212_213': 17.4, 'h_head_202': 25.0, 'h_upper_body': 95.7, 'h_knee': 50.6, 'h_chin': 148.2, 'h_leg_333_334': 77.5, 'h_upper_leg': 27.0, 'g_abdomen_161': 89.9, 'g_waist_163': 91.9, 'g_upper_chest_143': 111.3}
+
+    #rule_exec(f_test)
+    #rule_exec(f)
+    #return current_result_f() if gender == 0 else current_result_m()
 
 RC4_dict = {
-    "TouCeWai": get_eval_collection(41) ,
-    "TouQianYin": get_eval_collection(42),
-    "GaoDiJian": get_eval_collection(43),
-    "ShenTiQingXie":  get_eval_collection(44),
-    "YiXingTui":  get_eval_collection(45),
+    "TouCeWai": get_eval_collection_f(41) ,
+    "TouQianYin": get_eval_collection_f(42),
+    "GaoDiJian": get_eval_collection_f(43),
+    "ShenTiQingXie":  get_eval_collection_f(44),
+    "YiXingTui":  get_eval_collection_f(45),
 }
 
 TT_KEYS = [
@@ -465,8 +496,8 @@ def handle_3d_measure_json(m_result):
         "YiXingTui": [243, 244, 234, 235]
     }
 
-    required_points = [210, 211, 212, 213, 204, 236, ] #234, 235, 243, 244 ]
-    required_gs = [167, 104, 155, 144, 115, ]
+    required_points = [] # [210, 211, 212, 213, 204, 236, ] #234, 235, 243, 244 ]
+    required_gs = [] #[167, 104, 155, 144, 115, ]
     skipped_list = m_result.get("skippedMeasurements", [])
     skipped_ids = [ int(x.split(':')[0].strip()[1:-1]) for x in skipped_list]
 
