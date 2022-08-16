@@ -190,7 +190,7 @@ Part_Scores = {
     213: {
         'score': 2,
         'desc': '较窄的肩宽 ，使得在上镜时尤其容易暴露，所以想要让自己的“头肩比”更加和谐，选对发型和造型是关键！',
-        'symptom_desc': '通常情况下,女性理想的头肩比在1 : 1.5左右,稍微宽一点会更显高,但不能超过1 : 2,否则就会显得“头太小”。',
+        'symptom_desc': '通常情况下,男性理想的头肩比在1 : 1.5左右,稍微宽一点会更显高,但不能超过1 : 2,否则就会显得“头太小”。',
         'suggest': '你适合选择泡泡袖、荷叶边或者有小垫肩的衣服，从视觉上增加肩宽，让比例变得更加协调。',
         'tip': '在训练中适当的加入肩部的训练，比如肩上推举，实力举，侧平举等 。'
 
@@ -1326,7 +1326,7 @@ def execute_m(facts, rule_str=None):
         post('figure-body',facts)
 
         for i in range(6):
-            post(f'figure-part-2{i+1}', facts)
+            post(f'M-figure-part-2{i+1}', facts)
 
         for i in range(7):
             post(f"figure-detail-3{i+1}", facts)
@@ -1638,7 +1638,7 @@ def rule_result(item_iid, data):
     
 def register_rules():
 
-    with ruleset('body-xiachui-61'):
+    with ruleset('M-body-xiachui-61'):
         @when_all(rule_611)
         def r_6(c):
             rule_result(611, c.m)
@@ -1647,7 +1647,7 @@ def register_rules():
         def r_6(c):
             rule_result(612, c.m)
 
-    with ruleset('body-xiachui-62'):
+    with ruleset('M-body-xiachui-62'):
         @when_all(rule_621)
         def r_6(c):
             rule_result(621, c.m)
@@ -1656,7 +1656,7 @@ def register_rules():
         def r_6(c):
             rule_result(622, c.m)
 
-    # with ruleset('body-xiachui-63'):
+    # with ruleset('M-body-xiachui-63'):
     #     @when_all(rule_631)
     #     def r_6(c):
     #         rule_result(631, c.m)
@@ -1665,7 +1665,7 @@ def register_rules():
     #     def r_6(c):
     #         rule_result(632, c.m)
 
-    with ruleset('body-element-51'):
+    with ruleset('M-body-element-51'):
         @when_all(rule_511)
         def r_5(c):
             rule_result(511, c.m)
@@ -1682,7 +1682,7 @@ def register_rules():
         def r_5(c):
             rule_result(514, c.m)
 
-    with ruleset('figure-detail-31'):
+    with ruleset('M-figure-detail-31'):
         @when_all(rule_311)
         def r_3(c):
             rule_result(311, c.m)
@@ -1698,7 +1698,7 @@ def register_rules():
             rule_result(313, c.m)
             # execute_m.results['颈围31'] = FULL_DICT[313]
 
-    with ruleset('figure-detail-32'):
+    with ruleset('M-figure-detail-32'):
         @when_all(rule_321)
         def r_3(c):
             rule_result(321, c.m)
@@ -1714,7 +1714,7 @@ def register_rules():
             rule_result(323, c.m)
             # execute_m.results['腰围32'] = FULL_DICT[323]
 
-    with ruleset('figure-detail-33'):
+    with ruleset('M-figure-detail-33'):
         @when_all(rule_331)
         def r_3(c):
             rule_result(331, c.m)
@@ -1730,7 +1730,7 @@ def register_rules():
             rule_result(333, c.m)
             # execute_m.results['胸围33'] = FULL_DICT[333]
 
-    with ruleset('figure-detail-34'):
+    with ruleset('M-figure-detail-34'):
         @when_all(rule_341)
         def r_3(c):
             rule_result(341, c.m)
@@ -1751,7 +1751,7 @@ def register_rules():
             rule_result(344, c.m)
             # execute_m.results['臀围34'] = FULL_DICT[344]
 
-    with ruleset('figure-detail-35'):
+    with ruleset('M-figure-detail-35'):
         @when_all(rule_351)
         def r_3(c):
             rule_result(351, c.m)
@@ -1772,7 +1772,7 @@ def register_rules():
             rule_result(354, c.m)
             # execute_m.results['手臂围35'] = FULL_DICT[354]
 
-    with ruleset('figure-detail-36'):
+    with ruleset('M-figure-detail-36'):
         @when_all(rule_361)
         def r_3(c):
             rule_result(361, c.m)
@@ -1793,7 +1793,7 @@ def register_rules():
             rule_result(364, c.m)
             # execute_m.results['大腿围36'] = FULL_DICT[364]
 
-    with ruleset('figure-detail-37'):
+    with ruleset('M-figure-detail-37'):
         @when_all(rule_371)
         def r_3(c):
             rule_result(371, c.m)
@@ -1814,7 +1814,7 @@ def register_rules():
             rule_result(374, c.m)
             # execute_m.results['小腿围37'] = FULL_DICT[374]
 
-    # with ruleset('figure-detail-38'):
+    # with ruleset('M-figure-detail-38'):
     #     @when_all(rule_381)
     #     def r_3(c):
     #         rule_result(381, c.m)
@@ -1835,7 +1835,7 @@ def register_rules():
     #         rule_result(384, c.m)
     #         # execute_m.results['脚踝38'] = FULL_DICT[384]
 
-    with ruleset('figure-part-21'):
+    with ruleset('M-figure-part-21'):
         # part of body
         @when_all(rule_211)
         def r_211(c):
@@ -1852,7 +1852,7 @@ def register_rules():
             rule_result(213, c.m)
             # execute_m.results['头肩比21'] = FULL_DICT[213]
 
-    with ruleset('figure-part-22'):
+    with ruleset('M-figure-part-22'):
         @when_all(rule_221)
         def r_221(c):
             rule_result(221, c.m)
@@ -1868,7 +1868,7 @@ def register_rules():
             rule_result(223, c.m)
             # execute_m.results['头身比22'] = FULL_DICT[223]
 
-    with ruleset('figure-part-23'):
+    with ruleset('M-figure-part-23'):
         @when_all(rule_231)
         def r_231(c):
             rule_result(231, c.m)
@@ -1889,7 +1889,7 @@ def register_rules():
             rule_result(234, c.m)
             # execute_m.results['腿身比23'] = FULL_DICT[234]
 
-    with ruleset('figure-part-24'):
+    with ruleset('M-figure-part-24'):
         @when_all(rule_241)
         def r_241(c):
             rule_result(241, c.m)
@@ -1900,7 +1900,7 @@ def register_rules():
             rule_result(242, c.m)
             # execute_m.results['大小腿长比24'] = FULL_DICT[242]
 
-    with ruleset('figure-part-25'):
+    with ruleset('M-figure-part-25'):
         @when_all(rule_251)
         def r_251(c):
             rule_result(251, c.m)
@@ -1916,7 +1916,7 @@ def register_rules():
             rule_result(253, c.m)
             # execute_m.results['腰臀比25'] = FULL_DICT[253]
 
-    with ruleset('figure-part-26'):
+    with ruleset('M-figure-part-26'):
         @when_all(rule_261)
         def r_261(c):
             rule_result(261, c.m)
@@ -1927,7 +1927,7 @@ def register_rules():
             rule_result(262, c.m)
             # execute_m.results['胸型26'] = FULL_DICT[262]
 
-    with ruleset('figure-body'):
+    with ruleset('M-figure-body'):
         # whole body
         @when_all(rule_121)
         def r_121(c):
@@ -1949,7 +1949,7 @@ def register_rules():
             rule_result(124, c.m)
             # execute_m.results['身型12'] = FULL_DICT[124]
 
-    with ruleset('figure-bmi'):
+    with ruleset('M-figure-bmi'):
         # thin bmi
         @when_all(trule_half0)
         def thin(c):
