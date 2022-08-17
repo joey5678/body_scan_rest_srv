@@ -39,7 +39,7 @@ class Figure():
     h_upper_leg: float # 
 
 
-Params_DICT = {
+M_Params_DICT = {
     34: {
         'symptom_desc': "臀围反映髋部骨骼和肌肉的发育情况。测量时，两腿并拢直立，两臂自然下垂，皮尺水平放在前面的耻骨联合和背后臀大肌最凸处。"
     },
@@ -134,14 +134,14 @@ Params_DICT = {
 
 }
 
-BMI_Scores = {
+M_BMI_Scores = {
     'thin': {'score': 4, 'desc': '你的体重偏瘦弱，平时要多吃点肉肉哦～'},
     'fat': {'score': 3, 'desc': '你的体重偏肥胖，处于不健康区间，要减肥啦！'},
     'normal': {'score': 6, 'desc': '你的体重非常标准～保持良好的饮食习惯和适当的运动，追求完美身材吧'},
     'perfect': {'score': 8, 'desc': '你的体重堪称完美，请保持哦～'}
 }
 
-Body_Scores ={
+M_Body_Scores ={
     121: {
         'score': 20, 
         'desc':'。',
@@ -171,7 +171,7 @@ Body_Results = ("倒三角身材  ",
                 "正三角身材",
                 "椭圆形身材",)
 
-Part_Scores = {
+M_Part_Scores = {
     211: {
         'score': 6,
         'desc': '拥有完美“头肩比”的你，是每一次合影中最抢眼的那个，一个赤裸裸的合影杀手哦～',
@@ -299,12 +299,12 @@ Part_Scores = {
     },
 }
 
-Detail_Scores = {
+M_Detail_Scores = {
     311: {
         'score': 2,
         'desc': '你的脖型非常修长，请保持哦～',
         'suggest': '你适合穿着简约的高领针织衫，配上修身的西服外套，就是飒酷时尚的模样，整体风格特别显高。',
-        'symptom_desc': Params_DICT[31]['symptom_desc'],
+        'symptom_desc': M_Params_DICT[31]['symptom_desc'],
         'tip': '你适合穿着简约的高领针织衫，配上修身的西服外套，就是飒酷时尚的绅士，整体风格特别显高。'
     },
 
@@ -312,7 +312,7 @@ Detail_Scores = {
         'score': 1,
         'desc': '你的脖型非常标准，请保持哦～',
         'suggest': '',
-        'symptom_desc': Params_DICT[31]['symptom_desc'],
+        'symptom_desc': M_Params_DICT[31]['symptom_desc'],
         'tip': '你适合穿着简约的高领针织衫，配上修身的西服外套，就是飒酷时尚的模样，整体风格特别显高。'
     },
 
@@ -320,7 +320,7 @@ Detail_Scores = {
         'score': 0,
         'desc': '你的脖型属于相对较粗类型，有很大的提升空间哦',
         'suggest': '我们可以多多动起来，通过挥动天鹅臂来消除斜方肌哦。',
-        'symptom_desc':  Params_DICT[31]['symptom_desc'],
+        'symptom_desc':  M_Params_DICT[31]['symptom_desc'],
         'tip': '胸部扩展：用自己的双手握住毛巾，然后再吸气、挺胸，抬起下巴向斜上方牵引颈椎，同时双臂向斜后方向伸展，扩展胸腔，保持几秒钟。最后呼气，含胸低头，收回下巴贴近锁骨，伸展肩颈肌肉。保持几秒钟，重复5-8次。每天最少要做二十组。'
     },
 
@@ -328,14 +328,14 @@ Detail_Scores = {
         'score': 6,
         'desc': '你的腰围非常纤细，请保持哦～',
         'suggest': '',
-        'symptom_desc':  Params_DICT[32]['symptom_desc'],
+        'symptom_desc':  M_Params_DICT[32]['symptom_desc'],
         'tip': '你有一个倒三角形身材的底子，锻炼你的肩部和背部肌肉，可以让你看起来更加具有魅力哦'
     },
     322: {
         'score': 4,
         'desc': '你的腰围很标准，请保持哦～',
         'suggest': '',
-        'symptom_desc':  Params_DICT[32]['symptom_desc'],
+        'symptom_desc':  M_Params_DICT[32]['symptom_desc'],
         'tip': ''
     },
 
@@ -343,7 +343,7 @@ Detail_Scores = {
         'score': 0,
         'desc': '你的腰围属于偏胖类型，快快行动起来吧～',
         'suggest': '你适合穿着上半身深色系的衣服，这样才能起到遮肉显瘦的作用哦。',
-        'symptom_desc':  Params_DICT[32]['symptom_desc'],
+        'symptom_desc':  M_Params_DICT[32]['symptom_desc'],
         'tip': '男性朋友如果想要减掉肚子上的赘肉，一定要避免久坐，改掉久坐不运动的坏习惯，坐一段时间一定要站起来走一走，这样能够帮助加速身体的血液循环和新陈代谢速率，坚持下去你的大肚腩会悄悄溜走。'
     },
 
@@ -351,7 +351,7 @@ Detail_Scores = {
         'score': 6,
         'desc': '你拥有一对傲人的胸，真让人羡慕～',
         'suggest': '',
-        'symptom_desc': Params_DICT[33]['symptom_desc'],
+        'symptom_desc': M_Params_DICT[33]['symptom_desc'],
         'tip': ''
     },
 
@@ -359,7 +359,7 @@ Detail_Scores = {
         'score': 4,
         'desc': '你的胸围很标准，已经超过了74%的女性哦～',
         'suggest': '',
-        'symptom_desc': Params_DICT[33]['symptom_desc'],
+        'symptom_desc': M_Params_DICT[33]['symptom_desc'],
         'tip': ''
     },
 
@@ -367,7 +367,7 @@ Detail_Scores = {
         'score': 1,
         'desc': '你的胸围属于平坦型，可以尝试走气质路线',
         'suggest': '你适合挑选设计简单的上衣，对于胸部的平面来说可以展现高级感。',
-        'symptom_desc': Params_DICT[33]['symptom_desc'],
+        'symptom_desc': M_Params_DICT[33]['symptom_desc'],
         'tip': '胸大肌分为胸肌上束、中束、下束，我们需要全方位锻炼，比如：卧推的时候可以采用上斜卧推、平板卧推、下斜卧推等不同角度来刺激胸肌，还可以采用哑铃夹胸、飞鸟来刺激胸肌中缝。'
     },
 
@@ -375,7 +375,7 @@ Detail_Scores = {
         'score': 4,
         'desc': '你的臀围堪称完美，请保持哦～',
         'suggest': '',
-        'symptom_desc': Params_DICT[34]['symptom_desc'],
+        'symptom_desc': M_Params_DICT[34]['symptom_desc'],
         'tip': ''
     },
 
@@ -383,7 +383,7 @@ Detail_Scores = {
         'score': 2,
         'desc': '你的臀围非常标准，超过了59%的女性哦～',
         'suggest': '',
-        'symptom_desc':  Params_DICT[34]['symptom_desc'],
+        'symptom_desc':  M_Params_DICT[34]['symptom_desc'],
         'tip': ''
     },
 
@@ -391,7 +391,7 @@ Detail_Scores = {
         'score': 0,
         'desc': '你的臀围属于偏大类型，你距离迷人蜜桃臀仅有一步之遥哦～',
         'suggest': '你适合搭配百褶裙或者是A字裙，这两种裙子的裙型都是在腰部的地方进行收腰，下摆都会向外扩散，这样的话就会很好的掩盖臀围大的缺点。',
-        'symptom_desc':  Params_DICT[34]['symptom_desc'],
+        'symptom_desc':  M_Params_DICT[34]['symptom_desc'],
         'tip': '双腿后踢：男生可以扶住墙面或者栏杆,将一侧下肢最大限度向后踢,双侧下肢交替完成双腿后踢,也可以有效减少臀部脂肪'
     },
 
@@ -399,7 +399,7 @@ Detail_Scores = {
         'score': 0,
         'desc': '你的臀围偏小，赶快行动修炼蜜桃臀吧～',
         'suggest': '你适合穿着在臀部或胯部两侧有口袋设计的休闲裤，如果口袋有袋盖或是立体口袋，有铆钉、刺绣装饰，效果会更好。',
-        'symptom_desc':  Params_DICT[34]['symptom_desc'],
+        'symptom_desc':  M_Params_DICT[34]['symptom_desc'],
         'tip': '宽距高脚杯深蹲：双脚分开站立，保证之间的距离比肩宽且易于进行动作，身体挺直不要弯曲，胸部挺起，腹部肌肉收紧，双臂弯曲在胸前，双手捧住哑铃。双腿弯曲，臀部向后坐，下蹲一直到大腿大约与地面平行，下蹲过程中身体上半身保证不要弯曲向前稍微倾斜，下蹲结束后起身还原准备的姿势。'
     },
 
@@ -407,7 +407,7 @@ Detail_Scores = {
         'score': 2,
         'desc': '你的臂围堪称完美，请保持哦～',
         'suggest': '',
-        'symptom_desc':  Params_DICT[35]['symptom_desc'],
+        'symptom_desc':  M_Params_DICT[35]['symptom_desc'],
         'tip': ''
     },
 
@@ -415,7 +415,7 @@ Detail_Scores = {
         'score': 1,
         'desc': '你的臂围非常标准，超过62%的女性哦～',
         'suggest': '',
-        'symptom_desc': Params_DICT[35]['symptom_desc'],
+        'symptom_desc': M_Params_DICT[35]['symptom_desc'],
         'tip': ''
     },
 
@@ -423,7 +423,7 @@ Detail_Scores = {
         'score': 0,
         'desc': '你的手臂有拜拜肉倾向，赶快消除它吧～',
         'suggest': '你适合穿着带蝴蝶袖的上衣。蝴蝶袖的造型随性飘逸，设计感强，流畅的线条对体型有良好的修饰作用，遮盖粗手臂，毫不累赘',
-        'symptom_desc':   Params_DICT[35]['symptom_desc'],
+        'symptom_desc':   M_Params_DICT[35]['symptom_desc'],
         'tip': '负重摇臂运动：首先需要准备一个重量物体，比如哑铃或者是一本书;然后身体站立并且挺直，让双手拿着重物放在胸前;接着晃动手臂，向下摆到大腿位置，注意摆动的时候手臂肘尽量贴近身体的两侧;然后，再向上举到与肩同高的位置，手臂向内弯曲。最后重复上述动作即可。'
     },
 
@@ -431,7 +431,7 @@ Detail_Scores = {
         'score': 0,
         'desc': '你的手臂偏细小，让他丰满起来更具魅力吧～',
         'suggest': '',
-        'symptom_desc':  Params_DICT[35]['symptom_desc'],
+        'symptom_desc':  M_Params_DICT[35]['symptom_desc'],
         'tip': '单臂哑铃训练：选用合适重量的哑铃辅助训练，训练时靠单手和单腿的力量支撑在一定的训练椅上，上身保持平直状态，单手紧握杠铃，利用大臂的力量带动抬举杠铃，多次重复抬举动作后进行换边训练。'
     },
 
@@ -439,7 +439,7 @@ Detail_Scores = {
         'score': 2,
         'desc': '你的大腿围堪称完美，请保持哦～',
         'suggest': '',
-        'symptom_desc': Params_DICT[36]['symptom_desc'],
+        'symptom_desc': M_Params_DICT[36]['symptom_desc'],
         'tip': ''
     },
 
@@ -447,7 +447,7 @@ Detail_Scores = {
         'score': 1,
         'desc': '你的大腿围非常标准，超过了59%的女性哦～',
         'suggest': '',
-        'symptom_desc':Params_DICT[36]['symptom_desc'],
+        'symptom_desc':M_Params_DICT[36]['symptom_desc'],
         'tip': ''
     },
 
@@ -455,7 +455,7 @@ Detail_Scores = {
         'score': 0,
         'desc': '你的大腿围偏粗，赶快行动起来吧！',
         'suggest': '选择下装的时候，一定要注意面料的选择，绝对不能选择软塌塌、没型的版型，那样会更加暴露你腿部的缺点。像是针织裤、雪纺这些垂顺感强的面料也要慎重',
-        'symptom_desc': Params_DICT[36]['symptom_desc'],
+        'symptom_desc': M_Params_DICT[36]['symptom_desc'],
         'tip': '游泳是对于一些平时缺乏运动的朋友来说，不仅强度适中，而且还能够有效锻炼身体，减少身体堆积的肥肉。在水中运动的时候，我们需要调动身体各个部位的肌肉，所以也能够完整塑造我们美妙的身材。这对于想要减去腿部肥肉的朋友来说，是非常重要的一件事情。'
     },
 
@@ -463,7 +463,7 @@ Detail_Scores = {
         'score': 0,
         'desc': '你的大腿偏细，快快让它丰满起来吧～',
         'suggest': '',
-        'symptom_desc': Params_DICT[36]['symptom_desc'],
+        'symptom_desc': M_Params_DICT[36]['symptom_desc'],
         'tip': '蛙跳、下蹲与深蹲跳作为开始是个不错的选择，而作为进阶，硬拉与深蹲则能更好的塑造你的腿部肌肉，从而使腿部的线条更为有力。同时，作为训练后的一环，腿部训练要求更多的休息与放松。'
     },
 
@@ -472,7 +472,7 @@ Detail_Scores = {
         'score': 4,
         'desc': '你的小腿堪称完美，请保持哦～',
         'suggest': '',
-        'symptom_desc': Params_DICT[37]['symptom_desc'],
+        'symptom_desc': M_Params_DICT[37]['symptom_desc'],
         'tip': ''
     },
 
@@ -480,7 +480,7 @@ Detail_Scores = {
         'score': 2,
         'desc': '你的小腿围非常标准，超过了62%的女性哦～',
         'suggest': '',
-        'symptom_desc': Params_DICT[37]['symptom_desc'],
+        'symptom_desc': M_Params_DICT[37]['symptom_desc'],
         'tip': ''
     },
 
@@ -488,7 +488,7 @@ Detail_Scores = {
         'score': 0,
         'desc': '你的小腿偏细，让他丰满起来更具魅力吧～',
         'suggest': '',
-        'symptom_desc':Params_DICT[37]['symptom_desc'],
+        'symptom_desc':M_Params_DICT[37]['symptom_desc'],
         'tip': '平时可以多训练冲刺跑。因为对爆发力要求高，能够全面提升小腿腿围和肌肉。'
     },
 
@@ -496,7 +496,7 @@ Detail_Scores = {
         'score': 0,
         'desc': '你的小腿偏粗，赶紧行动起来吧～',
         'suggest': '你适合选择裸色的高跟鞋，鞋面会和脚背的肤色融合在一起，在视觉上能拉长小腿。需要注意的是，鞋跟不必太细太高，鞋跟太高会让小腿的肌肉更突出，而且会和小腿形成明显的锥子型，起到反效果。',
-        'symptom_desc': Params_DICT[37]['symptom_desc'],
+        'symptom_desc': M_Params_DICT[37]['symptom_desc'],
         'tip': ' 平躺在靠近墙的垫子上，脚踩住墙面坐提踵，形象点就是上文提到的判断方法旋转90度，再形象点就是平常的坐姿，只不过变成背着地，脚贴墙，然后做抬脚跟，踮脚尖的动作。'
     },
 
@@ -534,7 +534,7 @@ Detail_Scores = {
 
 }
 
-Element_Scores = {
+M_Element_Scores = {
 
     511: {
         'score': 0,
@@ -609,19 +609,19 @@ Element_Scores = {
     },
 }
 
-Xiachui_Scores = {
+M_Xiachui_Scores = {
         611: {
         'score': 0,
         'desc': '',
         'suggest': '',
-        'symptom_desc': Params_DICT[611]['symptom_desc'],
+        'symptom_desc': M_Params_DICT[611]['symptom_desc'],
         'tip': '单臂伸展运动：这个动作可以锻炼到肩部肌肉和肱三头肌，还能顺带锻炼到胸部、腹部、背部、臀部大腿和小腿的肌肉。将手臂按压在放在地板上的枕头上，腿向后伸直使身体呈一条直线。将右侧手臂向右伸展，掠过地板向上抬起。 稍作停顿后，放下手臂回到初 始位置，整个过程中尽量保持身体的直线状态。将手臂向前抬起与地板平行，然后再向上抬起，再回到初始动作。持续30秒后，换手臂再做30秒。然后深呼吸 30秒放松'
     },
         612: {
         'score': 0,
         'desc': '',
         'suggest': '',
-        'symptom_desc':  Params_DICT[612]['symptom_desc'],
+        'symptom_desc':  M_Params_DICT[612]['symptom_desc'],
         'tip': '平时在饮食上，多吃促进血液循环的食物，如番茄、红辣椒等，以及草莓、苹果、菠萝、香蕉、梅子、猕猴桃、柠檬等水果'
     },
 
@@ -629,7 +629,7 @@ Xiachui_Scores = {
         'score': 0,
         'desc': '',
         'suggest': '',
-        'symptom_desc':  Params_DICT[621]['symptom_desc'],
+        'symptom_desc':  M_Params_DICT[621]['symptom_desc'],
         'tip': '可以选择多运动一下，比如说多出去跑跑步，游泳或者是跳绳之类的，这样都有利于这部分的赘肉减掉，另外可以做俯卧撑或者是仰卧起坐，还有在饮食方面也要记得适当的节食，千万不要再吃太油腻的食物。'
     },
 
@@ -637,26 +637,26 @@ Xiachui_Scores = {
         'score': 0,
         'desc': '',
         'suggest': '',
-        'symptom_desc':  Params_DICT[622]['symptom_desc'],
+        'symptom_desc':  M_Params_DICT[622]['symptom_desc'],
         'tip': '日常一定注意清淡饮食，多摄入全麦类等膳食纤维含量丰富，又容易让人产生饱腹感的食物，保证正常热量的摄入。每日保证合适的体育锻炼，多做转呼啦圈等可以有效促进腹部脂肪燃烧的运动。'
     },
     #     631: {
     #     'score': 0,
     #     'desc': '',
     #     'suggest': '',
-    #     'symptom_desc':  Params_DICT[631]['symptom_desc'],
+    #     'symptom_desc':  M_Params_DICT[631]['symptom_desc'],
     #     'tip': '可以选择多运动一下，比如说多出去跑跑步，游泳或者是跳绳之类的，这样都有利于这部分的赘肉减掉，另外可以做俯卧撑或者是仰卧起坐，还有在饮食方面也要记得适当的节食，千万不要再吃太油腻的食物。'
     # },
     #     632: {
     #     'score': 0,
     #     'desc': '',
     #     'suggest': '',
-    #     'symptom_desc':  Params_DICT[632]['symptom_desc'],
+    #     'symptom_desc':  M_Params_DICT[632]['symptom_desc'],
     #     'tip': '日常一定注意清淡饮食，多摄入全麦类等膳食纤维含量丰富，又容易让人产生饱腹感的食物，保证正常热量的摄入。每日保证合适的体育锻炼，多做转呼啦圈等可以有效促进腹部脂肪燃烧的运动.'
     # },
 }
 
-BMI_Standards = {
+M_BMI_Standards = {
     150: {
         'top_w': 105,
         'down_w': 81,
@@ -790,7 +790,7 @@ BMI_Standards = {
 
 }
 
-Body_Standards = {
+M_Body_Standards = {
     'whole': {
         # 1.2
         'delta_Tun_Jian': 2,
@@ -855,159 +855,159 @@ Body_Standards = {
     },
 }
 
-FULL_DICT = {
+M_FULL_DICT = {
     111: {
 		'name': 'BMI',
         'result': '偏瘦',
-        'scores': BMI_Scores['thin']
+        'scores': M_BMI_Scores['thin']
     },
     112: {
 		'name': 'BMI',
         'result': '完美',
-        'scores': BMI_Scores['perfect']
+        'scores': M_BMI_Scores['perfect']
     },
     113: {
 		'name': 'BMI',
         'result': '标准',
-        'scores': BMI_Scores['normal']
+        'scores': M_BMI_Scores['normal']
     },
     114: {
 		'name': 'BMI',
         'result': '偏胖',
-        'scores': BMI_Scores['fat']
+        'scores': M_BMI_Scores['fat']
     },
     121: {
 		'name': '身型',
         'result': '倒三角形身材',
-        'scores': Body_Scores[121]
+        'scores': M_Body_Scores[121]
     },
     122: {
 		'name': '身型',
         'result': '矩形身材',
-        'scores': Body_Scores[122]
+        'scores': M_Body_Scores[122]
     },
     123: {
 		'name': '身型',
         'result': '正三角形身材',
-        'scores': Body_Scores[123]
+        'scores': M_Body_Scores[123]
     },
     124: {
 		'name': '身型',
         'result': '椭圆形身材',
-        'scores': Body_Scores[124]
+        'scores': M_Body_Scores[124]
     },
 
     211: {
 			'name': '头肩比',
 			'result': '完美',
-          'scores': Part_Scores[211]},
+          'scores': M_Part_Scores[211]},
     212: {'name': '头肩比',
 			'result': '标准',
-          'scores': Part_Scores[212]},
+          'scores': M_Part_Scores[212]},
     213: {'name': '头肩比','result': '有待改善',
-          'scores': Part_Scores[213]},
+          'scores': M_Part_Scores[213]},
 
     221: {'name': '头身比',
 	'result': '八头身',
-          'scores': Part_Scores[221]},
+          'scores': M_Part_Scores[221]},
     222: {'name': '头身比','result': '标准',
-          'scores': Part_Scores[222]},
+          'scores': M_Part_Scores[222]},
     223: {'name': '头身比','result': '有待改善',
-          'scores': Part_Scores[223]},
+          'scores': M_Part_Scores[223]},
 
     231: {'name': '腿身比', 'result': '超长腿',
-          'scores': Part_Scores[231]},
+          'scores': M_Part_Scores[231]},
     232: {'name': '腿身比','result': '长腿',
-          'scores': Part_Scores[232]},
+          'scores': M_Part_Scores[232]},
     233: {'name': '腿身比','result': '标准腿',
-          'scores': Part_Scores[233]},
+          'scores': M_Part_Scores[233]},
     234: {'name': '腿身比','result': '短腿型',
-          'scores': Part_Scores[234]},
+          'scores': M_Part_Scores[234]},
 
     241: {'name': '大小腿长比','result': '黄金比例',
-          'scores': Part_Scores[241]},
+          'scores': M_Part_Scores[241]},
     242: {'name': '大小腿长比','result': '正常标准',
-          'scores': Part_Scores[242]},
+          'scores': M_Part_Scores[242]},
 
 
     251: {'name': '腰臀比','result': '黄金比例',
-          'scores': Part_Scores[251]},
+          'scores': M_Part_Scores[251]},
     253: {'name': '腰臀比','result': '标准',
-          'scores': Part_Scores[253]},
+          'scores': M_Part_Scores[253]},
     252: {'name': '腰臀比','result': '肥胖',
-          'scores': Part_Scores[252]},
+          'scores': M_Part_Scores[252]},
 
     262: {'name': '胸型','result': '标准胸型',
-          'scores': Part_Scores[262]},
+          'scores': M_Part_Scores[262]},
     261: {'name': '胸型','result': '胸外扩',
-          'scores': Part_Scores[261]},
+          'scores': M_Part_Scores[261]},
     
     311: {'name': '颈围','result': '修长',
-          'scores': Detail_Scores[311]},
+          'scores': M_Detail_Scores[311]},
     312: {'name': '颈围','result': '标准脖',
-          'scores': Detail_Scores[312]},
+          'scores': M_Detail_Scores[312]},
     313: {'name': '颈围','result': '粗脖',
-          'scores': Detail_Scores[313]},
+          'scores': M_Detail_Scores[313]},
 
     321: {'name': '腰围','result': '纤细',
-          'scores': Detail_Scores[321]},
+          'scores': M_Detail_Scores[321]},
     322: {'name': '腰围','result': '标准',
-          'scores': Detail_Scores[322]},
+          'scores': M_Detail_Scores[322]},
     323: {'name': '腰围','result': '肥胖',
-          'scores': Detail_Scores[323]},
+          'scores': M_Detail_Scores[323]},
 
     331: {'name': '胸围','result': '完美',
-          'scores': Detail_Scores[331]},
+          'scores': M_Detail_Scores[331]},
     332: {'name': '胸围','result': '标准',
-          'scores': Detail_Scores[332]},
+          'scores': M_Detail_Scores[332]},
     333: {'name': '胸围','result': '偏小',
-          'scores': Detail_Scores[333]},
+          'scores': M_Detail_Scores[333]},
 
     343: {'name': '臀围','result': '偏大',
-          'scores': Detail_Scores[343]},
+          'scores': M_Detail_Scores[343]},
     341: {'name': '臀围','result': '完美',
-          'scores': Detail_Scores[341]},
+          'scores': M_Detail_Scores[341]},
     342: {'name': '臀围','result': '标准',
-          'scores': Detail_Scores[342]},
+          'scores': M_Detail_Scores[342]},
     344: {'name': '臀围','result': '偏小',
-          'scores': Detail_Scores[344]},
+          'scores': M_Detail_Scores[344]},
 
     354: {'name': '手臂围','result': '偏细',
-          'scores': Detail_Scores[354]},
+          'scores': M_Detail_Scores[354]},
     351: {'name': '手臂围','result': '完美',
-          'scores': Detail_Scores[351]},
+          'scores': M_Detail_Scores[351]},
     352: {'name': '手臂围','result': '标准',
-          'scores': Detail_Scores[352]},
+          'scores': M_Detail_Scores[352]},
     353: {'name': '手臂围','result': '偏粗',
-          'scores': Detail_Scores[353]},
+          'scores': M_Detail_Scores[353]},
 
 
     363: {'name': '大腿围','result': '偏粗',
-          'scores': Detail_Scores[363]},
+          'scores': M_Detail_Scores[363]},
     361: {'name': '大腿围','result': '完美',
-          'scores': Detail_Scores[361]},
+          'scores': M_Detail_Scores[361]},
     362: {'name': '大腿围','result': '标准',
-          'scores': Detail_Scores[362]},
+          'scores': M_Detail_Scores[362]},
     364: {'name': '大腿围','result': '偏细',
-          'scores': Detail_Scores[364]},
+          'scores': M_Detail_Scores[364]},
 
     373: {'name': '小腿围','result': '偏细',
-          'scores': Detail_Scores[373]},
+          'scores': M_Detail_Scores[373]},
     371: {'name': '小腿围','result': '完美',
-          'scores': Detail_Scores[371]},
+          'scores': M_Detail_Scores[371]},
     372: {'name': '小腿围','result': '标准',
-          'scores': Detail_Scores[372]},
+          'scores': M_Detail_Scores[372]},
     374: {'name': '小腿围','result': '偏粗',
-          'scores': Detail_Scores[374]},
+          'scores': M_Detail_Scores[374]},
 
     384: {'name': '脚踝','result': '偏细',
-          'scores': Detail_Scores[384]},
+          'scores': M_Detail_Scores[384]},
     381: {'name': '脚踝','result': '完美',
-          'scores': Detail_Scores[381]},
+          'scores': M_Detail_Scores[381]},
     382: {'name': '脚踝','result': '标准',
-          'scores': Detail_Scores[382]},
+          'scores': M_Detail_Scores[382]},
     383: {'name': '脚踝','result': '偏粗',
-          'scores': Detail_Scores[383]},
+          'scores': M_Detail_Scores[383]},
 
 
     411: {'result': '正常', 'scores': {}},
@@ -1029,40 +1029,40 @@ FULL_DICT = {
     453: {'result': 'X型腿', 'scores': {}},
 
     511: {'name': '体重','result': '偏瘦',
-          'scores': Element_Scores[511]},
+          'scores': M_Element_Scores[511]},
     512: {'name': '体重','result': '标准',
-          'scores': Element_Scores[512]},
+          'scores': M_Element_Scores[512]},
     513: {'name': '体重','result': '偏胖',
-          'scores': Element_Scores[513]},
+          'scores': M_Element_Scores[513]},
     514: {'name': '体重','result': '肥胖',
-          'scores': Element_Scores[514]},
+          'scores': M_Element_Scores[514]},
     521: {'name': '体脂率','result': '偏低',
-          'scores': Element_Scores[521]},
+          'scores': M_Element_Scores[521]},
     522: {'name': '体脂率','result': '标准',
-          'scores': Element_Scores[522]},
+          'scores': M_Element_Scores[522]},
     523: {'name': '体脂率', 'result': '偏高',
-          'scores': Element_Scores[523]},
+          'scores': M_Element_Scores[523]},
     524: {'name': '体脂率', 'result': '高',
-          'scores': Element_Scores[524]},
+          'scores': M_Element_Scores[524]},
     525: {'name': '体脂率', 'result': '偏低',
-          'scores': Element_Scores[525]},
+          'scores': M_Element_Scores[525]},
     526: {'name': '体脂率', 'result': '标准',
-          'scores': Element_Scores[526]},
+          'scores': M_Element_Scores[526]},
     527: {'name': '体脂率', 'result': '偏高',
-          'scores': Element_Scores[527]},
+          'scores': M_Element_Scores[527]},
     528: {'name': '体脂率', 'result': '高',
-          'scores': Element_Scores[528]},
+          'scores': M_Element_Scores[528]},
 
-    611: {'name': '拜拜肉', 'result': '拜拜肉倾向', 'scores': Xiachui_Scores[611]},
-    612: {'name': '拜拜肉', 'result': '正常', 'scores': Xiachui_Scores[612]},
-    621: {'name': '游泳圈', 'result': '游泳圈倾向', 'scores': Xiachui_Scores[621]},
-    622: {'name': '游泳圈', 'result': '正常', 'scores': Xiachui_Scores[622]},
+    611: {'name': '拜拜肉', 'result': '拜拜肉倾向', 'scores': M_Xiachui_Scores[611]},
+    612: {'name': '拜拜肉', 'result': '正常', 'scores': M_Xiachui_Scores[612]},
+    621: {'name': '游泳圈', 'result': '游泳圈倾向', 'scores': M_Xiachui_Scores[621]},
+    622: {'name': '游泳圈', 'result': '正常', 'scores': M_Xiachui_Scores[622]},
 
 }
 
 def get_eval_collection(item_id): #item_id 
     res = []
-    for _k, _v in FULL_DICT.items():
+    for _k, _v in M_FULL_DICT.items():
         if _k // 10 == item_id:
             res.append(_v['result'])
 
@@ -1073,7 +1073,7 @@ bmi_perfect_rules = []
 bmi_normal_rules = []
 bmi_fat_rules = []
 
-for h_k, w_vals in BMI_Standards.items():
+for h_k, w_vals in M_BMI_Standards.items():
     down_w = w_vals['down_w']
     top_w = w_vals['top_w']
     perfect_w = w_vals['perfect_w']
@@ -1088,7 +1088,7 @@ for h_k, w_vals in BMI_Standards.items():
     bmi_normal_rules.append(s_rule)
     bmi_perfect_rules.append(p_rule)
 
-BS_W = Body_Standards['whole']
+BS_W = M_Body_Standards['whole']
 bw_r_1 = (m.g_hip_167 > m.g_shoulder_104 + BS_W['delta_Tun_Jian'])
 bw_r_2 = (m.g_shoulder_104 > m.g_waist_155 + BS_W['delta_Jian_Yao'])
 bw_r_3 = (m.g_hip_167 <= m.g_shoulder_104 + BS_W['delta_Tun_Jian'])
@@ -1101,7 +1101,7 @@ rule_124 = bw_r_1 & bw_r_4
 rule_122 = bw_r_3 & bw_r_5
 rule_121 = bw_r_3 & bw_r_6
 
-BS_P = Body_Standards['part']
+BS_P = M_Body_Standards['part']
 r211_a = m.w_shoulder_210_211 <= m.w_head_212_213 * (BS_P['ratio_Jian_Tou'] + BS_P['range_Jian_Tou_down'])
 r211_b = m.w_shoulder_210_211 >= m.w_head_212_213 * (BS_P['ratio_Jian_Tou'] - BS_P['range_Jian_Tou_down'])
 rule_211 = r211_a & r211_b
@@ -1156,7 +1156,7 @@ r262_a =  m.w_busts_205_206 <= m.w_shoulder_210_211 * BS_P['ratio_Nip_Shoulder']
 rule_261 = r261_a
 rule_262 = r262_a
 
-BS_D = Body_Standards['detail']
+BS_D = M_Body_Standards['detail']
 rule_311 = m.g_neck_140 <  BS_D['girth_Neck_down']
 r312_a = m.g_neck_140 >= BS_D['girth_Neck_down']
 r312_b = m.g_neck_140 < BS_D['girth_Neck_top']
@@ -1315,6 +1315,7 @@ def current_result():
     overall_res['total_scores'] = sum_scores
     # overall_res['total_desc'] = " ".join(sum_descs)
     # overall_res['total_suggest'] = " ".join(sum_suggs)
+    print(f"result is: {execute_m.results}")
     return execute_m.results
 
 def execute_m(facts, rule_str=None):
@@ -1322,23 +1323,23 @@ def execute_m(facts, rule_str=None):
     if rule_str:
         assert_fact(rule_str, facts)
     else:
-        post('figure-bmi', facts)
-        post('figure-body',facts)
+        post('M-figure-bmi', facts)
+        post('M-figure-body',facts)
 
         for i in range(6):
             post(f'M-figure-part-2{i+1}', facts)
 
         for i in range(7):
-            post(f"figure-detail-3{i+1}", facts)
+            post(f"M-figure-detail-3{i+1}", facts)
         
         for i in range(1):
-            post(f"body-element-5{i+1}", facts)
+            post(f"M-body-element-5{i+1}", facts)
         
         for i in range(2):
-            post(f"body-xiachui-6{i+1}", facts)
+            post(f"M-body-xiachui-6{i+1}", facts)
             
 
-    print(f"result is {execute_m.results}")
+    # print(f"result is {execute_m.results}")
     # print(get_facts(rule_str))
     return execute_m.results
 
@@ -1406,9 +1407,9 @@ Summary_dict = {
 }
 
 
-execute_m.results = {
+# execute_m.results = {
 
-}
+# }
 
 def find_classify_key(item_id):
     res = []
@@ -1614,8 +1615,8 @@ def rule_result(item_iid, data):
             execute_m.results[cls_key] = {}
         cls_res = execute_m.results[cls_key]
         py_key = ms_key_dict.get(item_id, "UNKNOWN")
-        cls_res[py_key] = FULL_DICT[item_iid]
-        # py_res = FULL_DICT[item_iid]
+        cls_res[py_key] = M_FULL_DICT[item_iid]
+        # py_res = M_FULL_DICT[item_iid]
         if value is not None:
             cls_res[py_key]['value'] = value
             # py_res['value'] = value
@@ -1626,7 +1627,7 @@ def rule_result(item_iid, data):
         # py_res['result_collection']  = get_eval_collection(item_id)
         # cls_res.append(py_res)
 
-        if not in_sm and 50 > item_id > 20 and FULL_DICT[item_iid]['result'] not in GOOD_RESULTS:
+        if not in_sm and 50 > item_id > 20 and M_FULL_DICT[item_iid]['result'] not in GOOD_RESULTS:
             print("find item_id")
             _sk = find_summary_key(item_id)
             if _sk is not None:
@@ -1686,313 +1687,313 @@ def register_rules():
         @when_all(rule_311)
         def r_3(c):
             rule_result(311, c.m)
-            # execute_m.results['颈围31'] = FULL_DICT[311]
+            # execute_m.results['颈围31'] = M_FULL_DICT[311]
 
         @when_all(rule_312)
         def r_3(c):
             rule_result(312, c.m)
-            # execute_m.results['颈围31'] = FULL_DICT[312]
+            # execute_m.results['颈围31'] = M_FULL_DICT[312]
 
         @when_all(rule_313)
         def r_3(c):
             rule_result(313, c.m)
-            # execute_m.results['颈围31'] = FULL_DICT[313]
+            # execute_m.results['颈围31'] = M_FULL_DICT[313]
 
     with ruleset('M-figure-detail-32'):
         @when_all(rule_321)
         def r_3(c):
             rule_result(321, c.m)
-            # execute_m.results['腰围32'] = FULL_DICT[321]
+            # execute_m.results['腰围32'] = M_FULL_DICT[321]
 
         @when_all(rule_322)
         def r_3(c):
             rule_result(322, c.m)
-            # execute_m.results['腰围32'] = FULL_DICT[322]
+            # execute_m.results['腰围32'] = M_FULL_DICT[322]
 
         @when_all(rule_323)
         def r_3(c):
             rule_result(323, c.m)
-            # execute_m.results['腰围32'] = FULL_DICT[323]
+            # execute_m.results['腰围32'] = M_FULL_DICT[323]
 
     with ruleset('M-figure-detail-33'):
         @when_all(rule_331)
         def r_3(c):
             rule_result(331, c.m)
-            # execute_m.results['胸围33'] = FULL_DICT[331]
+            # execute_m.results['胸围33'] = M_FULL_DICT[331]
 
         @when_all(rule_332)
         def r_3(c):
             rule_result(332, c.m)
-            # execute_m.results['胸围33'] = FULL_DICT[332]
+            # execute_m.results['胸围33'] = M_FULL_DICT[332]
 
         @when_all(rule_333)
         def r_3(c):
             rule_result(333, c.m)
-            # execute_m.results['胸围33'] = FULL_DICT[333]
+            # execute_m.results['胸围33'] = M_FULL_DICT[333]
 
     with ruleset('M-figure-detail-34'):
         @when_all(rule_341)
         def r_3(c):
             rule_result(341, c.m)
-            # execute_m.results['臀围34'] = FULL_DICT[341]
+            # execute_m.results['臀围34'] = M_FULL_DICT[341]
 
         @when_all(rule_342)
         def r_3(c):
             rule_result(342, c.m)
-            # execute_m.results['臀围34'] = FULL_DICT[342]
+            # execute_m.results['臀围34'] = M_FULL_DICT[342]
 
         @when_all(rule_343)
         def r_3(c):
             rule_result(343, c.m)
-            # execute_m.results['臀围34'] = FULL_DICT[343]
+            # execute_m.results['臀围34'] = M_FULL_DICT[343]
 
         @when_all(rule_344)
         def r_3(c):
             rule_result(344, c.m)
-            # execute_m.results['臀围34'] = FULL_DICT[344]
+            # execute_m.results['臀围34'] = M_FULL_DICT[344]
 
     with ruleset('M-figure-detail-35'):
         @when_all(rule_351)
         def r_3(c):
             rule_result(351, c.m)
-            # execute_m.results['手臂围35'] = FULL_DICT[351]
+            # execute_m.results['手臂围35'] = M_FULL_DICT[351]
 
         @when_all(rule_352)
         def r_3(c):
             rule_result(352, c.m)
-            # execute_m.results['手臂围35'] = FULL_DICT[352]
+            # execute_m.results['手臂围35'] = M_FULL_DICT[352]
 
         @when_all(rule_353)
         def r_3(c):
             rule_result(353, c.m)
-            # execute_m.results['手臂围35'] = FULL_DICT[353]
+            # execute_m.results['手臂围35'] = M_FULL_DICT[353]
 
         @when_all(rule_354)
         def r_3(c):
             rule_result(354, c.m)
-            # execute_m.results['手臂围35'] = FULL_DICT[354]
+            # execute_m.results['手臂围35'] = M_FULL_DICT[354]
 
     with ruleset('M-figure-detail-36'):
         @when_all(rule_361)
         def r_3(c):
             rule_result(361, c.m)
-            # execute_m.results['大腿围36'] = FULL_DICT[361]
+            # execute_m.results['大腿围36'] = M_FULL_DICT[361]
 
         @when_all(rule_362)
         def r_3(c):
             rule_result(362, c.m)
-            # execute_m.results['大腿围36'] = FULL_DICT[362]
+            # execute_m.results['大腿围36'] = M_FULL_DICT[362]
 
         @when_all(rule_363)
         def r_3(c):
             rule_result(363, c.m)
-            # execute_m.results['大腿围36'] = FULL_DICT[363]
+            # execute_m.results['大腿围36'] = M_FULL_DICT[363]
 
         @when_all(rule_364)
         def r_3(c):
             rule_result(364, c.m)
-            # execute_m.results['大腿围36'] = FULL_DICT[364]
+            # execute_m.results['大腿围36'] = M_FULL_DICT[364]
 
     with ruleset('M-figure-detail-37'):
         @when_all(rule_371)
         def r_3(c):
             rule_result(371, c.m)
-            # execute_m.results['小腿围37'] = FULL_DICT[371]
+            # execute_m.results['小腿围37'] = M_FULL_DICT[371]
 
         @when_all(rule_372)
         def r_3(c):
             rule_result(372, c.m)
-            # execute_m.results['小腿围37'] = FULL_DICT[372]
+            # execute_m.results['小腿围37'] = M_FULL_DICT[372]
 
         @when_all(rule_373)
         def r_3(c):
             rule_result(373, c.m)
-            # execute_m.results['小腿围37'] = FULL_DICT[373]
+            # execute_m.results['小腿围37'] = M_FULL_DICT[373]
 
         @when_all(rule_374)
         def r_3(c):
             rule_result(374, c.m)
-            # execute_m.results['小腿围37'] = FULL_DICT[374]
+            # execute_m.results['小腿围37'] = M_FULL_DICT[374]
 
     # with ruleset('M-figure-detail-38'):
     #     @when_all(rule_381)
     #     def r_3(c):
     #         rule_result(381, c.m)
-    #         # execute_m.results['脚踝38'] = FULL_DICT[381]
+    #         # execute_m.results['脚踝38'] = M_FULL_DICT[381]
 
     #     @when_all(rule_382)
     #     def r_3(c):
     #         rule_result(382, c.m)
-    #         # execute_m.results['脚踝38'] = FULL_DICT[382]
+    #         # execute_m.results['脚踝38'] = M_FULL_DICT[382]
 
     #     @when_all(rule_383)
     #     def r_3(c):
     #         rule_result(383, c.m)
-    #         # execute_m.results['脚踝38'] = FULL_DICT[383]
+    #         # execute_m.results['脚踝38'] = M_FULL_DICT[383]
 
     #     @when_all(rule_384)
     #     def r_3(c):
     #         rule_result(384, c.m)
-    #         # execute_m.results['脚踝38'] = FULL_DICT[384]
+    #         # execute_m.results['脚踝38'] = M_FULL_DICT[384]
 
     with ruleset('M-figure-part-21'):
         # part of body
         @when_all(rule_211)
         def r_211(c):
             rule_result(211, c.m)
-            # execute_m.results['头肩比21'] = FULL_DICT[211]
+            # execute_m.results['头肩比21'] = M_FULL_DICT[211]
 
         @when_all(rule_212)
         def r_212(c):
             rule_result(212, c.m)
-            # execute_m.results['头肩比21'] = FULL_DICT[212]
+            # execute_m.results['头肩比21'] = M_FULL_DICT[212]
 
         @when_all(rule_213)
         def r_213(c):
             rule_result(213, c.m)
-            # execute_m.results['头肩比21'] = FULL_DICT[213]
+            # execute_m.results['头肩比21'] = M_FULL_DICT[213]
 
     with ruleset('M-figure-part-22'):
         @when_all(rule_221)
         def r_221(c):
             rule_result(221, c.m)
-            # execute_m.results['头身比22'] = FULL_DICT[221]
+            # execute_m.results['头身比22'] = M_FULL_DICT[221]
 
         @when_all(rule_222)
         def r_222(c):
             rule_result(222, c.m)
-            # execute_m.results['头身比22'] = FULL_DICT[222]
+            # execute_m.results['头身比22'] = M_FULL_DICT[222]
 
         @when_all(rule_223)
         def r_223(c):
             rule_result(223, c.m)
-            # execute_m.results['头身比22'] = FULL_DICT[223]
+            # execute_m.results['头身比22'] = M_FULL_DICT[223]
 
     with ruleset('M-figure-part-23'):
         @when_all(rule_231)
         def r_231(c):
             rule_result(231, c.m)
-            # execute_m.results['腿身比23'] = FULL_DICT[231]
+            # execute_m.results['腿身比23'] = M_FULL_DICT[231]
         
         @when_all(rule_232)
         def r_232(c):
             rule_result(232, c.m)
-            # execute_m.results['腿身比23'] = FULL_DICT[232]
+            # execute_m.results['腿身比23'] = M_FULL_DICT[232]
 
         @when_all(rule_233)
         def r_233(c):
             rule_result(233, c.m)
-            # execute_m.results['腿身比23'] = FULL_DICT[233]
+            # execute_m.results['腿身比23'] = M_FULL_DICT[233]
 
         @when_all(rule_234)
         def r_234(c):
             rule_result(234, c.m)
-            # execute_m.results['腿身比23'] = FULL_DICT[234]
+            # execute_m.results['腿身比23'] = M_FULL_DICT[234]
 
     with ruleset('M-figure-part-24'):
         @when_all(rule_241)
         def r_241(c):
             rule_result(241, c.m)
-            # execute_m.results['大小腿长比24'] = FULL_DICT[241]
+            # execute_m.results['大小腿长比24'] = M_FULL_DICT[241]
 
         @when_all(rule_242)
         def r_242(c):
             rule_result(242, c.m)
-            # execute_m.results['大小腿长比24'] = FULL_DICT[242]
+            # execute_m.results['大小腿长比24'] = M_FULL_DICT[242]
 
     with ruleset('M-figure-part-25'):
         @when_all(rule_251)
         def r_251(c):
             rule_result(251, c.m)
-            # execute_m.results['腰臀比25'] = FULL_DICT[251]
+            # execute_m.results['腰臀比25'] = M_FULL_DICT[251]
 
         @when_all(rule_252)
         def r_252(c):
             rule_result(252, c.m)
-            # execute_m.results['腰臀比25'] = FULL_DICT[252]
+            # execute_m.results['腰臀比25'] = M_FULL_DICT[252]
 
         @when_all(rule_253)
         def r_253(c):
             rule_result(253, c.m)
-            # execute_m.results['腰臀比25'] = FULL_DICT[253]
+            # execute_m.results['腰臀比25'] = M_FULL_DICT[253]
 
     with ruleset('M-figure-part-26'):
         @when_all(rule_261)
         def r_261(c):
             rule_result(261, c.m)
-            # execute_m.results['胸型26'] = FULL_DICT[261]
+            # execute_m.results['胸型26'] = M_FULL_DICT[261]
 
         @when_all(rule_262)
         def r_262(c):
             rule_result(262, c.m)
-            # execute_m.results['胸型26'] = FULL_DICT[262]
+            # execute_m.results['胸型26'] = M_FULL_DICT[262]
 
     with ruleset('M-figure-body'):
         # whole body
         @when_all(rule_121)
         def r_121(c):
             rule_result(121, c.m)
-            # execute_m.results['身型12'] = FULL_DICT[121]
+            # execute_m.results['身型12'] = M_FULL_DICT[121]
         
         @when_all(rule_122)
         def r_122(c):
             rule_result(122, c.m)
-            # execute_m.results['身型12'] = FULL_DICT[122]
+            # execute_m.results['身型12'] = M_FULL_DICT[122]
 
         @when_all(rule_123)
         def r_123(c):
             rule_result(123, c.m)
-            # execute_m.results['身型12'] = FULL_DICT[123]
+            # execute_m.results['身型12'] = M_FULL_DICT[123]
 
         @when_all(rule_124)
         def r_124(c):
             rule_result(124, c.m)
-            # execute_m.results['身型12'] = FULL_DICT[124]
+            # execute_m.results['身型12'] = M_FULL_DICT[124]
 
     with ruleset('M-figure-bmi'):
         # thin bmi
         @when_all(trule_half0)
         def thin(c):
             rule_result(111, c.m)
-            # execute_m.results['BMI11'] = FULL_DICT[111]
+            # execute_m.results['BMI11'] = M_FULL_DICT[111]
 
         @when_all(trule_half1)
         def thin_a(c):
             rule_result(111, c.m)
-            # execute_m.results['BMI11'] = FULL_DICT[111]
+            # execute_m.results['BMI11'] = M_FULL_DICT[111]
         # fat bmi
 
         @when_all(frule_half0)
         def fat(c):
             rule_result(114, c.m)
-            # execute_m.results['BMI11'] = FULL_DICT[114]
+            # execute_m.results['BMI11'] = M_FULL_DICT[114]
 
         @when_all(frule_half1)
         def fat_a(c):
             rule_result(114, c.m)
-            # execute_m.results['BMI11'] = FULL_DICT[114]
+            # execute_m.results['BMI11'] = M_FULL_DICT[114]
         # standard bmi
 
         @when_all(srule_half0)
         def normal(c):
             rule_result(113, c.m)
-            # execute_m.results['BMI11'] = FULL_DICT[113]
+            # execute_m.results['BMI11'] = M_FULL_DICT[113]
 
         @when_all(srule_half1)
         def normal_a(c):
             rule_result(113, c.m)
-            # execute_m.results['BMI11'] = FULL_DICT[113]
+            # execute_m.results['BMI11'] = M_FULL_DICT[113]
         # perfect bmi
 
         @when_all(prule_half0)
         def perfect(c):
             rule_result(112, c.m)
-            # execute_m.results['BMI11'] = FULL_DICT[112]
+            # execute_m.results['BMI11'] = M_FULL_DICT[112]
 
         @when_all(prule_half1)
         def perfect_a(c):
             rule_result(112, c.m)
-            # execute_m.results['BMI11'] = FULL_DICT[112]
+            # execute_m.results['BMI11'] = M_FULL_DICT[112]
 
 register_rules()
 
