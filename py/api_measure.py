@@ -383,12 +383,7 @@ def new_tt_calculate(height, weight, gender, girths_data, lmpoints_data, slen_da
         new_figure(M, f, height, weight, girths_data, lmpoints_data, slen_data)
         rule_exec_m(f)
         return current_result_m()
-    #rule_exec = rule_exec_f if gender == 0 else rule_exec_m
-    #f_test = {'height': 173, 'weight': 60, 'height2': 300.15, 'g_hip_167': 105.7, 'g_shoulder_104': 105.7, 'g_sum_167_104': 211.4, 'g_waist_155': 90.0, 'g_neck_140': 44.8, 'g_bust_144': 111.7, 'g_lbiceps_125': 33.7, 'g_lwrist_123': 19.9, 'g_rbiceps_126': 34.3, 'g_rwrist_121': 20.4, 'g_lmthigh_111': 49.7, 'g_rmthigh_112': 51.3, 'g_lmcalf_115': 36.6, 'g_rmcalf_116': 36.0, 'g_lankle_117': 27.4, 'g_rankle_118': 34.5, 'w_shoulder_210_211': 43.7, 'w_busts_205_206': 22.9, 'w_head_212_213': 17.4, 'h_head_202': 25.0, 'h_upper_body': 95.7, 'h_knee': 50.6, 'h_chin': 148.2, 'h_leg_333_334': 77.5, 'h_upper_leg': 27.0, 'g_abdomen_161': 89.9, 'g_waist_163': 91.9, 'g_upper_chest_143': 111.3}
 
-    #rule_exec(f_test)
-    #rule_exec(f)
-    #return current_result_f() if gender == 0 else current_result_m()
 
 RC4_dict = {
     "TouCeWai": get_eval_collection_f(41) ,
@@ -596,7 +591,36 @@ def handle_3d_measure_json(m_result):
     result_v2 = new_tt_calculate(eval_height/100, input_weight/2, _gender, girths, ldmk_points, slen_data)
     # result_v1['TiTai']['v2'] = new_tt_calculate(eval_height, input_weight, girths, ldmk_points, slen_data) 
     # 
-    result = merge_result(result_v1, result_v2)          
+    tt_score = 0
+    for _ttk, _ttv in lp_result.items():
+        _score = _ttv.get('score', 0)
+        if _score > 0 and _gender == 0:
+            _score = 10
+        tt_score += _score
+
+    #
+    result = merge_result(result_v1, result_v2)    
+
+    try:
+        score_measured = result['Overall']['scores']['score']
+        score_measured = score_measured * 0.4 + tt_score
+        result['Overall']['scores']['score'] = score_measured
+
+        if score_measured < 55:
+            star_num = 1
+        elif score_measured < 75:
+            star_num = 2
+        elif score_measured < 85:
+            star_num = 3
+        elif score_measured < 95:
+            star_num = 4
+        else:
+            star_num = 5
+        
+        result['EXTRA']['star'] = star_num
+
+    except:
+        pass      
 
     log.warn("[Debug] Handled TiTai .\n")
     return 200, result
