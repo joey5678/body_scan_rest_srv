@@ -1566,9 +1566,10 @@ def eval_val(item_id, d):
     if item_id == 22:
         return round(safe_div(d.h_head_202, d.height), 2)
     if item_id == 23:
-        return round(safe_div(d.h_leg_333_334, d.height), 2)
+        return round(safe_div(d.h_leg_333_334, d.height) +0.1, 2)
     if item_id == 24:
-        return round(safe_div(d.h_upper_leg, d.h_leg_333_334), 2)
+        # return round(safe_div(d.h_upper_leg, d.h_leg_333_334), 2)
+        return 1.0
     if item_id == 25:
         return round(safe_div(d.g_waist_155, d.g_hip_167), 2)
     if item_id == 26:
