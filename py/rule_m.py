@@ -1254,12 +1254,12 @@ rule_513 = r513_a & r513_b
 r514 = m.weight > m.height2 * 0.60
 rule_514 = r514
 
-r611_a = m.g_lbiceps_125 > m.height * 0.6 +6 
-r611_b = m.g_lbiceps_125 > m.g_lmthigh_111 * 0.5
+r611_a = m.g_lbiceps_125 > m.height * 0.6 + 3
+r611_b = m.g_lbiceps_125 > m.g_lmthigh_111 * 0.333
 rule_611 = r611_a & r611_b
 
-r612_a = m.g_lbiceps_125 <= m.height * 0.6 +6 
-r612_b = m.g_lbiceps_125 <= m.g_lmthigh_111 * 0.5
+r612_a = m.g_lbiceps_125 <= m.height * 0.6 + 3
+r612_b = m.g_lbiceps_125 <= m.g_lmthigh_111 * 0.333
 rule_612 = r612_a | r612_b
 
 # r621 = m.g_upper_chest_143 < m.g_bust_144 * 0.333
@@ -1267,9 +1267,9 @@ rule_612 = r612_a | r612_b
 # r622 = m.g_upper_chest_143 >= m.g_bust_144 * 0.333
 # rule_622 = r622
 
-r621 = m.g_abdomen_161 > m.g_waist_163 + 5
+r621 = m.g_abdomen_161 > m.g_waist_163 + 2
 rule_621 = r621
-r622 = m.g_abdomen_161 <= m.g_waist_163 + 5
+r622 = m.g_abdomen_161 <= m.g_waist_163 + 2
 rule_622 = r622
 
 
@@ -1559,9 +1559,10 @@ def eval_val(item_id, d):
     if item_id == 22:
         return round(safe_div(d.h_head_202, d.height), 2)
     if item_id == 23:
-        return round(safe_div(d.h_leg_333_334, d.height), 2)
+        return round(safe_div(d.h_leg_333_334, d.height) -0.1, 2)
     if item_id == 24:
-        return round(safe_div(d.h_upper_leg, d.h_leg_333_334), 2)
+        # return round(safe_div(d.h_upper_leg, (d.h_leg_333_334-d.h_upper_leg)), 2)
+        return 1.0
     if item_id == 25:
         return round(safe_div(d.g_waist_155, d.g_hip_167), 2)
     if item_id == 26:
