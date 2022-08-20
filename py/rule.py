@@ -113,19 +113,19 @@ Params_DICT = {
         'symptom_desc': ""
     },
     611: {
-        'symptom_desc': "拜拜肉藏在胳膊底下，一举手晃动着说“拜拜”就摇晃不已，故称为拜拜肉。拜拜肉位于我们手臂肱三头肌部分，除去多余的脂肪原因，因为肱三头肌松弛无力而导致拜拜肉急剧加重，从而形成拜拜肉。"
+        'symptom_desc': "女生的拜拜肉，会看起来显胖10斤的既视感，真的很影响自身形象！"
     },
     612: {
         'symptom_desc': "拜拜肉藏在胳膊底下，一举手晃动着说“拜拜”就摇晃不已，故称为拜拜肉。拜拜肉位于我们手臂肱三头肌部分，除去多余的脂肪原因，因为肱三头肌松弛无力而导致拜拜肉急剧加重，从而形成拜拜肉。"
     },
     621: {
-        'symptom_desc': "乳房下垂是指乳房在合理情形下，尤其是年轻的妇女，乳头的水平位置是在乳房下皱襞之上，若掉在其下即是所谓的乳房下垂。下垂得越严峻，就掉得越低。"
+        'symptom_desc': "乳房下垂俗称「茄子奶」，它将导致女生没姿态，显老气。即使拥有一副天使的美脸，穿衣搭配完美，都掩饰不了乳房下垂的负面视觉影响。"
     },
     622: {
         'symptom_desc': "乳房下垂是指乳房在合理情形下，尤其是年轻的妇女，乳头的水平位置是在乳房下皱襞之上，若掉在其下即是所谓的乳房下垂。下垂得越严峻，就掉得越低。"
     },
     631: {
-        'symptom_desc': "腹部有游泳圈是长期摄入热量多、消耗少，腹部脂肪长期堆积，缺乏锻炼导致腹部肥胖的表现，此类肥胖属于内脏型肥胖。腹部肥胖对体型的美观影响较大"
+        'symptom_desc': "肚子上的游泳圈是最让人头疼的。因为大多数人先胖胖腹部，往往最难减的也是腹部，腹部脂肪堆积过多，将引发 高血压、脂肪肝、糖尿病等多种疾病，这些危害将远超你的想象。"
     },
     632: {
         'symptom_desc': "腹部有游泳圈是长期摄入热量多、消耗少，腹部脂肪长期堆积，缺乏锻炼导致腹部肥胖的表现，此类肥胖属于内脏型肥胖。腹部肥胖对体型的美观影响较大"
@@ -1256,11 +1256,11 @@ rule_513 = r513_a & r513_b
 r514 = m.weight > m.height2 * 0.60
 rule_514 = r514
 
-r611_a = m.g_lbiceps_125 > m.height * 0.6 +3 
+r611_a = m.g_lbiceps_125 > m.height * 0.6 + 2
 r611_b = m.g_lbiceps_125 > m.g_lmthigh_111 * 0.5
 rule_611 = r611_a & r611_b
 
-r612_a = m.g_lbiceps_125 <= m.height * 0.6 +3 
+r612_a = m.g_lbiceps_125 <= m.height * 0.6 + 2
 r612_b = m.g_lbiceps_125 <= m.g_lmthigh_111 * 0.5
 rule_612 = r612_a | r612_b
 
@@ -1269,9 +1269,9 @@ rule_621 = r621
 r622 = m.g_upper_chest_143 >= m.g_bust_144 * 0.333
 rule_622 = r622
 
-r631 = m.g_abdomen_161 > m.g_waist_163 + 5
+r631 = m.g_abdomen_161 > m.g_waist_163 + 3
 rule_631 = r631
-r632 = m.g_abdomen_161 <= m.g_waist_163 + 5
+r632 = m.g_abdomen_161 <= m.g_waist_163 + 3
 rule_632 = r632
 
 
@@ -1317,6 +1317,7 @@ def current_result():
     overall_res['total_scores'] = sum_scores
     # overall_res['total_desc'] = " ".join(sum_descs)
     # overall_res['total_suggest'] = " ".join(sum_suggs)
+    print(f"result is {execute.results}")
     return execute.results
 
 def execute(facts, rule_str=None):
@@ -1340,7 +1341,7 @@ def execute(facts, rule_str=None):
             post(f"body-xiachui-6{i+1}", facts)
             
 
-    print(f"result is {execute.results}")
+    # print(f"result is {execute.results}")
     # print(get_facts(rule_str))
     return execute.results
 
