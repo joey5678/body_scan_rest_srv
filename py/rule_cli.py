@@ -4,7 +4,7 @@ import json
 Person = collections.namedtuple('figure', 'name age gender')
 from rule import execute as rule_exec_f
 from rule_m import execute_m as rule_exec_m
-from rule_m import reset_rule_results, current_result
+from rule import reset_rule_results, current_result
 
 
 def _g(g_id_map, _id):
@@ -165,70 +165,9 @@ def main(gender=0):
 
     fx = f #dict(m._asdict())
   
-    f_test = {'height': 155,
-    'weight': 50,
-    'height2': 240.25,
-    'g_hip_167': 98.6,
-    'g_shoulder_104': 110.1,
-    'g_sum_167_104': 208.7,
-    'g_waist_155': 104.1,
-    'g_neck_140': 46.7,
-    'g_bust_144': 102.7,
-    'g_lbiceps_125': 28.3,
-    'g_lwrist_123': 16.3,
-    'g_rbiceps_126': 27.5,
-    'g_rwrist_121': 16.3,
-    'g_lmthigh_111': 61.9,
-    'g_rmthigh_112': 73.9,
-    'g_lmcalf_115': 0.0,
-    'g_rmcalf_116': 33.4,
-    'g_lankle_117': 24.8,
-    'g_rankle_118': 38.6,
-    'w_shoulder_210_211': 39.7,
-    'w_busts_205_206': 22.3,
-    'w_head_212_213': 16.6,
-    'h_head_202': 7.3,
-    'h_upper_body': 71.0,
-    'h_knee': 27.7,
-    'h_chin': 162.3,
-    'h_leg_333_334': 84.0,
-    'h_upper_leg': 56.3,
-    'g_abdomen_161': 105.8,
-    'g_waist_163': 109.5,
-    'g_upper_chest_143': 102.4}
+    f_test = {'height': 173, 'weight': 60, 'height2': 300.15, 'g_hip_167': 105.7, 'g_shoulder_104': 105.7, 'g_sum_167_104': 211.4, 'g_waist_155': 90.0, 'g_neck_140': 44.8, 'g_bust_144': 111.7, 'g_lbiceps_125': 33.7, 'g_lwrist_123': 19.9, 'g_rbiceps_126': 34.3, 'g_rwrist_121': 20.4, 'g_lmthigh_111': 49.7, 'g_rmthigh_112': 51.3, 'g_lmcalf_115': 36.6, 'g_rmcalf_116': 36.0, 'g_lankle_117': 27.4, 'g_rankle_118': 34.5, 'w_shoulder_210_211': 43.7, 'w_busts_205_206': 22.9, 'w_head_212_213': 17.4, 'h_head_202': 25.0, 'h_upper_body': 95.7, 'h_knee': 50.6, 'h_chin': 148.2, 'h_leg_333_334': 77.5, 'h_upper_leg': 27.0, 'g_abdomen_161': 89.9, 'g_waist_163': 91.9, 'g_upper_chest_143': 111.3}
+    f_test = {'height': 175, 'weight': 82, 'height2': 341.51, 'g_hip_167': 109.1, 'g_shoulder_104': 118.7, 'g_sum_167_104': 227.8, 'g_waist_155': 90.2, 'g_neck_140': 42.6, 'g_bust_144': 106.1, 'g_lbiceps_125': 33.1, 'g_lwrist_123': 17.0, 'g_rbiceps_126': 34.1, 'g_rwrist_121': 18.3, 'g_lmthigh_111': 55.2, 'g_rmthigh_112': 54.4, 'g_lmcalf_115': 41.1, 'g_rmcalf_116': 42.3, 'g_lankle_117': 38.8, 'g_rankle_118': 33.9, 'w_shoulder_210_211': 43.3, 'w_busts_205_206': 22.4, 'w_head_212_213': 16.8, 'h_head_202': 29.1, 'h_upper_body': 101.7, 'h_knee': 58.1, 'h_chin': 155.7, 'h_leg_333_334': 83.1, 'h_upper_leg': 25.0, 'g_abdomen_161': 90.2, 'g_waist_163': 94.0, 'g_upper_chest_143': 107.2}
 
-    f_test1 = {'height': 155,
-    'weight': 50,
-    'height2': 240.25,
-    'g_hip_167': 0.0,
-    'g_shoulder_104': 107.9,
-    'g_sum_167_104': 107.9,
-    'g_waist_155': 0.0,
-    'g_neck_140': 0.0,
-    'g_bust_144': 121.0,
-    'g_lbiceps_125': 42.5,
-    'g_lwrist_123': 0.0,
-    'g_rbiceps_126': 42.8,
-    'g_rwrist_121': 0.0,
-    'g_lmthigh_111': 74.7,
-    'g_rmthigh_112': 67.6,
-    'g_lmcalf_115': 0.0,
-    'g_rmcalf_116': 0.0,
-    'g_lankle_117': 32.0,
-    'g_rankle_118': 46.7,
-    'w_shoulder_210_211': 35.8,
-    'w_busts_205_206': 8.2,
-    'w_head_212_213': 13.6,
-    'h_head_202': -7.5,
-    'h_upper_body': 70.3,
-    'h_knee': 0.0,
-    'h_chin': 162.5,
-    'h_leg_333_334': 84.7,
-    'h_upper_leg': 84.7,
-    'g_abdomen_161': 130.5,
-    'g_waist_163': 0.0,
-    'g_upper_chest_143': 120.8}
-    
     fx = f_test
 
     print(fx)
@@ -250,5 +189,5 @@ def main(gender=0):
 
 if __name__ == "__main__":
     reset_rule_results()
-    main(1)
+    main(0)
     print(current_result())

@@ -258,7 +258,7 @@ def measure_me():
                     m.request_id = request_id
                 log.warn(f"[Debug] request id: {request_id}")
                 #2. GET. Send requestId to get final result.
-                time.sleep(15)#15
+                time.sleep(30)#15
                 args = {"requestId" : request_id}
                 for ttime in range(try_times):
                     try:
@@ -315,19 +315,35 @@ def measure_me():
 
             delta_weight = round((m.weight/2 - std_weight_kg), 0)
             bmi_val = round(safe_div((m.weight * 50 * 100), (m.height * m.height)), 2)
-            if bmi_val > 28:
-                star_num = 1
-            elif bmi_val >= 24:
-                star_num = 2
-            elif bmi_val >= 18.5:
-                star_num = 4
-            elif bmi_val < 18.5:
-                star_num = 3
-            elif delta_weight == 0:
-                star_num = 5
+
+            try:
+                score_measured = result['Overall'][1]['meili_scores']
+                if score_measured < 55:
+                    star_num = 1
+                elif score_measured < 85:
+                    star_num = 2
+                elif score_measured < 95:
+                    star_num = 3
+                elif score_measured < 98:
+                    star_num = 4
+                else:
+                    star_num = 5
+            except:
+                print('\nFetch score_measured error.......')
+                if bmi_val > 28:
+                    star_num = 1
+                elif bmi_val >= 24:
+                    star_num = 2
+                elif bmi_val >= 18.5:
+                    star_num = 4
+                elif bmi_val < 18.5:
+                    star_num = 3
+                elif delta_weight == 0:
+                    star_num = 5
             
             s_m_url = m_url[m_url.index('obj/')+4:]
             h5_link = f'http://122.51.149.232:8088/wireframe.html?gender={gender_str}&model_url={s_m_url}'
+
 
             result['EXTRA'] = {
                 'star': star_num,
@@ -596,31 +612,22 @@ def handle_3d_measure_json(m_result):
         _score = _ttv.get('score', 0)
         if _score > 0 and _gender == 0:
             _score = 10
+            _ttv['score'] = _score
         tt_score += _score
 
     #
     result = merge_result(result_v1, result_v2)    
 
     try:
-        score_measured = result['Overall']['scores']['score']
-        score_measured = score_measured * 0.4 + tt_score
-        result['Overall']['scores']['score'] = score_measured
+        score_measured = result['Overall'][1]['total_scores']
+        print(f"----------score_measured: {score_measured}, tt_score: {tt_score}")
+        score_measured = round(score_measured * 0.4 + tt_score, 0)
+        result['Overall'][1]['meili_scores'] = score_measured
+        print(f"----------score_measured: {score_measured}, tt_score: {tt_score}")
 
-        if score_measured < 55:
-            star_num = 1
-        elif score_measured < 75:
-            star_num = 2
-        elif score_measured < 85:
-            star_num = 3
-        elif score_measured < 95:
-            star_num = 4
-        else:
-            star_num = 5
-        
-        result['EXTRA']['star'] = star_num
-
-    except:
-        pass      
+    except Exception as ex:
+        result['Overall'][1]['meili_scores'] =75
+        print(f"----------refresh score failed: {str(ex)} ")      
 
     log.warn("[Debug] Handled TiTai .\n")
     return 200, result

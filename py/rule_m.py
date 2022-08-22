@@ -183,7 +183,7 @@ M_Part_Scores = {
     212: {
         'score': 4,
         'desc': '标准的头肩比，使得你看起来身姿相对挺拔有气场。',
-        'symptom_desc': '通常情况下,男性理想的头肩比在1 : 1.5左右,稍微宽一点会更显高,但不能超过1 : 2,否则就会显得“头太小”。',
+        'symptom_desc': '可能很多男性觉得自己【头大】、【肩窄】。其实这两个问题也是共通的。归根结底还是头肩比的协调度。头肩比的理想值是1:2.5，对于大部分的亚洲人来说，肩窄是主要的问题。',
         'suggest': '',
         'tip': '选衣服应该圆领不选V领，因为V领的视觉效果是往下延伸的，会把肩膀切割出来。而圆领的视觉效果是左右延伸的，看起来肩膀更平更宽。'
     },
@@ -799,7 +799,7 @@ M_Body_Standards = {
     },
     'part': {
         # 2.1
-        'ratio_Jian_Tou': 1.25,
+        'ratio_Jian_Tou': 2.5,
         'range_Jian_Tou_up': 0.4,
         'range_Jian_Tou_down': 0.2,
         # 2.2
@@ -1254,12 +1254,12 @@ rule_513 = r513_a & r513_b
 r514 = m.weight > m.height2 * 0.60
 rule_514 = r514
 
-r611_a = m.g_lbiceps_125 > m.height * 0.6 + 3
-r611_b = m.g_lbiceps_125 > m.g_lmthigh_111 * 0.333
+r611_a = m.g_lbiceps_125 > m.height * 0.6 + 1
+r611_b = m.g_lbiceps_125 > m.g_lmthigh_111 * 0.25
 rule_611 = r611_a & r611_b
 
-r612_a = m.g_lbiceps_125 <= m.height * 0.6 + 3
-r612_b = m.g_lbiceps_125 <= m.g_lmthigh_111 * 0.333
+r612_a = m.g_lbiceps_125 <= m.height * 0.6 + 1
+r612_b = m.g_lbiceps_125 <= m.g_lmthigh_111 * 0.25
 rule_612 = r612_a | r612_b
 
 # r621 = m.g_upper_chest_143 < m.g_bust_144 * 0.333
@@ -1267,9 +1267,9 @@ rule_612 = r612_a | r612_b
 # r622 = m.g_upper_chest_143 >= m.g_bust_144 * 0.333
 # rule_622 = r622
 
-r621 = m.g_abdomen_161 > m.g_waist_163 + 2
+r621 = m.g_abdomen_161 > m.g_waist_163 + 0.5
 rule_621 = r621
-r622 = m.g_abdomen_161 <= m.g_waist_163 + 2
+r622 = m.g_abdomen_161 <= m.g_waist_163 + 0.5
 rule_622 = r622
 
 
