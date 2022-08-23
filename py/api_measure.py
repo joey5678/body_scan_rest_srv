@@ -1,10 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-# api.py: REST API for 3dmeasure
-#   - receive some inputs: obj url; person infos
-#   - call 3rd api, get the results.
-
 import collections
 import time
 import json
@@ -186,32 +182,6 @@ def measure_me():
     _weight =  input.get('weight', 0) 
     log.info(f"input of post: {m}")
 
-    # Update: receive dev_id, the call websocket to notify device to execute scan
-    # device will scan and upload the obj file to cloud and return the obj path
-    # m_dev_id = m.dev_id
-    # if not m_dev_id:
-    #     input_check = False
-    #     rsp_code = 403
-    #     result = {"reason": "Not get the device id(dev_id) in request."}
-    #     return jsonify(result), rsp_code
-    # global ws
-    # print("Sending launch request message")
-    # ws.send('{"type": "request_launch", "data": {"dev_id":"%s"}}' % m_dev_id)
-    # print("Receiving...")
-    # result =  ws.recv()
-    # print("Received '%s'" % result)
-
-    # while True:
-    #     print("waiting launch result message")
-    #     result =  ws.recv()
-    #     print("Received '%s'" % result)
-    #     json_msg = json.loads(result)
-    #     if json_msg['type'] == 'return_launch':
-    #         print("received launch result, request finished.")
-    #         print(json_msg)
-    #         break
-    #     time.sleep(10)
-
     #get measure result.
     # m_url = json_msg['data'].get('obj_file_path', None)
     m_url = m.file_path
@@ -232,77 +202,29 @@ def measure_me():
         # full_m_url = os.path.join(cos_path, m_url)
         # print(f"-------------full_m_url: {full_m_url}")
         body_json = {
-            "type": "all",
-            "fileurl": m_url,
-            "orientation_matrix": "1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1",
-            "filesource": "url",
-            "filetype": "obj",
-            "output": "json"
+            "obj_file_path": m_url,
         }
         log.warn("Sending POST to measure method ....")
         #for ptime in range(ptry_times):
         #try:
         #s, rsp = rest_post("measure", body=body_json)
         s, rsp = rest_post_with_try(body_json)
-        if s != 200 or rsp['statusCode'] != 200 or rsp.get('requestId', None) is None:
+        if s != 200 or rsp['statusCode'] != 200:
             rsp_code = 502
-            result = {"reason": f"the 3th API invoke failed, received response: {rsp}"} 
+            result = {"reason": f"the bgo API invoke failed, received response: {rsp}"} 
             log.error("\n[Error] Submit POST to 3th API failed, EXIT Abnormal.\n")
         else:
-            sc = 0
-            m_result = None
-            while sc != 200:
-                try_times = 5
-                request_id = rsp['requestId']
-                if not m.request_id:
-                    m.request_id = request_id
-                log.warn(f"[Debug] request id: {request_id}")
-                #2. GET. Send requestId to get final result.
-                time.sleep(30)#15
-                args = {"requestId" : request_id}
-                for ttime in range(try_times):
-                    try:
-                        s1, rsp1 = rest_get("metrics", args)
-                        sc = s1
-                    except:
-                        log.error(f"\nCall 3th Get method error, tried {ttime +1} times.\n")
-                        time.sleep(4)#4
-                    else:
-                        break
-                    
-                if s1 == 200:
-                    m_result = rsp1['body'] 
-                    _height = rsp1['others']['height'] #this height is evaluated by 3d measure up
-                    m_result['3mu_height'] = _height
-                    m_result['height'] = _height * 100 or m.height
-                    m_result['weight'] = _weight
-                    m_result['gender'] = m.gender or 0
-                    log.warn("Get the final result of measure data.")
-                elif s1 == 202:
-                    log.warn("Got 202 code when request the measure data, sleep a while...")
-                    time.sleep(5)#5
-                else:
-                    log.error(f"[Error] not get the expected resp: {rsp1['body']} ")
-                    break
-
-            if sc != 200:
-                rsp_code = 500
-                log.debug(f"[Error] query measure result failed by request id:{request_id}.")
-                result = {f"reason": f"query measure result failed by request id:{request_id}."}
-            else:
-                log.warn("Start to handling the measure data.....")
-                # handl/parse result.
-                rsp_code = 200
-                #save to json file
-                if True:
-                    Path("results").mkdir(parents=True, exist_ok=True)
-                    sv_json_name = Path(m_url).stem 
-                    sv_json_path = Path("results") / f"{sv_json_name}.json"
-                    with open(sv_json_path, 'w') as jf:
-                       json.dump(m_result, jf)
-                log.warn("[Info] Handling result from 3th.")
-                rsp_code, result = handle_3d_measure_json(m_result)
-                log.warn("[Debug] Handled result from 3th.")
+            m_result = rsp['body'] 
+            _height = rsp['others']['height'] #this height is evaluated by 3d measure up
+            m_result['3mu_height'] = _height
+            m_result['height'] = _height * 100 or m.height
+            m_result['weight'] = _weight
+            m_result['gender'] = m.gender or 0
+            log.warn("Get the final result of measure data.")
+            rsp_code = 200
+            log.warn("[Info] Handling result from bgo.")
+            rsp_code, result = handle_3d_measure_json(m_result)
+            log.warn("[Debug] Handled result from 3th.")
             
             extra_dict = {}
             gender_str = m.gender
@@ -344,7 +266,6 @@ def measure_me():
             s_m_url = m_url[m_url.index('obj/')+4:]
             h5_link = f'http://122.51.149.232:8088/wireframe.html?gender={gender_str}&model_url={s_m_url}'
 
-
             result['EXTRA'] = {
                 'star': star_num,
                 'bmi': bmi_val,
@@ -384,19 +305,19 @@ def new_tt_calculate(height, weight, gender, girths_data, lmpoints_data, slen_da
         reset_rule_results_f()
         #reset_rule_results_f() if gender ==0 else reset_rule_results_m()
         f = dict.fromkeys(figure_key_item, -1.)
-        #print(f)
         print(f"================ height: {height}, weight: {weight}")
         M = collections.namedtuple('Metric', f)
         new_figure(M, f, height, weight, girths_data, lmpoints_data, slen_data)
+        print(f)
         rule_exec_f(f)
         return current_result_f()
     else:
         reset_rule_results_m()
         f = dict.fromkeys(figure_key_item, -1.)
-        #print(f)
         print(f"================ height: {height}, weight: {weight}")
         M = collections.namedtuple('Metric', f)
         new_figure(M, f, height, weight, girths_data, lmpoints_data, slen_data)
+        print(f)
         rule_exec_m(f)
         return current_result_m()
 
@@ -436,7 +357,7 @@ def merge_result(res_1, res_2):
     tt_v1 = res_1['TiTai']
     tw_v1 = res_1['TiWei']
 
-    res_2['YiTai'] = {}  #加入之前计算的体态数据
+    res_2['YiTai'] = {} 
 
     for _k, _v in tt_v1.items():
         rc = RC4_dict.get(_k, [])
