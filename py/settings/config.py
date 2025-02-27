@@ -7,27 +7,27 @@ SNAPCHAT = 3
 FIRE_BASE_PHONE = 4
 APPLE = 5
 
-home_page_prefix = 'http://d2ocm8kiyf23qg.cloudfront.net/'
+home_page_prefix = 'http://##.cloudfront.net/'
 
 # todo 官方默认的jojor头像
-official_default_image = "http://d2ocm8kiyf23qg.cloudfront.net/jojor_icon.png"
+official_default_image = "http://##.cloudfront.net/jojor_icon.png"
 
 # 默认的jojor头像
-login_default_image = 'http://d2ocm8kiyf23qg.cloudfront.net/default_picture/jojor_default_picture.png'
-login_default_image_male = "http://d2ocm8kiyf23qg.cloudfront.net/default_male_1.png"
-login_default_image_female = "http://d2ocm8kiyf23qg.cloudfront.net/default_female_1.png"
+login_default_image = 'http://##.cloudfront.net/default_picture/jojor_default_picture.png'
+login_default_image_male = "http://##.cloudfront.net/default_male_1.png"
+login_default_image_female = "http://##.cloudfront.net/default_female_1.png"
 
 
 eighteenth_years_old = 567648000
 
-get_female_default_head = "http://cdn1.findher.in/59634cf4f6f320b97ac9d1ae/20171108/1510130721.jpg"
-get_male_default_head = "http://cdn1.findher.in/59634cf4f6f320b97ac9d1ae/20171108/1510130721.jpg"
-# FACE_BOOK_APP_ID = "651058045767460"
-# # FACE_BOOK_KEY = "351afde13f7ad83953ca0e75f7a01dba"
-# FACE_BOOK_KEY = "b653aca0d0edadda19a97819b75fbf06"
+get_female_default_head = "http://cdn1.findher.in/##/##/#.jpg"
+get_male_default_head = "http://cdn1.findher.in/##/#/#.jpg"
+# FACE_BOOK_APP_ID = "###"
+# # FACE_BOOK_KEY = "###"
+# FACE_BOOK_KEY = "###"
 
-FACE_BOOK_APP_ID = "2635202503462977"
-FACE_BOOK_KEY = "d3ad52070fb12e33e814b62aa23b8eec"
+FACE_BOOK_APP_ID = "###"
+FACE_BOOK_KEY = "###"
 
 
 # IP 得到的  国家简码对应的国家全称
@@ -99,32 +99,32 @@ IP_MAP_COUNTRY = {'AO': 'Angola', 'AF': 'Afghanistan', 'AL': 'Albania', 'DZ': 'A
 #
 # config_cls = Config()
 # 声网踢人配置
-agora_appid = "25eadbd0474947d58d7bdab1ee2e4349"
+agora_appid = "##"
 
-Appid = "25eadbd0474947d58d7bdab1ee2e4349"
-plainCredentials =  "b6c916e125334225940e5c80f61370b5:305548b49f3e4cf7a1258063d611f20a"
+Appid = "##"
+plainCredentials =  "##:##"
 BaseUrl = "https://api.agora.io/dev/v1"
-appCertificate = "51570ba1120c4e6c96981dd475ba8925"
+appCertificate = "##"
 
 # python3
 base64Credentials = base64.b64encode(plainCredentials.encode())
 base64Credentials = base64Credentials.decode()
 #微信APPID
-wechatAppId = "wxc05113232cfc149e"
-wechatAppSecret = "184cb89dd3c03c5316eedbf9e727065a"
+wechatAppId = "##"
+wechatAppSecret = "##"
 
-#wechatAppId = "wxfa94ce88dbf3e08c"
-#wechatAppSecret = "286b247b000c11284fd588dcb753fa2f"
+#wechatAppId = "###"
+#wechatAppSecret = "####"
 
 #因为只是给kimi一个人登录，所以用户名和密码写道配置文件里面
-username="JVON001"
-password="123456"
-uid="4491197847086043000"
-rid =1001019
+username="##"
+password="##"
+uid="###"
+rid =##
 
-#姚晨的也要写死一个token
-y_uid="4491197847086043111"
-y_rid=1001020
+#的也要写死一个token
+y_uid="####"
+y_rid=###
 
 uid_list = ["4477051964694204417","4477080290808827905","4483160143530299393","4494789326853378049","4478155010442530817","4491197847086043111"]
 andorid_to_uid={
